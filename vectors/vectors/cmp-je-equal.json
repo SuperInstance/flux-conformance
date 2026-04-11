@@ -1,0 +1,17 @@
+{
+  "id": "cmp-je-equal",
+  "name": "CMP+JE: 10 == 10, jump taken",
+  "category": "comparison",
+  "description": "Compare equal values, JE should jump",
+  "bytecode_hex": "2b010a002b020a002d01022e0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

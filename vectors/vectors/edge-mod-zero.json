@@ -1,0 +1,11 @@
+{
+  "id": "edge-mod-zero",
+  "name": "IMOD: modulo by zero",
+  "category": "edge-case",
+  "description": "Modulo by zero should cause an error state",
+  "bytecode_hex": "2b012a002b0200000c00010280",
+  "expected": {
+    "final_state": "ERRORED",
+    "error_type": "DivisionByZero"
+  }
+}

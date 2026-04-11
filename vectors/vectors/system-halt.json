@@ -1,0 +1,13 @@
+{
+  "id": "system-halt",
+  "name": "HALT: stop execution",
+  "category": "system",
+  "description": "HALT stops the VM",
+  "bytecode_hex": "80",
+  "expected": {
+    "final_state": "HALTED"
+  },
+  "tags": [
+    "smoke"
+  ]
+}

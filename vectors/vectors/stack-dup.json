@@ -1,0 +1,14 @@
+{
+  "id": "stack-dup",
+  "name": "DUP: duplicate top of stack",
+  "category": "stack",
+  "description": "DUP duplicates the top value on the stack",
+  "bytecode_hex": "2b0107002001222b0100002100210180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7,
+      "1": 7
+    }
+  }
+}

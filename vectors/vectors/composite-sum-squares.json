@@ -1,0 +1,16 @@
+{
+  "id": "composite-sum-squares",
+  "name": "Sum of squares: 1..10 = 385",
+  "category": "branch",
+  "description": "Compute sum of squares from 1 to 10",
+  "bytecode_hex": "2b0000002b0101000a020101080000020e012b030b002d01033600ebff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 385
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "float-fdiv",
+  "name": "FDIV: F0 = F1 / F2",
+  "category": "float",
+  "description": "Float division",
+  "bytecode_hex": "4300010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 3.75
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 15.0,
+      "2": 4.0
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

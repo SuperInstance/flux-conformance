@@ -1,0 +1,17 @@
+{
+  "id": "logic-iand-basic",
+  "name": "IAND: 0xFF & 0x0F = 0x0F",
+  "category": "logic",
+  "description": "Bitwise AND masks bits",
+  "bytecode_hex": "2b01ff002b020f001000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 15
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

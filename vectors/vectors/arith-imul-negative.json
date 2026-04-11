@@ -1,0 +1,13 @@
+{
+  "id": "arith-imul-negative",
+  "name": "IMUL: -5 * 3 = -15",
+  "category": "arithmetic",
+  "description": "Multiply negative by positive",
+  "bytecode_hex": "2b01fbff2b0203000a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -15
+    }
+  }
+}

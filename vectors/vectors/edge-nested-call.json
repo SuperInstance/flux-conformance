@@ -1,0 +1,13 @@
+{
+  "id": "edge-nested-call",
+  "name": "CALL: nested function calls",
+  "category": "edge-case",
+  "description": "Two levels of nested function calls with return",
+  "bytecode_hex": "0700010080070003002800002b006300280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 99
+    }
+  }
+}

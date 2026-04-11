@@ -1,0 +1,16 @@
+{
+  "id": "composite-factorial",
+  "name": "8! = 40320",
+  "category": "branch",
+  "description": "Compute factorial of 8",
+  "bytecode_hex": "2b0001002b0108000a0000010f010601f6ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 40320
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "arith-isub-basic",
+  "name": "ISUB: 10 - 3 = 7",
+  "category": "arithmetic",
+  "description": "Subtract two positive integers",
+  "bytecode_hex": "2b010a002b0203000900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

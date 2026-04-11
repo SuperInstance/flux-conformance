@@ -1,0 +1,13 @@
+{
+  "id": "arith-imul-zero",
+  "name": "IMUL: 100 * 0 = 0",
+  "category": "arithmetic",
+  "description": "Multiplication by zero",
+  "bytecode_hex": "2b0164002b0200000a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "logic-iand-zero",
+  "name": "IAND: 42 & 0 = 0",
+  "category": "logic",
+  "description": "AND with zero yields zero",
+  "bytecode_hex": "2b012a002b0200001000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

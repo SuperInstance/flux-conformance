@@ -1,0 +1,22 @@
+{
+  "id": "float-fneg",
+  "name": "FNEG: F0 = -F1",
+  "category": "float",
+  "description": "Float negation",
+  "bytecode_hex": "44000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": -7.5
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 7.5
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "cmp-je-unequal",
+  "name": "CMP+JE: 10 != 20, jump NOT taken",
+  "category": "comparison",
+  "description": "Compare unequal values, JE should not jump",
+  "bytecode_hex": "2b010a002b0214002d01022e0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

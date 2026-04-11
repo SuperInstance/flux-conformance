@@ -1,0 +1,14 @@
+{
+  "id": "composite-copy",
+  "name": "MOV: copy R0 to R1",
+  "category": "branch",
+  "description": "Copy register value using MOV instruction",
+  "bytecode_hex": "2b002a000101002b00000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0,
+      "1": 42
+    }
+  }
+}

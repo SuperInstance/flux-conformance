@@ -1,0 +1,13 @@
+{
+  "id": "logic-ixor-toggle",
+  "name": "IXOR: 0xF0 ^ 0xFF = 0x0F",
+  "category": "logic",
+  "description": "XOR toggles (flips) bits where mask is 1",
+  "bytecode_hex": "2b01f0002b02ff001200010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 15
+    }
+  }
+}

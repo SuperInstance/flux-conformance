@@ -1,0 +1,13 @@
+{
+  "id": "cmp-jge-equal",
+  "name": "CMP+JGE: 10 >= 10, jump taken",
+  "category": "comparison",
+  "description": "Compare equal values, JGE should jump",
+  "bytecode_hex": "2b010a002b020a002d0102370005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "arith-isub-negative",
+  "name": "ISUB: 3 - 10 = -7",
+  "category": "arithmetic",
+  "description": "Subtraction producing negative result",
+  "bytecode_hex": "2b0103002b020a000900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -7
+    }
+  }
+}

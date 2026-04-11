@@ -1,0 +1,27 @@
+{
+  "id": "float-fadd",
+  "name": "FADD: F0 = F1 + F2",
+  "category": "float",
+  "description": "Float addition using Format C FP registers",
+  "bytecode_hex": "4000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 6.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 3.14,
+      "2": 2.86
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-le",
+  "name": "ICMP LE: 5 <= 5, result in R0",
+  "category": "comparison",
+  "description": "ICMP with LE condition writes 1 when less or equal",
+  "bytecode_hex": "2b0105002b0205001803010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

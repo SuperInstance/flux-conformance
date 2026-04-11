@@ -1,0 +1,13 @@
+{
+  "id": "mem-memset",
+  "name": "MEMSET: fill region with value",
+  "category": "memory",
+  "description": "Fill first 32 bytes of region 'buf' with 0xFF",
+  "bytecode_hex": "300d0003627566400000000474657374340d000362756600000000ff200000002b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-04-12T08:00:00Z",
+  "total_vectors": 88,
+  "categories": {
+    "arithmetic": [
+      "arith-iadd-basic",
+      "arith-iadd-zero",
+      "arith-iadd-negative",
+      "arith-isub-basic",
+      "arith-isub-negative",
+      "arith-imul-basic",
+      "arith-imul-zero",
+      "arith-imul-negative",
+      "arith-idiv-basic",
+      "arith-idiv-truncate",
+      "arith-imod-basic",
+      "arith-ineg-positive",
+      "arith-ineg-negative",
+      "arith-inc-basic",
+      "arith-dec-basic",
+      "arith-mov-basic",
+      "arith-movi-basic",
+      "arith-movi-negative",
+      "arith-irem-basic",
+      "arith-nop"
+    ],
+    "logic": [
+      "logic-iand-basic",
+      "logic-iand-zero",
+      "logic-ior-basic",
+      "logic-ixor-basic",
+      "logic-ixor-toggle",
+      "logic-inot-basic",
+      "logic-ishl-basic",
+      "logic-ishr-basic",
+      "logic-rotl-basic",
+      "logic-rotr-basic"
+    ],
+    "comparison": [
+      "cmp-je-equal",
+      "cmp-je-unequal",
+      "cmp-jne-unequal",
+      "cmp-jg-greater",
+      "cmp-jl-less",
+      "cmp-jge-equal",
+      "cmp-jle-less",
+      "cmp-test-zero",
+      "cmp-icmp-eq",
+      "cmp-icmp-ne",
+      "cmp-icmp-lt",
+      "cmp-icmp-gt",
+      "cmp-icmp-le"
+    ],
+    "branch": [
+      "branch-jmp-forward",
+      "branch-jnz-loop",
+      "branch-jz-zero",
+      "branch-jz-nonzero",
+      "branch-nested-sum",
+      "branch-call-ret",
+      "branch-fibonacci",
+      "branch-gcd",
+      "composite-sum-squares",
+      "composite-power2",
+      "composite-factorial",
+      "composite-copy",
+      "composite-prime7"
+    ],
+    "stack": [
+      "stack-push-pop",
+      "stack-push3-pop3",
+      "stack-dup",
+      "stack-swap",
+      "stack-enter-leave"
+    ],
+    "memory": [
+      "mem-store-load",
+      "mem-store8-load8",
+      "mem-region-create",
+      "mem-memset"
+    ],
+    "float": [
+      "float-fadd-basic",
+      "float-fadd",
+      "float-fsub",
+      "float-fmul",
+      "float-fdiv",
+      "float-fneg",
+      "float-fabs",
+      "float-fmin",
+      "float-fmax"
+    ],
+    "a2a": [
+      "a2a-tell-basic",
+      "a2a-ask-basic",
+      "a2a-broadcast-basic",
+      "a2a-delegate-basic"
+    ],
+    "system": [
+      "system-halt",
+      "system-nop-chain"
+    ],
+    "edge-case": [
+      "edge-movi-max",
+      "edge-movi-min",
+      "edge-div-zero",
+      "edge-mod-zero",
+      "edge-large-loop",
+      "edge-overflow",
+      "edge-nested-call",
+      "edge-cmp-zero-zero"
+    ]
+  },
+  "isa_reference": "flux.bytecode.opcodes.Op (VM-executable opcode values)",
+  "encoding_note": "All bytecodes use the VM opcode system (opcodes.py), NOT isa_unified.py. See docs/ISA-MAPPING.md for the mapping between the two systems."
+}

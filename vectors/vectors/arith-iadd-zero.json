@@ -1,0 +1,16 @@
+{
+  "id": "arith-iadd-zero",
+  "name": "IADD: 0 + 42 = 42",
+  "category": "arithmetic",
+  "description": "Add zero to a value (identity operation)",
+  "bytecode_hex": "2b0000002b012a000802000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "2": 42
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

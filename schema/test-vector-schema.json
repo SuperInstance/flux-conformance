@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FLUX Conformance Test Vector",
+  "description": "A single test vector for FLUX cross-runtime conformance testing. Each vector defines bytecode input, optional register pre-conditions, and expected execution results.",
+  "type": "object",
+  "required": ["id", "name", "category", "description", "bytecode_hex", "expected"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique test identifier, e.g. 'arith-iadd-basic'"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable test name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "arithmetic",
+        "float",
+        "logic",
+        "comparison",
+        "branch",
+        "stack",
+        "memory",
+        "call",
+        "regions",
+        "a2a",
+        "type",
+        "simd",
+        "system",
+        "edge-case"
+      ],
+      "description": "Test category"
+    },
+    "description": {
+      "type": "string",
+      "description": "What behavior this test verifies"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional tags: 'smoke', 'regression', 'p0', 'isa-v1', 'isa-v2'"
+    },
+    "preconditions": {
+      "type": "object",
+      "description": "Register/memory state to set before execution",
+      "properties": {
+        "gp": {
+          "type": "object",
+          "description": "General-purpose register pre-conditions {register_index: integer_value}",
+          "additionalProperties": { "type": "integer" }
+        },
+        "fp": {
+          "type": "object",
+          "description": "Floating-point register pre-conditions {register_index: float_value}",
+          "additionalProperties": { "type": "number" }
+        },
+        "memory": {
+          "type": "object",
+          "description": "Memory pre-conditions {region_name: {offset: hex_string}}",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      }
+    },
+    "bytecode_hex": {
+      "type": "string",
+      "pattern": "^[0-9a-f]+$",
+      "description": "Raw bytecode as hex string (no '0x' prefix)"
+    },
+    "expected": {
+      "type": "object",
+      "required": ["final_state"],
+      "properties": {
+        "final_state": {
+          "type": "string",
+          "enum": ["HALTED", "YIELDED", "ERRORED", "CYCLE_LIMIT"],
+          "description": "Expected VM state after execution"
+        },
+        "gp": {
+          "type": "object",
+          "description": "Expected general-purpose register values {register_index: integer_value}. Only registers whose value matters need to be listed."
+        },
+        "fp": {
+          "type": "object",
+          "description": "Expected floating-point register values {register_index: float_value}"
+        },
+        "memory": {
+          "type": "object",
+          "description": "Expected memory contents {region_name: {offset: expected_hex_string}}"
+        },
+        "flags": {
+          "type": "object",
+          "description": "Expected condition flag state",
+          "properties": {
+            "zero": { "type": "boolean" },
+            "sign": { "type": "boolean" },
+            "carry": { "type": "boolean" },
+            "overflow": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        },
+        "max_cycles": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum cycles allowed before CYCLE_LIMIT. Default: 10000."
+        },
+        "error_type": {
+          "type": "string",
+          "description": "If final_state is ERRORED, the expected error class (e.g. 'DivisionByZero', 'StackOverflow', 'InvalidOpcode')"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "a2a-delegate-basic",
+  "name": "DELEGATE: delegate task, halt after",
+  "category": "a2a",
+  "description": "DELEGATE sends a task to another agent and halts.",
+  "bytecode_hex": "621100636f6d70757465206669626f6e6163636980",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

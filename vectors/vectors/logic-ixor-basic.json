@@ -1,0 +1,16 @@
+{
+  "id": "logic-ixor-basic",
+  "name": "IXOR: 0xFF ^ 0xFF = 0",
+  "category": "logic",
+  "description": "XOR of identical values yields zero",
+  "bytecode_hex": "2b01ff002b02ff001200010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

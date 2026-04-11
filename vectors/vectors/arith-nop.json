@@ -1,0 +1,16 @@
+{
+  "id": "arith-nop",
+  "name": "NOP: should not affect state",
+  "category": "arithmetic",
+  "description": "NOP instruction does nothing",
+  "bytecode_hex": "2b002a0000000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

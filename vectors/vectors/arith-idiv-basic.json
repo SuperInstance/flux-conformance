@@ -1,0 +1,17 @@
+{
+  "id": "arith-idiv-basic",
+  "name": "IDIV: 20 / 4 = 5",
+  "category": "arithmetic",
+  "description": "Integer division of positive values",
+  "bytecode_hex": "2b0114002b0204000b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 5
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

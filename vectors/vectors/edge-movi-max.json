@@ -1,0 +1,13 @@
+{
+  "id": "edge-movi-max",
+  "name": "MOVI: load max i16 (32767)",
+  "category": "edge-case",
+  "description": "Load maximum 16-bit signed value",
+  "bytecode_hex": "2b00ff7f80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32767
+    }
+  }
+}

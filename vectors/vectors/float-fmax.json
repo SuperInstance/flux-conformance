@@ -1,0 +1,22 @@
+{
+  "id": "float-fmax",
+  "name": "FMAX: F0 = max(F1, F2)",
+  "category": "float",
+  "description": "FMAX Format C: max(F[fs1], F[fd]) stored in F[fd]. With F0=3.0, F1=7.0: max(7.0, 3.0) = 7.0",
+  "bytecode_hex": "47000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 7.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 3.0,
+      "1": 7.0
+    }
+  }
+}

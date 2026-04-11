@@ -1,0 +1,13 @@
+{
+  "id": "branch-jz-nonzero",
+  "name": "JZ: no jump when register is non-zero",
+  "category": "branch",
+  "description": "JZ should not jump when register is non-zero",
+  "bytecode_hex": "2b000500050005002b010100802b01000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "1": 1
+    }
+  }
+}

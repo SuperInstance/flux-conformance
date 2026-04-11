@@ -1,0 +1,17 @@
+{
+  "id": "branch-jmp-forward",
+  "name": "JMP: unconditional forward jump",
+  "category": "branch",
+  "description": "JMP skips the instruction between jump and target",
+  "bytecode_hex": "040005002b000000802b00630080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 99
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

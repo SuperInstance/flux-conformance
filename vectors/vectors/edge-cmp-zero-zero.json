@@ -1,0 +1,13 @@
+{
+  "id": "edge-cmp-zero-zero",
+  "name": "CMP: 0 == 0",
+  "category": "edge-case",
+  "description": "Comparing two zero values should set equal flag",
+  "bytecode_hex": "2b0100002b0200002d01022e0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

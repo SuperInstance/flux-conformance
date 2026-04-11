@@ -1,0 +1,13 @@
+{
+  "id": "arith-movi-negative",
+  "name": "MOVI: R0 = -1 (0xFFFF sign-extended)",
+  "category": "arithmetic",
+  "description": "Load -1 as immediate (tests sign extension from i16)",
+  "bytecode_hex": "2b00ffff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  }
+}

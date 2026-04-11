@@ -1,0 +1,16 @@
+{
+  "id": "arith-dec-basic",
+  "name": "DEC: R0 from 5 to 4",
+  "category": "arithmetic",
+  "description": "Decrement register by 1",
+  "bytecode_hex": "2b0005000f0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 4
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "branch-jz-zero",
+  "name": "JZ: jump when register is zero",
+  "category": "branch",
+  "description": "JZ should jump when register contains zero",
+  "bytecode_hex": "2b000000050005002b010000802b01010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "1": 1
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

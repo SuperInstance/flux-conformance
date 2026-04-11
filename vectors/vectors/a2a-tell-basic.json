@@ -1,0 +1,10 @@
+{
+  "id": "a2a-tell-basic",
+  "name": "TELL: send message, halt after",
+  "category": "a2a",
+  "description": "TELL sends a message and halts. A2A handler processes the message.",
+  "bytecode_hex": "600b0068656c6c6f20666c65657480",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

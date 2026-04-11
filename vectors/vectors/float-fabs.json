@@ -1,0 +1,22 @@
+{
+  "id": "float-fabs",
+  "name": "FABS: F0 = |F1|",
+  "category": "float",
+  "description": "Float absolute value",
+  "bytecode_hex": "45000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 3.14
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": -3.14
+    }
+  }
+}

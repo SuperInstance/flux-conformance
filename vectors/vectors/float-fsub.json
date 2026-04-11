@@ -1,0 +1,27 @@
+{
+  "id": "float-fsub",
+  "name": "FSUB: F0 = F1 - F2",
+  "category": "float",
+  "description": "Float subtraction",
+  "bytecode_hex": "4100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 6.5
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 10.0,
+      "2": 3.5
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

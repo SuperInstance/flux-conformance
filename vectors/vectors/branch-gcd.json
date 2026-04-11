@@ -1,0 +1,16 @@
+{
+  "id": "branch-gcd",
+  "name": "GCD(48, 18) = 6 via subtraction",
+  "category": "branch",
+  "description": "Compute GCD of 48 and 18 using Euclidean subtraction algorithm",
+  "bytecode_hex": "2b0030002b0112002d00012e0014004d000800090101000400edff090000010400e5ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 6
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jl-less",
+  "name": "CMP+JL: 5 < 10, jump taken",
+  "category": "comparison",
+  "description": "Compare with less-than, JL should jump",
+  "bytecode_hex": "2b0105002b020a002d0102360005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "mem-store8-load8",
+  "name": "STORE8+LOAD8: byte-level round-trip",
+  "category": "memory",
+  "description": "Write and read a single byte from memory",
+  "bytecode_hex": "2b01c8002b02ab005702012b0200004f030180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "3": 171
+    }
+  }
+}
