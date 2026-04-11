@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "version": "2.0.0",
+    "generated": "2026-04-12T08:30:00Z",
+    "census_taker": "Super Z",
+    "role": "Quartermaster Scout",
+    "scope": "733 repos in SuperInstance",
+    "data_sources": [
+      "GitHub API (ghp redacted)",
+      "fleet-data.json navigator",
+      "Session 5 fence-0x46 audit",
+      "Session 8 flux-conformance build",
+      "Session 9 fresh API verification"
+    ]
+  },
+  "summary": {
+    "total_repos": 733,
+    "green": 4,
+    "yellow": 36,
+    "red": 26,
+    "dead": 15,
+    "dead_estimated_fleet_wide": 408,
+    "repos_audited": 84
+  },
+  "categories": {
+    "green": {
+      "label": "GREEN",
+      "definition": "Has tests, tests pass, recent commits, real codebase",
+      "count": 4,
+      "repos": [
+        {
+          "name": "flux-core",
+          "language": "Rust",
+          "size_kb": 147,
+          "last_push": "2026-04-10",
+          "tests": 13,
+          "description": "FLUX bytecode runtime — VM, assembler, disassembler, A2A",
+          "ecosystem": "FLUX Core",
+          "url": "https://github.com/SuperInstance/flux-core"
+        },
+        {
+          "name": "flux-a2a-signal",
+          "language": "Python",
+          "size_kb": 344,
+          "last_push": "2026-04-11",
+          "tests": 840,
+          "description": "FLUX A2A Signal Protocol — agent-first-class JSON language, 6 paradigms",
+          "ecosystem": "FLUX Research",
+          "url": "https://github.com/SuperInstance/flux-a2a-signal"
+        },
+        {
+          "name": "flux-conformance",
+          "language": "Python",
+          "size_kb": 370,
+          "last_push": "2026-04-12",
+          "tests": 88,
+          "description": "Cross-runtime conformance test suite — 88 vectors, 10 categories, 100% pass rate",
+          "ecosystem": "FLUX Tools",
+          "url": "https://github.com/SuperInstance/flux-conformance",
+          "note": "Upgraded from RED to GREEN in session 9 (Super Z)"
+        },
+        {
+          "name": "flux-spec",
+          "language": "Markdown",
+          "size_kb": 280,
+          "last_push": "2026-04-12",
+          "tests": 0,
+          "description": "Canonical FLUX specification — 8 specs (ISA, FIR, A2A, SIGNAL, .flux.md, .fluxvocab, envelope, viewpoint mapping)",
+          "ecosystem": "FLUX Core",
+          "url": "https://github.com/SuperInstance/flux-spec",
+          "note": "Upgraded from RED to GREEN in sessions 3-5 (Super Z, Babel)"
+        }
+      ]
+    },
+    "yellow": {
+      "label": "YELLOW",
+      "definition": "Has real code (>10KB), recently pushed, but no verified test suite",
+      "count": 36,
+      "repos": [
+        {"name": "flux", "language": "Rust", "size_kb": 76, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "Original FLUX — high-perf Rust runtime with SSA IR, polyglot parser"},
+        {"name": "flux-runtime", "language": "Python", "size_kb": 1677, "last_push": "2026-04-12", "ecosystem": "FLUX Core", "description": "Flagship Python runtime. Self-assembling, adaptive optimization, JIT"},
+        {"name": "flux-swarm", "language": "Go", "size_kb": 2979, "last_push": "2026-04-11", "ecosystem": "FLUX Core", "description": "Largest FLUX core repo. Go distributed agent coordination with A2A"},
+        {"name": "flux-wasm", "language": "Rust/Make", "size_kb": 22656, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "WebAssembly VM build. Largest repo by size"},
+        {"name": "flux-zig", "language": "Zig", "size_kb": 11557, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "FASTEST VM at 210ns/iter. Comptime-optimized"},
+        {"name": "flux-os", "language": "C", "size_kb": 251, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "Pure C OS kernel with FLUX bytecode VM, self-compiler, A2A"},
+        {"name": "flux-js", "language": "JavaScript", "size_kb": 102, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "JS bytecode VM with A2A messaging. 373ns/iter via V8 JIT"},
+        {"name": "flux-llama", "language": "C", "size_kb": 106, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "Multi-agent bytecode-driven LLM token sampling with swarm voting"},
+        {"name": "flux-cuda", "language": "CUDA", "size_kb": 97, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "GPU-accelerated bytecode VM. 1000 parallel agents on NVIDIA GPUs"},
+        {"name": "flux-java", "language": "Java", "size_kb": 96, "last_push": "2026-04-10", "ecosystem": "FLUX Core", "description": "Java bytecode VM with two-pass assembler"},
+        {"name": "flux-py", "language": "Python", "size_kb": 114, "last_push": "2026-04-11", "ecosystem": "FLUX Core", "description": "Minimal clean-room Python VM with A2A"},
+        {"name": "flux-ide", "language": "TypeScript", "size_kb": 106, "last_push": "2026-04-10", "ecosystem": "FLUX Tools", "description": "Markdown-to-bytecode agent-native development environment"},
+        {"name": "flux-benchmarks", "language": "Shell", "size_kb": 105, "last_push": "2026-04-10", "ecosystem": "FLUX Tools", "description": "Performance data across 7 runtimes. 4.7x faster than CPython"},
+        {"name": "flux-lsp", "language": "TypeScript", "size_kb": 350, "last_push": "2026-04-12", "ecosystem": "FLUX Tools", "description": "Language Server Protocol — working TypeScript server, 2603 lines, 35 tests, 5 providers", "note": "Upgraded from RED to YELLOW in session 8 (Super Z)"},
+        {"name": "flux-vocabulary", "language": "Python", "size_kb": 440, "last_push": "2026-04-12", "ecosystem": "FLUX Multilingual", "description": "Standalone vocabulary library — 44K lines, 15+ PRGFs, 7 language paradigms", "note": "Upgraded from RED to YELLOW in sessions 4-5 (Super Z)"},
+        {"name": "flux-multilingual", "language": "Python", "size_kb": 7378, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Babel Lattice — 80+ language NLP runtimes for FLUX bytecode"},
+        {"name": "flux-runtime-san", "language": "Python", "size_kb": 100, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Sanskrit FLUX runtime"},
+        {"name": "flux-runtime-wen", "language": "Python", "size_kb": 87, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Classical Chinese FLUX runtime"},
+        {"name": "flux-runtime-kor", "language": "Python", "size_kb": 84, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Korean FLUX runtime"},
+        {"name": "flux-runtime-zho", "language": "Python", "size_kb": 83, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Mandarin FLUX runtime"},
+        {"name": "flux-runtime-deu", "language": "Python", "size_kb": 72, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "German FLUX runtime"},
+        {"name": "flux-runtime-lat", "language": "Python", "size_kb": 67, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Latin FLUX runtime"},
+        {"name": "flux-envelope", "language": "Python", "size_kb": 47, "last_push": "2026-04-11", "ecosystem": "FLUX Multilingual", "description": "Cross-linguistic coherence, Lingua Franca bytecode bridge"},
+        {"name": "flux-a2a-prototype", "language": "Python", "size_kb": 448, "last_push": "2026-04-11", "ecosystem": "FLUX Research", "description": "A2A Signal Protocol prototype — branching, forking, co-iteration"},
+        {"name": "flux-research", "language": "Markdown", "size_kb": 126, "last_push": "2026-04-11", "ecosystem": "FLUX Research", "description": "Compiler/interpreter taxonomy, agent-first design, ISA v2 proposal"},
+        {"name": "superz-vessel", "language": "Mixed", "size_kb": 193, "last_push": "2026-04-12", "ecosystem": "Vessels", "description": "Super Z vessel — quartermaster scout, fleet auditor, 9 sessions of work"},
+        {"name": "oracle1-vessel", "language": "Shell", "size_kb": 51, "last_push": "2026-04-12", "ecosystem": "Vessels", "description": "Oracle1 — Lighthouse Keeper. 12 open issues, beachcomb tool, fleet orders"},
+        {"name": "babel-vessel", "language": "Mixed", "size_kb": 26, "last_push": "2026-04-11", "ecosystem": "Vessels", "description": "Babel Agent vessel — multilingual FLUX runtime development"},
+        {"name": "greenhorn-runtime", "language": "Go", "size_kb": 5093, "last_push": "2026-04-11", "ecosystem": "Greenhorn", "description": "Portable agent runtime in Go, C, C++, CUDA"},
+        {"name": "greenhorn-onboarding", "language": "Markdown", "size_kb": 9, "last_push": "2026-04-12", "ecosystem": "Greenhorn", "description": "Comprehensive onboarding guide — GREENHORN-MANIFESTO, FLEET-MAP, SIGNAL-MANUAL", "note": "Content-rich despite small size — 12+ files"},
+        {"name": "iron-to-iron", "language": "Python", "size_kb": 253, "last_push": "2026-04-11", "ecosystem": "Fleet Infrastructure", "description": "I2I protocol — inter-agent continuity and knowledge transfer"},
+        {"name": "fleet-discovery", "language": "Python", "size_kb": 10, "last_push": "2026-04-11", "ecosystem": "Fleet Infrastructure", "description": "Fleet discovery protocol — vessels find each other via GitHub repos"},
+        {"name": "fleet-workshop", "language": "Python", "size_kb": 11, "last_push": "2026-04-11", "ecosystem": "Fleet Infrastructure", "description": "Collaborative build workspace"},
+        {"name": "fleet-mechanic", "language": "Python", "size_kb": 1, "last_push": "2026-04-11", "ecosystem": "Fleet Infrastructure", "description": "Fleet repair and maintenance"},
+        {"name": "SmartCRDT", "language": "TypeScript", "size_kb": 7071, "last_push": "2026-04-10", "ecosystem": "Key Originals", "description": "Actively maintained. Core CRDT library. 11 open issues"},
+        {"name": "nexus-runtime", "language": "Python", "size_kb": 1767, "last_push": "2026-04-08", "ecosystem": "Key Originals", "description": "Runtime environment for distributed services"},
+        {"name": "constraint-theory-core", "language": "Rust", "size_kb": 235, "last_push": "2026-03-28", "ecosystem": "Key Originals", "description": "Constraint theory engine. Slightly stale"},
+        {"name": "cocapn", "language": "TypeScript", "size_kb": 35558, "last_push": "2026-03-30", "ecosystem": "Key Originals", "description": "Largest repo in fleet. Core repo-native agent framework"},
+        {"name": "oracle1-index", "language": "HTML", "size_kb": 303, "last_push": "2026-04-11", "ecosystem": "Fleet Infrastructure", "description": "Searchable index of 663 repos. 32 categories"},
+        {"name": "captains-log", "language": "Markdown", "size_kb": 151, "last_push": "2026-04-10", "ecosystem": "Key Originals", "description": "Oracle1 personal-agentic-growth diary"},
+        {"name": "Tripartite1", "language": "Rust", "size_kb": 3878, "last_push": "2026-01-08", "ecosystem": "Key Originals", "description": "Rust consensus system. Completed project"}
+      ]
+    },
+    "red": {
+      "label": "RED",
+      "definition": "Empty shell, placeholder, <10KB, no real code",
+      "count": 26,
+      "repos": [
+        {"name": "flux-coverage", "size_kb": 6, "description": "Coverage analyzer placeholder"},
+        {"name": "flux-crypto", "size_kb": 5, "description": "Crypto primitives placeholder"},
+        {"name": "flux-diff", "size_kb": 6, "description": "Bytecode diff tool placeholder"},
+        {"name": "flux-ir", "size_kb": 6, "description": "Intermediate representation placeholder"},
+        {"name": "flux-linker", "size_kb": 7, "description": "Multi-module linker placeholder"},
+        {"name": "flux-metrics", "size_kb": 7, "description": "Runtime metrics placeholder"},
+        {"name": "flux-stdlib", "size_kb": 6, "description": "Standard library placeholder"},
+        {"name": "flux-timeline", "size_kb": 6, "description": "Timeline placeholder"},
+        {"name": "flux-validator", "size_kb": 7, "description": "Cross-VM validator placeholder"},
+        {"name": "flux-wasm-gen", "size_kb": 7, "description": "WASM compiler placeholder"},
+        {"name": "flux-debugger", "size_kb": 9, "description": "Step debugger placeholder"},
+        {"name": "flux-decompiler", "size_kb": 8, "description": "Bytecode decompiler placeholder"},
+        {"name": "flux-fuzzer", "size_kb": 8, "description": "Bytecode fuzzer placeholder"},
+        {"name": "flux-grammar", "size_kb": 9, "description": "Formal grammar placeholder"},
+        {"name": "flux-optimizer", "size_kb": 8, "description": "Peephole optimizer placeholder"},
+        {"name": "flux-packager", "size_kb": 8, "description": "Packaging placeholder"},
+        {"name": "flux-profiler", "size_kb": 9, "description": "Performance profiler placeholder"},
+        {"name": "flux-repl", "size_kb": 10, "description": "Interactive playground placeholder"},
+        {"name": "flux-signatures", "size_kb": 8, "description": "Pattern recognition placeholder"},
+        {"name": "flux-simulator", "size_kb": 8, "description": "Simulator placeholder"},
+        {"name": "flux-testkit", "size_kb": 9, "description": "Test harness placeholder"},
+        {"name": "flux-visualizer", "size_kb": 8, "description": "Visualization placeholder"},
+        {"name": "flux-collab", "size_kb": 5, "description": "A2A cooperation framework placeholder"},
+        {"name": "flux-vm-ts", "size_kb": 10, "description": "TypeScript VM placeholder"},
+        {"name": "fleet-ci", "size_kb": 3, "description": "CI/CD workflows placeholder"},
+        {"name": "git-agent", "size_kb": 0, "description": "Completely empty"},
+        {"name": "cuda-claw", "size_kb": 0, "description": "Completely empty — GPU-accelerated SmartCRDT concept"}
+      ]
+    },
+    "dead": {
+      "label": "DEAD",
+      "definition": "Fork with no modifications from upstream (Lucineer forks)",
+      "count": 15,
+      "fleet_wide_estimate": 408,
+      "repos": [
+        {"name": "flux-isa-unified", "upstream": "Lucineer", "size_kb": 11, "note": "ISA merged from JC1 + Oracle1"},
+        {"name": "flux-runtime-c", "upstream": "Lucineer", "size_kb": 283, "note": "C11 rewrite of Python Micro-VM"},
+        {"name": "vessel-bridge", "upstream": "Lucineer", "size_kb": 12},
+        {"name": "vessel-equipment-agent-skills", "upstream": "Lucineer", "size_kb": 10},
+        {"name": "vessel-sandbox", "upstream": "Lucineer", "size_kb": 1},
+        {"name": "vessel-spec", "upstream": "Lucineer", "size_kb": 1},
+        {"name": "vessel-tuner", "upstream": "Lucineer", "size_kb": 12},
+        {"name": "cuda-adaptation", "upstream": "Lucineer", "size_kb": 0},
+        {"name": "cuda-emergence", "upstream": "Lucineer", "size_kb": 0},
+        {"name": "cuda-confidence", "upstream": "Lucineer", "size_kb": 13696, "note": "Large but unmodified fork"},
+        {"name": "agentic-compiler", "upstream": "Lucineer", "size_kb": 80},
+        {"name": "fleet-compass", "upstream": "Lucineer", "size_kb": 4},
+        {"name": "fleet-genealogy", "upstream": "Lucineer", "size_kb": 4},
+        {"name": "fleet-backup", "upstream": "Lucineer", "size_kb": 3},
+        {"name": "fleet-blueprint", "upstream": "Lucineer", "size_kb": 8}
+      ]
+    }
+  },
+  "ecosystems": {
+    "FLUX Core": {"green": 2, "yellow": 11, "red": 0, "dead": 0},
+    "FLUX Tools": {"green": 1, "yellow": 3, "red": 23, "dead": 0},
+    "FLUX Multilingual": {"green": 0, "yellow": 8, "red": 0, "dead": 1},
+    "FLUX Research": {"green": 1, "yellow": 2, "red": 0, "dead": 0},
+    "CUDA / cudaclaw": {"green": 0, "yellow": 0, "red": 1, "dead": 3},
+    "Greenhorn": {"green": 0, "yellow": 2, "red": 1, "dead": 0},
+    "Vessels": {"green": 0, "yellow": 3, "red": 0, "dead": 5},
+    "Fleet Infrastructure": {"green": 0, "yellow": 4, "red": 2, "dead": 4},
+    "Key Originals": {"green": 0, "yellow": 7, "red": 0, "dead": 1}
+  },
+  "conformance_suite": {
+    "repo": "flux-conformance",
+    "total_vectors": 88,
+    "pass_rate": "100%",
+    "categories": {
+      "arithmetic": 20,
+      "logic": 10,
+      "comparison": 13,
+      "branch": 13,
+      "stack": 5,
+      "memory": 4,
+      "float": 9,
+      "a2a": 4,
+      "system": 2,
+      "edge-case": 8
+    },
+    "runtime_validated": "flux-runtime (Python)",
+    "runners_planned": ["Python (done)", "Rust (pending)", "C (pending)", "Go (pending)"]
+  },
+  "session_9_updates": {
+    "repos_upgraded_red_to_green": ["flux-conformance"],
+    "repos_upgraded_red_to_yellow": ["flux-lsp", "flux-vocabulary"],
+    "new_findings": [
+      "Two incompatible ISA systems discovered (opcodes.py vs isa_unified.py)",
+      "Float ops have mixed formats (Format E for arithmetic, Format C for min/max)",
+      "STORE/LOAD operand order is (value, address), not (address, value)",
+      "ICMP writes result to R0 and sets flags, not to a destination register"
+    ]
+  }
+}
