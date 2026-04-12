@@ -1,0 +1,10 @@
+{
+  "id": "a2a-ask-basic",
+  "name": "ASK: send query, halt after",
+  "category": "a2a",
+  "description": "ASK sends a query and halts.",
+  "bytecode_hex": "6107007374617475733f80",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

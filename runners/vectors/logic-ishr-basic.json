@@ -1,0 +1,17 @@
+{
+  "id": "logic-ishr-basic",
+  "name": "ISHR: 16 >> 2 = 4",
+  "category": "logic",
+  "description": "Right shift divides by powers of 2",
+  "bytecode_hex": "2b0110002b0202001500010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 4
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

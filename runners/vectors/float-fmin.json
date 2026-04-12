@@ -1,0 +1,23 @@
+{
+  "id": "float-fmin",
+  "name": "FMIN: F0 = min(F1, F2)",
+  "category": "float",
+  "description": "Float minimum",
+  "bytecode_hex": "46000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 3.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 3.0,
+      "2": 7.0
+    }
+  }
+}

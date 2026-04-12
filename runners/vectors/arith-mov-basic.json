@@ -1,0 +1,17 @@
+{
+  "id": "arith-mov-basic",
+  "name": "MOV: R0 = R1 = 42",
+  "category": "arithmetic",
+  "description": "Move (copy) register value",
+  "bytecode_hex": "2b012a0001000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42,
+      "1": 42
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "cmp-jg-greater",
+  "name": "CMP+JG: 20 > 10, jump taken",
+  "category": "comparison",
+  "description": "Compare with greater-than, JG should jump",
+  "bytecode_hex": "2b0114002b020a002d01024d0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

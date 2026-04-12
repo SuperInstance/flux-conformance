@@ -1,0 +1,13 @@
+{
+  "id": "edge-overflow",
+  "name": "IADD: 32767 + 1 = 32768",
+  "category": "edge-case",
+  "description": "Adding past i16 max \u2014 VM uses 32-bit registers so no overflow wraps",
+  "bytecode_hex": "2b01ff7f2b0201000800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32768
+    }
+  }
+}

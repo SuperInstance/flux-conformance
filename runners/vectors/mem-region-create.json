@@ -1,0 +1,13 @@
+{
+  "id": "mem-region-create",
+  "name": "REGION_CREATE: create named memory region",
+  "category": "memory",
+  "description": "Create a 256-byte named memory region",
+  "bytecode_hex": "3015000b746573745f726567696f6e0001000004746573742b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

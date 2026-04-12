@@ -1,0 +1,13 @@
+{
+  "id": "edge-movi-min",
+  "name": "MOVI: load min i16 (-32768)",
+  "category": "edge-case",
+  "description": "Load minimum 16-bit signed value",
+  "bytecode_hex": "2b00008080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -32768
+    }
+  }
+}

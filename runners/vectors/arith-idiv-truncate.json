@@ -1,0 +1,13 @@
+{
+  "id": "arith-idiv-truncate",
+  "name": "IDIV: 17 / 5 = 3 (truncate)",
+  "category": "arithmetic",
+  "description": "Integer division truncates toward zero",
+  "bytecode_hex": "2b0111002b0205000b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 3
+    }
+  }
+}

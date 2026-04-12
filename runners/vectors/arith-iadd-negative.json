@@ -1,0 +1,16 @@
+{
+  "id": "arith-iadd-negative",
+  "name": "IADD: -1 + (-1) = -2",
+  "category": "arithmetic",
+  "description": "Adding two values that produce a negative result (uses MOVI with negative i16)",
+  "bytecode_hex": "2b01ffff2b02ffff0800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -2
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

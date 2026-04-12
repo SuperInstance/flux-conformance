@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-lt",
+  "name": "ICMP LT: 3 < 5, result in R0",
+  "category": "comparison",
+  "description": "ICMP with LT condition writes 1 to R0 when less",
+  "bytecode_hex": "2b0103002b0205001802010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

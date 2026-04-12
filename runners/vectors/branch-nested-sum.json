@@ -1,0 +1,18 @@
+{
+  "id": "branch-nested-sum",
+  "name": "Loop: sum of 1..10 = 55",
+  "category": "branch",
+  "description": "Accumulate sum from 10 down to 1 using JNZ loop",
+  "bytecode_hex": "2b0000002b010a00080000010f010601f6ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 55,
+      "1": 0
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

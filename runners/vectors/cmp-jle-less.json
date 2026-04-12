@@ -1,0 +1,13 @@
+{
+  "id": "cmp-jle-less",
+  "name": "CMP+JLE: 5 <= 10, jump taken",
+  "category": "comparison",
+  "description": "Compare less values, JLE should jump",
+  "bytecode_hex": "2b0105002b020a002d01024e0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

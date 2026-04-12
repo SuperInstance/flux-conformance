@@ -1,0 +1,16 @@
+{
+  "id": "arith-ineg-positive",
+  "name": "INEG: -42 = negation of 42",
+  "category": "arithmetic",
+  "description": "Negate a positive number",
+  "bytecode_hex": "2b012a000d000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -42
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

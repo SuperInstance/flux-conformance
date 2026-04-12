@@ -1,0 +1,16 @@
+{
+  "id": "logic-inot-basic",
+  "name": "INOT: ~0 = -1 (all bits set)",
+  "category": "logic",
+  "description": "Bitwise NOT inverts all bits",
+  "bytecode_hex": "2b01000013000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

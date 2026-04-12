@@ -1,0 +1,16 @@
+{
+  "id": "cmp-icmp-eq",
+  "name": "ICMP EQ: 5 == 5, result in R0",
+  "category": "comparison",
+  "description": "ICMP with EQ condition writes 1 to R0 when equal",
+  "bytecode_hex": "2b0105002b0205001800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

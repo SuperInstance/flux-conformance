@@ -1,0 +1,19 @@
+{
+  "id": "stack-push3-pop3",
+  "name": "PUSH+POP: LIFO order verified",
+  "category": "stack",
+  "description": "Push 3 values, pop in reverse order to verify LIFO",
+  "bytecode_hex": "2b010a0020012b01140020012b011e0020012b01000021022103210480",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "2": 30,
+      "3": 20,
+      "4": 10
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

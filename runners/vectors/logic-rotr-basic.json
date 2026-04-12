@@ -1,0 +1,13 @@
+{
+  "id": "logic-rotr-basic",
+  "name": "ROTR: 2 rotate right 1 = 1",
+  "category": "logic",
+  "description": "Rotate right shifts bits that wrap around",
+  "bytecode_hex": "2b0102002b0201001700010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

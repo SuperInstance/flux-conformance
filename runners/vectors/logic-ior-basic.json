@@ -1,0 +1,17 @@
+{
+  "id": "logic-ior-basic",
+  "name": "IOR: 0xF0 | 0x0F = 0xFF",
+  "category": "logic",
+  "description": "Bitwise OR combines bits",
+  "bytecode_hex": "2b01f0002b020f001100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 255
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

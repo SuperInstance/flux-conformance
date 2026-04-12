@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jne-unequal",
+  "name": "CMP+JNE: 10 != 20, jump taken",
+  "category": "comparison",
+  "description": "Compare unequal values, JNE should jump",
+  "bytecode_hex": "2b010a002b0214002d01022f0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

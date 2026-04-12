@@ -1,0 +1,16 @@
+{
+  "id": "composite-prime7",
+  "name": "IsPrime(7) = true",
+  "category": "branch",
+  "description": "Trial division primality test for 7",
+  "bytecode_hex": "2b0007002b0102002b0201000b0300010a0303012d03002e000e000e012b0307002d01033600e4ff802b02000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "2": 1
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

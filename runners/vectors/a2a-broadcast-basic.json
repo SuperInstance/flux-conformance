@@ -1,0 +1,10 @@
+{
+  "id": "a2a-broadcast-basic",
+  "name": "BROADCAST: send to all, halt after",
+  "category": "a2a",
+  "description": "BROADCAST sends a message to all and halts.",
+  "bytecode_hex": "661700666c6565742d7769646520616e6e6f756e63656d656e7480",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

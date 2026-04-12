@@ -1,0 +1,22 @@
+{
+  "id": "float-fadd-basic",
+  "name": "FADD: 3.0 + 4.0 = 7.0",
+  "category": "float",
+  "description": "Add two floats loaded via MOVI (stored as GP, then copied to FP in preconditions)",
+  "bytecode_hex": "2b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 3.0,
+      "1": 4.0
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

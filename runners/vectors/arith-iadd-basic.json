@@ -1,0 +1,17 @@
+{
+  "id": "arith-iadd-basic",
+  "name": "IADD: 3 + 4 = 7",
+  "category": "arithmetic",
+  "description": "Add two positive integers loaded via MOVI",
+  "bytecode_hex": "2b0103002b0204000800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

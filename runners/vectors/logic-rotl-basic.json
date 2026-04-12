@@ -1,0 +1,13 @@
+{
+  "id": "logic-rotl-basic",
+  "name": "ROTL: 1 rotate left 1 = 2",
+  "category": "logic",
+  "description": "Rotate left shifts bits that wrap around",
+  "bytecode_hex": "2b0101002b0201001600010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 2
+    }
+  }
+}

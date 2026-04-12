@@ -1,0 +1,17 @@
+{
+  "id": "arith-imul-basic",
+  "name": "IMUL: 6 * 7 = 42",
+  "category": "arithmetic",
+  "description": "Multiply two positive integers",
+  "bytecode_hex": "2b0106002b0207000a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

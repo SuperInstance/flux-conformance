@@ -1,0 +1,13 @@
+{
+  "id": "composite-power2",
+  "name": "2^8 = 256 via doubling",
+  "category": "branch",
+  "description": "Compute 2^8 using repeated doubling",
+  "bytecode_hex": "2b0001002b010800080000000f010601f6ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 256
+    }
+  }
+}

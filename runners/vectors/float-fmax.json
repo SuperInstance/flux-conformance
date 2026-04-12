@@ -1,0 +1,23 @@
+{
+  "id": "float-fmax",
+  "name": "FMAX: F0 = max(F1, F2)",
+  "category": "float",
+  "description": "Float maximum",
+  "bytecode_hex": "47000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 7.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 3.0,
+      "2": 7.0
+    }
+  }
+}

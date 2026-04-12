@@ -1,0 +1,16 @@
+{
+  "id": "arith-movi-basic",
+  "name": "MOVI: R0 = 32767 (max i16)",
+  "category": "arithmetic",
+  "description": "Load maximum positive i16 value",
+  "bytecode_hex": "2b00ff7f80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32767
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-gt",
+  "name": "ICMP GT: 10 > 3, result in R0",
+  "category": "comparison",
+  "description": "ICMP with GT condition writes 1 to R0 when greater",
+  "bytecode_hex": "2b010a002b0203001804010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

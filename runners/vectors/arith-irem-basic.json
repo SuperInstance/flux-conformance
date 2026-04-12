@@ -1,0 +1,13 @@
+{
+  "id": "arith-irem-basic",
+  "name": "IREM: 17 rem 5 = 2",
+  "category": "arithmetic",
+  "description": "Integer remainder operation",
+  "bytecode_hex": "2b0111002b0205002c00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 2
+    }
+  }
+}

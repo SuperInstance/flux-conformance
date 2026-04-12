@@ -1,0 +1,17 @@
+{
+  "id": "branch-call-ret",
+  "name": "CALL+RET: double 21 = 42",
+  "category": "branch",
+  "description": "CALL pushes return address, RET returns to caller",
+  "bytecode_hex": "2b011500070001008008000101280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

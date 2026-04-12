@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-ne",
+  "name": "ICMP NE: 5 != 3, result in R0",
+  "category": "comparison",
+  "description": "ICMP with NE condition writes 1 to R0 when not equal",
+  "bytecode_hex": "2b0105002b0203001801010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

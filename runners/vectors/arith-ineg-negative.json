@@ -1,0 +1,13 @@
+{
+  "id": "arith-ineg-negative",
+  "name": "INEG: -(-7) = 7",
+  "category": "arithmetic",
+  "description": "Double negation returns original value",
+  "bytecode_hex": "2b01f9ff0d000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "stack-push-pop",
+  "name": "PUSH+POP: save and restore 42",
+  "category": "stack",
+  "description": "Push value to stack, clobber register, pop to restore",
+  "bytecode_hex": "2b012a0020012b010000210080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

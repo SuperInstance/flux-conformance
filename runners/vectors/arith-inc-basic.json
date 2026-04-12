@@ -1,0 +1,16 @@
+{
+  "id": "arith-inc-basic",
+  "name": "INC: R0 from 9 to 10",
+  "category": "arithmetic",
+  "description": "Increment register by 1",
+  "bytecode_hex": "2b0009000e0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 10
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

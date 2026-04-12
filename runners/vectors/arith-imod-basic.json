@@ -1,0 +1,17 @@
+{
+  "id": "arith-imod-basic",
+  "name": "IMOD: 17 % 5 = 2",
+  "category": "arithmetic",
+  "description": "Modulo operation",
+  "bytecode_hex": "2b0111002b0205000c00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 2
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

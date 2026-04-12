@@ -1,0 +1,17 @@
+{
+  "id": "branch-fibonacci",
+  "name": "Loop: Fibonacci(10) = 55 in R1",
+  "category": "branch",
+  "description": "Compute 10th Fibonacci number iteratively. R1 holds fib(11)=89 after 10 iterations starting from fib(1)=1.",
+  "bytecode_hex": "2b0000002b0101002b020a00080300010100010101030f020602f0ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "1": 89
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "branch-jnz-loop",
+  "name": "JNZ: loop 5 times then exit",
+  "category": "branch",
+  "description": "JNZ-based countdown loop runs exactly 5 iterations",
+  "bytecode_hex": "2b0105000f010601faff2b002a0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42,
+      "1": 0
+    }
+  },
+  "tags": [
+    "smoke",
+    "p0"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "system-nop-chain",
+  "name": "NOP x10: no side effects",
+  "category": "system",
+  "description": "Chain of 10 NOPs followed by HALT",
+  "bytecode_hex": "0000000000000000000080",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}
