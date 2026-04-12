@@ -1,0 +1,376 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Cross-runtime conformance test vectors for FLUX Unified ISA",
+    "isa_ref": "https://github.com/flux-labs/flux/blob/main/doc/isa.md",
+    "total_vectors": 30,
+    "encoding": "Unified ISA opcodes (HALT=0x00, ADD=0x20, etc.)",
+    "bytecode_format": "space-separated hex bytes (little-endian imm16)"
+  },
+  "vectors": [
+    {
+      "name": "system-halt",
+      "description": "HALT stops the VM immediately with no side effects",
+      "bytecode_hex": "00",
+      "expected_final": {
+        "registers": {},
+        "halted": true,
+        "error": false
+      },
+      "category": "system"
+    },
+    {
+      "name": "system-nop",
+      "description": "Three NOPs then HALT: no register modification",
+      "bytecode_hex": "01 01 01 00",
+      "expected_final": {
+        "registers": {},
+        "halted": true,
+        "error": false
+      },
+      "category": "system"
+    },
+    {
+      "name": "system-ret-empty",
+      "description": "RET with empty stack triggers error and halts",
+      "bytecode_hex": "02",
+      "expected_final": {
+        "registers": {},
+        "halted": true,
+        "error": true
+      },
+      "category": "system"
+    },
+    {
+      "name": "arith-add-10-plus-20",
+      "description": "ADD produces 30 from 10 and 20",
+      "bytecode_hex": "18 01 0a 00 18 02 14 00 20 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 10, "R2": 20, "R3": 30},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-sub-50-minus-17",
+      "description": "SUB produces 33 from 50 minus 17",
+      "bytecode_hex": "18 01 32 00 18 02 11 00 21 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 50, "R2": 17, "R3": 33},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-mul-6-times-7",
+      "description": "MUL produces 42 from 6 and 7",
+      "bytecode_hex": "18 01 06 00 18 02 07 00 22 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 6, "R2": 7, "R3": 42},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-div-100-by-4",
+      "description": "DIV produces 25 from 100 divided by 4 (truncating)",
+      "bytecode_hex": "18 01 64 00 18 02 04 00 23 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 100, "R2": 4, "R3": 25},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-mod-17-by-5",
+      "description": "MOD produces 2 from 17 modulo 5",
+      "bytecode_hex": "18 01 11 00 18 02 05 00 24 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 17, "R2": 5, "R3": 2},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-inc",
+      "description": "INC increments R1 from 10 to 11",
+      "bytecode_hex": "18 01 0a 00 08 01 00",
+      "expected_final": {
+        "registers": {"R1": 11},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-dec",
+      "description": "DEC decrements R1 from 10 to 9",
+      "bytecode_hex": "18 01 0a 00 09 01 00",
+      "expected_final": {
+        "registers": {"R1": 9},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "arith-neg",
+      "description": "NEG produces -42 from 42",
+      "bytecode_hex": "18 01 2a 00 0b 01 00",
+      "expected_final": {
+        "registers": {"R1": -42},
+        "halted": true,
+        "error": false
+      },
+      "category": "arithmetic"
+    },
+    {
+      "name": "logic-and-15-and-3",
+      "description": "AND produces 3 from 15 AND 3",
+      "bytecode_hex": "18 01 0f 00 18 02 03 00 25 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 15, "R2": 3, "R3": 3},
+        "halted": true,
+        "error": false
+      },
+      "category": "logic"
+    },
+    {
+      "name": "logic-or-15-or-3",
+      "description": "OR produces 15 from 15 OR 3",
+      "bytecode_hex": "18 01 0f 00 18 02 03 00 26 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 15, "R2": 3, "R3": 15},
+        "halted": true,
+        "error": false
+      },
+      "category": "logic"
+    },
+    {
+      "name": "logic-xor-15-xor-3",
+      "description": "XOR produces 12 from 15 XOR 3",
+      "bytecode_hex": "18 01 0f 00 18 02 03 00 27 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 15, "R2": 3, "R3": 12},
+        "halted": true,
+        "error": false
+      },
+      "category": "logic"
+    },
+    {
+      "name": "logic-not-0",
+      "description": "NOT produces -1 (all ones) from 0",
+      "bytecode_hex": "18 01 00 00 0a 01 00",
+      "expected_final": {
+        "registers": {"R1": -1},
+        "halted": true,
+        "error": false
+      },
+      "category": "logic"
+    },
+    {
+      "name": "cmp-eq-equal",
+      "description": "CMP_EQ produces 1 when 5 equals 5",
+      "bytecode_hex": "18 01 05 00 18 02 05 00 2c 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 5, "R2": 5, "R3": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "comparison"
+    },
+    {
+      "name": "cmp-lt-3-less-than-5",
+      "description": "CMP_LT produces 1 when 3 is less than 5",
+      "bytecode_hex": "18 01 03 00 18 02 05 00 2d 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 3, "R2": 5, "R3": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "comparison"
+    },
+    {
+      "name": "cmp-gt-3-not-greater-5",
+      "description": "CMP_GT produces 0 when 3 is not greater than 5",
+      "bytecode_hex": "18 01 03 00 18 02 05 00 2e 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 3, "R2": 5, "R3": 0},
+        "halted": true,
+        "error": false
+      },
+      "category": "comparison"
+    },
+    {
+      "name": "cmp-ne-3-not-equal-5",
+      "description": "CMP_NE produces 1 when 3 does not equal 5",
+      "bytecode_hex": "18 01 03 00 18 02 05 00 2f 03 01 02 00",
+      "expected_final": {
+        "registers": {"R1": 3, "R2": 5, "R3": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "comparison"
+    },
+    {
+      "name": "branch-jmp-skip-dec",
+      "description": "JMP forward by 2 skips DEC, R1 stays 1",
+      "bytecode_hex": "18 01 01 00 43 00 02 00 09 01 00",
+      "expected_final": {
+        "registers": {"R1": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "branch-jz-taken",
+      "description": "JZ taken when R1=0: skips DEC, R1 stays 0",
+      "bytecode_hex": "18 01 00 00 44 01 02 00 09 01 00",
+      "expected_final": {
+        "registers": {"R1": 0},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "branch-jz-not-taken",
+      "description": "JZ not taken when R1=1: INC runs, R1 becomes 2",
+      "bytecode_hex": "18 01 01 00 44 01 03 00 08 01 00",
+      "expected_final": {
+        "registers": {"R1": 2},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "branch-jnz-taken",
+      "description": "JNZ taken when R1=1: skips DEC, R1 stays 1",
+      "bytecode_hex": "18 01 01 00 45 01 02 00 09 01 00",
+      "expected_final": {
+        "registers": {"R1": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "branch-jnz-not-taken",
+      "description": "JNZ not taken when R1=0: INC runs, R1 becomes 1",
+      "bytecode_hex": "18 01 00 00 45 01 03 00 08 01 00",
+      "expected_final": {
+        "registers": {"R1": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "branch-call-ret",
+      "description": "CALL subroutine doubles R1: 21 -> 42 via ADD R1,R1,R1 then RET",
+      "bytecode_hex": "18 01 15 00 4a 00 01 00 00 20 01 01 01 02",
+      "expected_final": {
+        "registers": {"R1": 42},
+        "halted": true,
+        "error": false
+      },
+      "category": "branch"
+    },
+    {
+      "name": "stack-push-pop-roundtrip",
+      "description": "PUSH R1 then overwrite R1 then POP restores R1=42",
+      "bytecode_hex": "18 01 2a 00 0c 01 18 01 00 00 0d 01 00",
+      "expected_final": {
+        "registers": {"R1": 42},
+        "halted": true,
+        "error": false
+      },
+      "category": "stack"
+    },
+    {
+      "name": "edge-div-zero",
+      "description": "Division by zero sets error flag and halts, R1 and R2 unchanged",
+      "bytecode_hex": "18 01 2a 00 18 02 00 00 23 03 01 02",
+      "expected_final": {
+        "registers": {"R1": 42, "R2": 0},
+        "halted": true,
+        "error": true
+      },
+      "category": "edge"
+    },
+    {
+      "name": "edge-r0-immutable",
+      "description": "R0 always reads 0 despite MOVI and ADD attempts to write it",
+      "bytecode_hex": "18 00 2a 00 18 01 01 00 20 00 00 01 00",
+      "expected_final": {
+        "registers": {"R0": 0, "R1": 1},
+        "halted": true,
+        "error": false
+      },
+      "category": "edge"
+    },
+    {
+      "name": "edge-end-of-bytecode",
+      "description": "Falling off end of bytecode halts execution without HALT instruction",
+      "bytecode_hex": "18 01 2a 00",
+      "expected_final": {
+        "registers": {"R1": 42},
+        "halted": false,
+        "error": false
+      },
+      "category": "edge"
+    },
+    {
+      "name": "edge-cycle-limit",
+      "description": "Tight infinite JMP loop triggers cycle-limit safety halt (10M insn limit)",
+      "bytecode_hex": "43 00 fc ff",
+      "expected_final": {
+        "registers": {},
+        "halted": true,
+        "error": true
+      },
+      "category": "edge",
+      "tags": ["slow"]
+    },
+    {
+      "name": "composite-countdown-5-to-0",
+      "description": "JNZ loop counts down from 5 to 0, accumulating sum 15 in R2",
+      "bytecode_hex": "18 01 05 00 18 02 00 00 20 02 02 01 09 01 45 01 f6 ff 00",
+      "expected_final": {
+        "registers": {"R1": 0, "R2": 15},
+        "halted": true,
+        "error": false
+      },
+      "category": "composite"
+    },
+    {
+      "name": "composite-sum-1-to-5",
+      "description": "Upward loop with ADDI and CMP_LT: sum 1+2+3+4+5 = 15",
+      "bytecode_hex": "18 01 01 00 18 02 00 00 18 04 06 00 20 02 02 01 19 01 01 00 2d 03 01 04 45 03 ec ff 00",
+      "expected_final": {
+        "registers": {"R1": 6, "R2": 15, "R3": 0, "R4": 6},
+        "halted": true,
+        "error": false
+      },
+      "category": "composite"
+    },
+    {
+      "name": "composite-nested-add",
+      "description": "Chained additions: ((1+2) + (3+4)) + 5 = 15",
+      "bytecode_hex": "18 01 01 00 18 02 02 00 20 03 01 02 18 04 03 00 18 05 04 00 20 06 04 05 20 07 03 06 19 07 05 00 00",
+      "expected_final": {
+        "registers": {"R1": 1, "R2": 2, "R3": 3, "R4": 3, "R5": 4, "R6": 7, "R7": 15},
+        "halted": true,
+        "error": false
+      },
+      "category": "composite"
+    }
+  ]
+}
