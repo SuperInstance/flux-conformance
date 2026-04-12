@@ -3,15 +3,21 @@
   "name": "IAND: 0xFF & 0x0F = 0x0F",
   "category": "logic",
   "description": "Bitwise AND masks bits",
-  "bytecode_hex": "2b01ff002b020f001000010280",
+  "bytecode_hex": "18 01 ff 00 18 02 0f 00 25 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 15
+      "3": 15
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b01ff002b020f001000010280"
+  }
 }

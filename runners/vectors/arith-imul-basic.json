@@ -3,15 +3,21 @@
   "name": "IMUL: 6 * 7 = 42",
   "category": "arithmetic",
   "description": "Multiply two positive integers",
-  "bytecode_hex": "2b0106002b0207000a00010280",
+  "bytecode_hex": "18 01 06 00 18 02 07 00 22 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 42
+      "3": 42
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b0106002b0207000a00010280"
+  }
 }

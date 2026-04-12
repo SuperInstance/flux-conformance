@@ -3,15 +3,21 @@
   "name": "IMOD: 17 % 5 = 2",
   "category": "arithmetic",
   "description": "Modulo operation",
-  "bytecode_hex": "2b0111002b0205000c00010280",
+  "bytecode_hex": "18 01 11 00 18 02 05 00 24 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 2
+      "3": 2
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b0111002b0205000c00010280"
+  }
 }

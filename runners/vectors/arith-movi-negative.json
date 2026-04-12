@@ -3,11 +3,17 @@
   "name": "MOVI: R0 = -1 (0xFFFF sign-extended)",
   "category": "arithmetic",
   "description": "Load -1 as immediate (tests sign extension from i16)",
-  "bytecode_hex": "2b00ffff80",
+  "bytecode_hex": "18 01 ff ff 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": -1
+      "1": -1
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 1,
+    "original_bytecode_hex": "2b00ffff80"
   }
 }

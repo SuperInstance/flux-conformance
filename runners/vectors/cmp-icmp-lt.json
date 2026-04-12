@@ -3,11 +3,17 @@
   "name": "ICMP LT: 3 < 5, result in R0",
   "category": "comparison",
   "description": "ICMP with LT condition writes 1 to R0 when less",
-  "bytecode_hex": "2b0103002b0205001802010280",
+  "bytecode_hex": "18 01 03 00 18 02 05 00 2d 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 1
+      "3": 1
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b0103002b0205001802010280"
   }
 }

@@ -3,15 +3,21 @@
   "name": "JMP: unconditional forward jump",
   "category": "branch",
   "description": "JMP skips the instruction between jump and target",
-  "bytecode_hex": "040005002b000000802b00630080",
+  "bytecode_hex": "43 01 05 00 18 01 00 00 00 18 01 63 00 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 99
+      "1": 99
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 1,
+    "original_bytecode_hex": "040005002b000000802b00630080"
+  }
 }

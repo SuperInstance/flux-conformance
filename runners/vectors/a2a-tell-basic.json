@@ -3,7 +3,7 @@
   "name": "TELL: send message, halt after",
   "category": "a2a",
   "description": "TELL sends a message and halts. A2A handler processes the message.",
-  "bytecode_hex": "600b0068656c6c6f20666c65657480",
+  "bytecode_hex": "60 0b 00 68 65 6c 6c 6f 20 66 6c 65 65 74 80",
   "expected": {
     "final_state": "HALTED"
   }

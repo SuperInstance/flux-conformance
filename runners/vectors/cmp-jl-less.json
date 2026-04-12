@@ -3,14 +3,20 @@
   "name": "CMP+JL: 5 < 10, jump taken",
   "category": "comparison",
   "description": "Compare with less-than, JL should jump",
-  "bytecode_hex": "2b0105002b020a002d0102360005002b000000802b00010080",
+  "bytecode_hex": "18 01 05 00 18 02 0a 00 2d 03 01 02 45 03 05 00 18 01 00 00 00 18 01 01 00 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 1
+      "1": 1
     }
   },
   "tags": [
     "smoke"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 1,
+    "original_bytecode_hex": "2b0105002b020a002d0102360005002b000000802b00010080"
+  }
 }

@@ -3,14 +3,20 @@
   "name": "Sum of squares: 1..10 = 385",
   "category": "branch",
   "description": "Compute sum of squares from 1 to 10",
-  "bytecode_hex": "2b0000002b0101000a020101080000020e012b030b002d01033600ebff80",
+  "bytecode_hex": "18 03 00 00 18 01 01 00 22 02 01 01 20 03 03 02 08 01 18 03 0b 00 2d 04 01 03 45 04 ea ff 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 385
+      "3": 385
     }
   },
   "tags": [
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b0000002b0101000a020101080000020e012b030b002d01033600ebff80"
+  }
 }

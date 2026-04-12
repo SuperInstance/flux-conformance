@@ -3,11 +3,17 @@
   "name": "JZ: no jump when register is non-zero",
   "category": "branch",
   "description": "JZ should not jump when register is non-zero",
-  "bytecode_hex": "2b000500050005002b010100802b01000080",
+  "bytecode_hex": "18 01 05 00 44 01 05 00 18 01 01 00 00 18 01 00 00 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
       "1": 1
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 1,
+    "original_bytecode_hex": "2b000500050005002b010100802b01000080"
   }
 }

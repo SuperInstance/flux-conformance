@@ -3,14 +3,20 @@
   "name": "INOT: ~0 = -1 (all bits set)",
   "category": "logic",
   "description": "Bitwise NOT inverts all bits",
-  "bytecode_hex": "2b01000013000180",
+  "bytecode_hex": "18 01 00 00 20 02 01 00 0a 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": -1
+      "2": -1
     }
   },
   "tags": [
     "smoke"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 2,
+    "original_bytecode_hex": "2b01000013000180"
+  }
 }

@@ -3,15 +3,21 @@
   "name": "IDIV: 20 / 4 = 5",
   "category": "arithmetic",
   "description": "Integer division of positive values",
-  "bytecode_hex": "2b0114002b0204000b00010280",
+  "bytecode_hex": "18 01 14 00 18 02 04 00 23 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 5
+      "3": 5
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b0114002b0204000b00010280"
+  }
 }

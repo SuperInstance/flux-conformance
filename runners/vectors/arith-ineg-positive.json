@@ -3,14 +3,20 @@
   "name": "INEG: -42 = negation of 42",
   "category": "arithmetic",
   "description": "Negate a positive number",
-  "bytecode_hex": "2b012a000d000180",
+  "bytecode_hex": "18 01 2a 00 20 02 01 00 0b 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": -42
+      "2": -42
     }
   },
   "tags": [
     "smoke"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 2,
+    "original_bytecode_hex": "2b012a000d000180"
+  }
 }

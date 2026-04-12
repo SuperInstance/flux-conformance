@@ -3,7 +3,7 @@
   "name": "FABS: F0 = |F1|",
   "category": "float",
   "description": "Float absolute value",
-  "bytecode_hex": "45000180",
+  "bytecode_hex": "45 00 01 80",
   "expected": {
     "final_state": "HALTED",
     "gp": {

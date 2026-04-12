@@ -3,11 +3,17 @@
   "name": "ICMP LE: 5 <= 5, result in R0",
   "category": "comparison",
   "description": "ICMP with LE condition writes 1 when less or equal",
-  "bytecode_hex": "2b0105002b0205001803010280",
+  "bytecode_hex": "18 01 05 00 18 02 05 00 18 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
       "0": 1
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": null,
+    "original_bytecode_hex": "2b0105002b0205001803010280"
   }
 }

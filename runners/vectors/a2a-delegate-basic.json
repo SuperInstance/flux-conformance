@@ -3,7 +3,7 @@
   "name": "DELEGATE: delegate task, halt after",
   "category": "a2a",
   "description": "DELEGATE sends a task to another agent and halts.",
-  "bytecode_hex": "621100636f6d70757465206669626f6e6163636980",
+  "bytecode_hex": "62 11 00 63 6f 6d 70 75 74 65 20 66 69 62 6f 6e 61 63 63 69 80",
   "expected": {
     "final_state": "HALTED"
   }

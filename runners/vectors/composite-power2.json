@@ -3,11 +3,17 @@
   "name": "2^8 = 256 via doubling",
   "category": "branch",
   "description": "Compute 2^8 using repeated doubling",
-  "bytecode_hex": "2b0001002b010800080000000f010601f6ff80",
+  "bytecode_hex": "18 02 01 00 18 01 08 00 20 02 02 02 09 01 45 01 f6 ff 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 256
+      "2": 256
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 2,
+    "original_bytecode_hex": "2b0001002b010800080000000f010601f6ff80"
   }
 }

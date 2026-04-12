@@ -3,7 +3,7 @@
   "name": "FMIN: F0 = min(F1, F2)",
   "category": "float",
   "description": "Float minimum",
-  "bytecode_hex": "46000180",
+  "bytecode_hex": "46 00 01 80",
   "expected": {
     "final_state": "HALTED",
     "gp": {

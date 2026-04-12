@@ -3,7 +3,7 @@
   "name": "ROTR: 2 rotate right 1 = 1",
   "category": "logic",
   "description": "Rotate right shifts bits that wrap around",
-  "bytecode_hex": "2b0102002b0201001700010280",
+  "bytecode_hex": "2b 01 02 00 2b 02 01 00 17 00 01 02 80",
   "expected": {
     "final_state": "HALTED",
     "gp": {

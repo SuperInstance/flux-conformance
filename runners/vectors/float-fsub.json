@@ -3,7 +3,7 @@
   "name": "FSUB: F0 = F1 - F2",
   "category": "float",
   "description": "Float subtraction",
-  "bytecode_hex": "4100010280",
+  "bytecode_hex": "41 00 01 02 80",
   "expected": {
     "final_state": "HALTED",
     "gp": {

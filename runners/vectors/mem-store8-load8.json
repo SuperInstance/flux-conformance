@@ -3,11 +3,17 @@
   "name": "STORE8+LOAD8: byte-level round-trip",
   "category": "memory",
   "description": "Write and read a single byte from memory",
-  "bytecode_hex": "2b01c8002b02ab005702012b0200004f030180",
+  "bytecode_hex": "18 01 c8 00 18 02 ab 00 57 02 01 18 02 00 00 4f 03 01 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
       "3": 171
     }
+  },
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": null,
+    "original_bytecode_hex": "2b01c8002b02ab005702012b0200004f030180"
   }
 }

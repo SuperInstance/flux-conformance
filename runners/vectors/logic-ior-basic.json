@@ -3,15 +3,21 @@
   "name": "IOR: 0xF0 | 0x0F = 0xFF",
   "category": "logic",
   "description": "Bitwise OR combines bits",
-  "bytecode_hex": "2b01f0002b020f001100010280",
+  "bytecode_hex": "18 01 f0 00 18 02 0f 00 26 03 01 02 00",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "0": 255
+      "3": 255
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ]
+  ],
+  "_migration": {
+    "from": "opcodes.py (OLD)",
+    "to": "isa_unified.py (v2)",
+    "result_reg_redirect": 3,
+    "original_bytecode_hex": "2b01f0002b020f001100010280"
+  }
 }
