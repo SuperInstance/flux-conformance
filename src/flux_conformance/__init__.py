@@ -11,7 +11,26 @@ from .matrix import (
     MatrixExporter,
 )
 
+from .runner import (
+    MiniVM,
+    Flags,
+    TestVector,
+    ConformanceResult,
+    VectorGenerator,
+    ConformanceRunner,
+    ConformanceReporter,
+    # Encoding helpers
+    encode_a,
+    encode_b,
+    encode_c,
+    encode_d,
+    encode_e,
+    encode_f,
+    encode_g,
+)
+
 __all__ = [
+    # Matrix module
     "OpcodeDef",
     "ImplementationDef",
     "TestCoverageEntry",
@@ -20,4 +39,20 @@ __all__ = [
     "CoverageAnalyzer",
     "GapReporter",
     "MatrixExporter",
+    # Runner module
+    "MiniVM",
+    "Flags",
+    "TestVector",
+    "ConformanceResult",
+    "VectorGenerator",
+    "ConformanceRunner",
+    "ConformanceReporter",
+    # Encoding helpers
+    "encode_a",
+    "encode_b",
+    "encode_c",
+    "encode_d",
+    "encode_e",
+    "encode_f",
+    "encode_g",
 ]

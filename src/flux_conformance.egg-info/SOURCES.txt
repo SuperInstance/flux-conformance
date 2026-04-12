@@ -1,0 +1,9 @@
+pyproject.toml
+src/flux_conformance/__init__.py
+src/flux_conformance/matrix.py
+src/flux_conformance.egg-info/PKG-INFO
+src/flux_conformance.egg-info/SOURCES.txt
+src/flux_conformance.egg-info/dependency_links.txt
+src/flux_conformance.egg-info/requires.txt
+src/flux_conformance.egg-info/top_level.txt
+tests/test_matrix.py
