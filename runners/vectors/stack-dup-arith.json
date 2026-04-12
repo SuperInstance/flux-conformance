@@ -1,0 +1,16 @@
+{
+  "id": "stack-dup-arith",
+  "name": "DUP: duplicate then add = 2x value",
+  "category": "stack",
+  "description": "DUP top of stack, pop twice, add to get double",
+  "bytecode_hex": "2b010500200122210221030800020380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 10
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

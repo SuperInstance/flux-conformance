@@ -1,0 +1,15 @@
+{
+  "id": "edge-irem-zero",
+  "name": "IREM: remainder by zero",
+  "category": "edge-case",
+  "description": "IREM by zero should cause an error state",
+  "bytecode_hex": "2b012a002b0200002c00010280",
+  "expected": {
+    "final_state": "ERRORED",
+    "error_type": "DivisionByZero"
+  },
+  "tags": [
+    "p1",
+    "edge-case"
+  ]
+}

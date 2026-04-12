@@ -1,0 +1,17 @@
+{
+  "id": "edge-jmp-backward-once",
+  "name": "JMP backward: 1 iteration",
+  "category": "edge-case",
+  "description": "Backward jump executes loop body exactly once",
+  "bytecode_hex": "2b0101002b002a000f010601f6ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42,
+      "1": 0
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

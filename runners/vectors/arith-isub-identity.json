@@ -1,0 +1,16 @@
+{
+  "id": "arith-isub-identity",
+  "name": "ISUB: 42 - 0 = 42",
+  "category": "arithmetic",
+  "description": "Subtraction by zero is identity",
+  "bytecode_hex": "2b012a002b0200000900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

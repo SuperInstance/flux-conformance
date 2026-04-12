@@ -1,0 +1,22 @@
+{
+  "id": "float-fneg-positive",
+  "name": "FNEG: F0 = -F1 (positive input)",
+  "category": "float",
+  "description": "Negate a positive float",
+  "bytecode_hex": "44000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": -5.5
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 5.5
+    }
+  }
+}

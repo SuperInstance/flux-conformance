@@ -3,7 +3,7 @@
   "name": "ENTER+LEAVE: stack frame management",
   "category": "stack",
   "description": "ENTER allocates frame, LEAVE deallocates, original stack preserved",
-  "bytecode_hex": "2b 01 64 00 20 01 25 04 2b 01 00 00 26 00 21 00 80",
+  "bytecode_hex": "2b016400200125042b0100002600210080",
   "expected": {
     "final_state": "HALTED",
     "gp": {

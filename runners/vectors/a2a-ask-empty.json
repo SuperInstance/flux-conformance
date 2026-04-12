@@ -1,0 +1,10 @@
+{
+  "id": "a2a-ask-empty",
+  "name": "ASK: empty payload, halt after",
+  "category": "a2a",
+  "description": "ASK with empty payload",
+  "bytecode_hex": "61000080",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

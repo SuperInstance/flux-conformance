@@ -1,0 +1,16 @@
+{
+  "id": "system-nop-after-halt",
+  "name": "NOP after HALT: never executes",
+  "category": "system",
+  "description": "Instructions after HALT should not execute",
+  "bytecode_hex": "2b000100802b000000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

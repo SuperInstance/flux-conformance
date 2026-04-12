@@ -1,0 +1,16 @@
+{
+  "id": "edge-inc-from-max-i16",
+  "name": "INC: 32767 + 1 = 32768",
+  "category": "edge-case",
+  "description": "Increment past i16 max extends to 32-bit",
+  "bytecode_hex": "2b00ff7f0e0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32768
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

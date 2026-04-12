@@ -1,0 +1,16 @@
+{
+  "id": "mem-store-zero",
+  "name": "STORE/LOAD: zero round-trip",
+  "category": "memory",
+  "description": "Store zero to memory and load it back",
+  "bytecode_hex": "2b0158022b0200000302012b02e70302030180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "3": 0
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

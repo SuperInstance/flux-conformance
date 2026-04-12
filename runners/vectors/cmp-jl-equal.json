@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jl-equal",
+  "name": "CMP+JL: 10 !< 10, jump NOT taken",
+  "category": "comparison",
+  "description": "JL should not jump when values are equal",
+  "bytecode_hex": "2b010a002b020a002d0102360005002b000100802b00000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

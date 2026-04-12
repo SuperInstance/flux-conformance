@@ -1,0 +1,16 @@
+{
+  "id": "edge-inc-dec-identity",
+  "name": "INC+DEC: identity",
+  "category": "edge-case",
+  "description": "Increment followed by decrement returns original value",
+  "bytecode_hex": "2b002a000e000f0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

@@ -3,7 +3,7 @@
   "name": "DUP: duplicate top of stack",
   "category": "stack",
   "description": "DUP duplicates the top value on the stack",
-  "bytecode_hex": "2b 01 07 00 20 01 22 2b 01 00 00 21 00 21 01 80",
+  "bytecode_hex": "2b0107002001222b0100002100210180",
   "expected": {
     "final_state": "HALTED",
     "gp": {

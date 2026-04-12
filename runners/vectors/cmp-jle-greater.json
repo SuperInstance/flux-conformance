@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jle-greater",
+  "name": "CMP+JLE: 20 !<= 10, jump NOT taken",
+  "category": "comparison",
+  "description": "JLE should not jump when first operand is greater",
+  "bytecode_hex": "2b0114002b020a002d01024e0005002b000100802b00000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

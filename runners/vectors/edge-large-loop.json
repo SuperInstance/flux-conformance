@@ -3,21 +3,15 @@
   "name": "Loop: count to 1000",
   "category": "edge-case",
   "description": "Verify loop correctly handles 1000 iterations",
-  "bytecode_hex": "18 02 00 00 18 01 e8 03 08 02 09 01 45 01 f8 ff 00",
+  "bytecode_hex": "2b0000002b01e8030e000f010601f8ff80",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "2": 1000,
+      "0": 1000,
       "1": 0
     }
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 2,
-    "original_bytecode_hex": "2b0000002b01e8030e000f010601f8ff80"
-  }
+  ]
 }

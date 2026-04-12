@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jge-greater",
+  "name": "CMP+JGE: 20 >= 10, jump taken",
+  "category": "comparison",
+  "description": "JGE should jump when first operand is greater",
+  "bytecode_hex": "2b0114002b020a002d0102370005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

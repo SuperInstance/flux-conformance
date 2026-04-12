@@ -3,7 +3,7 @@
   "name": "FMUL: F0 = F1 * F2",
   "category": "float",
   "description": "Float multiplication",
-  "bytecode_hex": "42 00 01 02 80",
+  "bytecode_hex": "4200010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {

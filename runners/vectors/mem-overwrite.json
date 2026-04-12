@@ -1,0 +1,16 @@
+{
+  "id": "mem-overwrite",
+  "name": "STORE: write twice, last wins",
+  "category": "memory",
+  "description": "Writing to same address twice, second write overwrites first",
+  "bytecode_hex": "2b01f4012b020a000302012b02140003020102030180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "3": 20
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

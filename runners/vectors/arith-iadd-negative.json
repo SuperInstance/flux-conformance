@@ -3,20 +3,14 @@
   "name": "IADD: -1 + (-1) = -2",
   "category": "arithmetic",
   "description": "Adding two values that produce a negative result (uses MOVI with negative i16)",
-  "bytecode_hex": "18 01 ff ff 18 02 ff ff 20 03 01 02 00",
+  "bytecode_hex": "2b01ffff2b02ffff0800010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "3": -2
+      "0": -2
     }
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 3,
-    "original_bytecode_hex": "2b01ffff2b02ffff0800010280"
-  }
+  ]
 }

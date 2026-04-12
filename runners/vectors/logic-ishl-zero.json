@@ -1,0 +1,16 @@
+{
+  "id": "logic-ishl-zero",
+  "name": "ISHL: 42 << 0 = 42",
+  "category": "logic",
+  "description": "Left shift by zero is identity",
+  "bytecode_hex": "2b012a002b0200001400010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "arith-idiv-by-one",
+  "name": "IDIV: 123 / 1 = 123",
+  "category": "arithmetic",
+  "description": "Division by 1 is identity",
+  "bytecode_hex": "2b017b002b0201000b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 123
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

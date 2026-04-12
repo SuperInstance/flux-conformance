@@ -3,17 +3,11 @@
   "name": "CMP+JGE: 10 >= 10, jump taken",
   "category": "comparison",
   "description": "Compare equal values, JGE should jump",
-  "bytecode_hex": "18 01 0a 00 18 02 0a 00 2d 03 01 02 44 03 05 00 18 01 00 00 00 18 01 01 00 00",
+  "bytecode_hex": "2b010a002b020a002d0102370005002b000000802b00010080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 1
+      "0": 1
     }
-  },
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b010a002b020a002d0102370005002b000000802b00010080"
   }
 }

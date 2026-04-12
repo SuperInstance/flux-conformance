@@ -3,20 +3,14 @@
   "name": "NOP: should not affect state",
   "category": "arithmetic",
   "description": "NOP instruction does nothing",
-  "bytecode_hex": "18 01 2a 00 01 01 01 00",
+  "bytecode_hex": "2b002a0000000080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 42
+      "0": 42
     }
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b002a0000000080"
-  }
+  ]
 }

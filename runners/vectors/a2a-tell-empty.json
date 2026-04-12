@@ -1,0 +1,10 @@
+{
+  "id": "a2a-tell-empty",
+  "name": "TELL: empty payload, halt after",
+  "category": "a2a",
+  "description": "TELL with empty payload",
+  "bytecode_hex": "60000080",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

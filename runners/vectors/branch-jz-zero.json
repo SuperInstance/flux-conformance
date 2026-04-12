@@ -3,7 +3,7 @@
   "name": "JZ: jump when register is zero",
   "category": "branch",
   "description": "JZ should jump when register contains zero",
-  "bytecode_hex": "18 01 00 00 44 01 05 00 18 01 00 00 00 18 01 01 00 00",
+  "bytecode_hex": "2b000000050005002b010000802b01010080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
@@ -12,11 +12,5 @@
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b000000050005002b010000802b01010080"
-  }
+  ]
 }

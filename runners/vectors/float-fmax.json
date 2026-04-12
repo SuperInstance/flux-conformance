@@ -3,7 +3,7 @@
   "name": "FMAX: F0 = max(F1, F2)",
   "category": "float",
   "description": "Float maximum",
-  "bytecode_hex": "47 00 01 80",
+  "bytecode_hex": "47000180",
   "expected": {
     "final_state": "HALTED",
     "gp": {

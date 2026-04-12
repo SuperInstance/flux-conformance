@@ -3,7 +3,7 @@
   "name": "IADD: 0 + 42 = 42",
   "category": "arithmetic",
   "description": "Add zero to a value (identity operation)",
-  "bytecode_hex": "18 02 00 00 18 01 2a 00 20 02 02 01 00",
+  "bytecode_hex": "2b0000002b012a000802000180",
   "expected": {
     "final_state": "HALTED",
     "gp": {
@@ -12,11 +12,5 @@
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 2,
-    "original_bytecode_hex": "2b0000002b012a000802000180"
-  }
+  ]
 }

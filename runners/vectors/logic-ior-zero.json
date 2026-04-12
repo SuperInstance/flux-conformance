@@ -1,0 +1,16 @@
+{
+  "id": "logic-ior-zero",
+  "name": "IOR: 0xFF | 0 = 0xFF",
+  "category": "logic",
+  "description": "OR with zero is identity",
+  "bytecode_hex": "2b01ff002b0200001100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 255
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

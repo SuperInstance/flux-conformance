@@ -1,0 +1,18 @@
+{
+  "id": "system-halt-with-regs",
+  "name": "HALT: registers preserved on halt",
+  "category": "system",
+  "description": "HALT preserves all register values",
+  "bytecode_hex": "2b012a002b0263002b03f9ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "1": 42,
+      "2": 99,
+      "3": -7
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

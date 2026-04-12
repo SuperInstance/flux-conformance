@@ -1,0 +1,16 @@
+{
+  "id": "arith-iadd-chain",
+  "name": "IADD: (2 + 3) + 4 = 9",
+  "category": "arithmetic",
+  "description": "Chained addition of three values",
+  "bytecode_hex": "2b0102002b0203002b030400080401020800040380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 9
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

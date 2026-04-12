@@ -3,17 +3,11 @@
   "name": "ISUB: 3 - 10 = -7",
   "category": "arithmetic",
   "description": "Subtraction producing negative result",
-  "bytecode_hex": "18 01 03 00 18 02 0a 00 21 03 01 02 00",
+  "bytecode_hex": "2b0103002b020a000900010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "3": -7
+      "0": -7
     }
-  },
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 3,
-    "original_bytecode_hex": "2b0103002b020a000900010280"
   }
 }

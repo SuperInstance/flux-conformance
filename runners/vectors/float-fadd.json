@@ -3,7 +3,7 @@
   "name": "FADD: F0 = F1 + F2",
   "category": "float",
   "description": "Float addition using Format C FP registers",
-  "bytecode_hex": "40 00 01 02 80",
+  "bytecode_hex": "4000010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {

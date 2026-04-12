@@ -1,0 +1,16 @@
+{
+  "id": "system-debug-break",
+  "name": "DEBUG_BREAK: breakpoint instruction",
+  "category": "system",
+  "description": "DEBUG_BREAK pauses for debugger",
+  "bytecode_hex": "2b002a0084",
+  "expected": {
+    "final_state": "YIELDED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

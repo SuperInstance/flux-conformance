@@ -1,0 +1,17 @@
+{
+  "id": "arith-idiv-neg-trunc",
+  "name": "IDIV: -17 / 5 = -3",
+  "category": "arithmetic",
+  "description": "Division truncates toward zero (negative dividend)",
+  "bytecode_hex": "2b01efff2b0205000b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -3
+    }
+  },
+  "tags": [
+    "p1",
+    "edge-case"
+  ]
+}

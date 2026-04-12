@@ -3,7 +3,7 @@
   "name": "FDIV: F0 = F1 / F2",
   "category": "float",
   "description": "Float division",
-  "bytecode_hex": "43 00 01 02 80",
+  "bytecode_hex": "4300010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {

@@ -1,0 +1,17 @@
+{
+  "id": "edge-neg-div-trunc",
+  "name": "IDIV: -10 / 3 = -3 (truncate toward zero)",
+  "category": "edge-case",
+  "description": "Negative division truncates toward zero, not toward negative infinity",
+  "bytecode_hex": "2b01f6ff2b0203000b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -3
+    }
+  },
+  "tags": [
+    "p1",
+    "edge-case"
+  ]
+}

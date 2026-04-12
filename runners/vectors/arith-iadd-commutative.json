@@ -1,0 +1,16 @@
+{
+  "id": "arith-iadd-commutative",
+  "name": "IADD: 4 + 3 = 7 (commutative)",
+  "category": "arithmetic",
+  "description": "Verify IADD commutativity: 4+3 = 3+4",
+  "bytecode_hex": "2b0104002b0203000800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

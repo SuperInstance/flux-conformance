@@ -1,0 +1,17 @@
+{
+  "id": "mem-multi-addr",
+  "name": "STORE/LOAD: two addresses, round-trip",
+  "category": "memory",
+  "description": "Store values at two different addresses, load both back",
+  "bytecode_hex": "2b012c012b026f000302012b0190012b02de000302012b042c010205042b04900102060480",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "5": 111,
+      "6": 222
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

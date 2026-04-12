@@ -3,17 +3,11 @@
   "name": "HALT: stop execution",
   "category": "system",
   "description": "HALT stops the VM",
-  "bytecode_hex": "00",
+  "bytecode_hex": "80",
   "expected": {
     "final_state": "HALTED"
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": null,
-    "original_bytecode_hex": "80"
-  }
+  ]
 }

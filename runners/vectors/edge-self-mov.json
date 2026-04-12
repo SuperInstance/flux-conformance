@@ -1,0 +1,16 @@
+{
+  "id": "edge-self-mov",
+  "name": "MOV: R0 = R0 (self-move)",
+  "category": "edge-case",
+  "description": "Moving a register to itself should be a no-op",
+  "bytecode_hex": "2b002a0001000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

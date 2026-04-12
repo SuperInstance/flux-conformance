@@ -3,20 +3,14 @@
   "name": "DEC: R0 from 5 to 4",
   "category": "arithmetic",
   "description": "Decrement register by 1",
-  "bytecode_hex": "18 01 05 00 09 01 00",
+  "bytecode_hex": "2b0005000f0080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 4
+      "0": 4
     }
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b0005000f0080"
-  }
+  ]
 }

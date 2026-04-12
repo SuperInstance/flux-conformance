@@ -3,20 +3,14 @@
   "name": "GCD(48, 18) = 6 via subtraction",
   "category": "branch",
   "description": "Compute GCD of 48 and 18 using Euclidean subtraction algorithm",
-  "bytecode_hex": "18 02 30 00 18 01 12 00 2c 02 00 01 44 02 14 00 4d 00 08 00 21 01 01 02 43 02 ec ff 21 02 02 01 43 02 e4 ff 00",
+  "bytecode_hex": "2b0030002b0112002d00012e0014004d000800090101000400edff090000010400e5ff80",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "2": 6
+      "0": 6
     }
   },
   "tags": [
     "p0"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 2,
-    "original_bytecode_hex": "2b0030002b0112002d00012e0014004d000800090101000400edff090000010400e5ff80"
-  }
+  ]
 }

@@ -1,0 +1,18 @@
+{
+  "id": "stack-swap-triple",
+  "name": "SWAP: swap in 3-element stack",
+  "category": "stack",
+  "description": "SWAP only exchanges top two elements of a 3-deep stack",
+  "bytecode_hex": "2b01640020012b01c80020012b012c0120012321002101210280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 200,
+      "1": 300,
+      "2": 100
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

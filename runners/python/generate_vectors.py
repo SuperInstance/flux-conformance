@@ -986,6 +986,590 @@ def make_edge_case_vectors():
 
 
 # =============================================================================
+# EXPANDED ARITHMETIC TESTS
+# =============================================================================
+
+def make_arithmetic_expanded_vectors():
+    vectors = []
+
+    # --- IADD: Commutative ---
+    vectors.append(_vector(
+        "arith-iadd-commutative", "IADD: 4 + 3 = 7 (commutative)", "arithmetic",
+        "Verify IADD commutativity: 4+3 = 3+4",
+        BytecodeBuilder().movi(1, 4).movi(2, 3).iadd(0, 1, 2).halt(),
+        {"gp": {"0": 7}}, tags=["p1"]
+    ))
+
+    # --- ISUB: Identity (x - 0 = x) ---
+    vectors.append(_vector(
+        "arith-isub-identity", "ISUB: 42 - 0 = 42", "arithmetic",
+        "Subtraction by zero is identity",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).isub(0, 1, 2).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- IDIV: Divide by 1 ---
+    vectors.append(_vector(
+        "arith-idiv-by-one", "IDIV: 123 / 1 = 123", "arithmetic",
+        "Division by 1 is identity",
+        BytecodeBuilder().movi(1, 123).movi(2, 1).idiv(0, 1, 2).halt(),
+        {"gp": {"0": 123}}, tags=["p1"]
+    ))
+
+    # --- IMUL: Negative * Negative ---
+    vectors.append(_vector(
+        "arith-imul-neg-neg", "IMUL: (-4) * (-3) = 12", "arithmetic",
+        "Multiplying two negatives gives positive",
+        BytecodeBuilder().movi(1, -4).movi(2, -3).imul(0, 1, 2).halt(),
+        {"gp": {"0": 12}}, tags=["p1"]
+    ))
+
+    # --- IMUL: Commutative ---
+    vectors.append(_vector(
+        "arith-imul-commute", "IMUL: 7 * 6 = 42 (commutative)", "arithmetic",
+        "Verify IMUL commutativity: 7*6 = 6*7",
+        BytecodeBuilder().movi(1, 7).movi(2, 6).imul(0, 1, 2).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- IADD: Associativity (partial) ---
+    # (2 + 3) + 4 = 9
+    vectors.append(_vector(
+        "arith-iadd-chain", "IADD: (2 + 3) + 4 = 9", "arithmetic",
+        "Chained addition of three values",
+        BytecodeBuilder().movi(1, 2).movi(2, 3).movi(3, 4)
+                       .iadd(4, 1, 2).iadd(0, 4, 3).halt(),
+        {"gp": {"0": 9}}, tags=["p1"]
+    ))
+
+    # --- IDIV: Negative truncation toward zero ---
+    vectors.append(_vector(
+        "arith-idiv-neg-trunc", "IDIV: -17 / 5 = -3", "arithmetic",
+        "Division truncates toward zero (negative dividend)",
+        BytecodeBuilder().movi(1, -17).movi(2, 5).idiv(0, 1, 2).halt(),
+        {"gp": {"0": -3}}, tags=["p1", "edge-case"]
+    ))
+
+    # --- IMOD: Negative dividend ---
+    vectors.append(_vector(
+        "arith-imod-neg", "IMOD: -17 % 5 = -2", "arithmetic",
+        "Modulo with negative dividend follows truncation",
+        BytecodeBuilder().movi(1, -17).movi(2, 5).imod(0, 1, 2).halt(),
+        {"gp": {"0": -2}}, tags=["p1", "edge-case"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED LOGIC TESTS
+# =============================================================================
+
+def make_logic_expanded_vectors():
+    vectors = []
+
+    # --- IAND: Self AND ---
+    vectors.append(_vector(
+        "logic-iand-self", "IAND: 0xAB & 0xAB = 0xAB", "logic",
+        "AND with self is identity",
+        BytecodeBuilder().movi(1, 0xAB).movi(2, 0xAB).iand(0, 1, 2).halt(),
+        {"gp": {"0": 0xAB}}, tags=["p1"]
+    ))
+
+    # --- IOR: Self OR ---
+    vectors.append(_vector(
+        "logic-ior-self", "IOR: 0x55 | 0x55 = 0x55", "logic",
+        "OR with self is identity",
+        BytecodeBuilder().movi(1, 0x55).movi(2, 0x55).ior(0, 1, 2).halt(),
+        {"gp": {"0": 0x55}}, tags=["p1"]
+    ))
+
+    # --- IOR: OR with zero ---
+    vectors.append(_vector(
+        "logic-ior-zero", "IOR: 0xFF | 0 = 0xFF", "logic",
+        "OR with zero is identity",
+        BytecodeBuilder().movi(1, 0xFF).movi(2, 0).ior(0, 1, 2).halt(),
+        {"gp": {"0": 0xFF}}, tags=["p1"]
+    ))
+
+    # --- ISHL: Shift by zero ---
+    vectors.append(_vector(
+        "logic-ishl-zero", "ISHL: 42 << 0 = 42", "logic",
+        "Left shift by zero is identity",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).ishl(0, 1, 2).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- ISHR: Shift by zero ---
+    vectors.append(_vector(
+        "logic-ishr-zero", "ISHR: 42 >> 0 = 42", "logic",
+        "Right shift by zero is identity",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).ishr(0, 1, 2).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- INOT: NOT of -1 (all bits) = 0 ---
+    vectors.append(_vector(
+        "logic-inot-neg1", "INOT: ~(-1) = 0", "logic",
+        "NOT of all-ones yields zero",
+        BytecodeBuilder().movi(1, -1).inot(0, 1).halt(),
+        {"gp": {"0": 0}}, tags=["p1"]
+    ))
+
+    # --- IAND: All bits set ---
+    vectors.append(_vector(
+        "logic-iand-allbits", "IAND: 0xFF & 0xFF = 0xFF", "logic",
+        "AND of all-ones with all-ones yields all-ones",
+        BytecodeBuilder().movi(1, 0xFF).movi(2, 0xFF).iand(0, 1, 2).halt(),
+        {"gp": {"0": 0xFF}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED COMPARISON TESTS
+# =============================================================================
+
+def make_comparison_expanded_vectors():
+    vectors = []
+
+    # --- CMP + JG: Equal values (not greater, jump NOT taken) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 10).cmp(1, 2)
+    bc.jg_label("greater").movi(0, 1).halt()
+    bc.label("greater").movi(0, 0).halt()
+    vectors.append(_vector(
+        "cmp-jg-equal", "CMP+JG: 10 !> 10, jump NOT taken", "comparison",
+        "JG should not jump when values are equal",
+        bc, {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- CMP + JL: Equal values (not less, jump NOT taken) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 10).cmp(1, 2)
+    bc.jl_label("less").movi(0, 1).halt()
+    bc.label("less").movi(0, 0).halt()
+    vectors.append(_vector(
+        "cmp-jl-equal", "CMP+JL: 10 !< 10, jump NOT taken", "comparison",
+        "JL should not jump when values are equal",
+        bc, {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- CMP + JNE: Equal values (not taken) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 10).cmp(1, 2)
+    bc.jne_label("notequal").movi(0, 1).halt()
+    bc.label("notequal").movi(0, 0).halt()
+    vectors.append(_vector(
+        "cmp-jne-equal", "CMP+JNE: 10 == 10, jump NOT taken", "comparison",
+        "JNE should not jump when values are equal",
+        bc, {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- CMP + JGE: Greater values ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 20).movi(2, 10).cmp(1, 2)
+    bc.jge_label("geq").movi(0, 0).halt()
+    bc.label("geq").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jge-greater", "CMP+JGE: 20 >= 10, jump taken", "comparison",
+        "JGE should jump when first operand is greater",
+        bc, {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- CMP + JLE: Greater values (not taken) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 20).movi(2, 10).cmp(1, 2)
+    bc.jle_label("leq").movi(0, 1).halt()
+    bc.label("leq").movi(0, 0).halt()
+    vectors.append(_vector(
+        "cmp-jle-greater", "CMP+JLE: 20 !<= 10, jump NOT taken", "comparison",
+        "JLE should not jump when first operand is greater",
+        bc, {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- ICMP EQ: not equal (false path) ---
+    vectors.append(_vector(
+        "cmp-icmp-eq-false", "ICMP EQ: 5 != 3, result 0", "comparison",
+        "ICMP EQ writes 0 when not equal",
+        BytecodeBuilder().movi(1, 5).movi(2, 3).icmp(BytecodeBuilder.EQ, 1, 2).halt(),
+        {"gp": {"0": 0}}, tags=["p1"]
+    ))
+
+    # --- ICMP GE: greater or equal ---
+    vectors.append(_vector(
+        "cmp-icmp-ge", "ICMP GE: 10 >= 5, result 1", "comparison",
+        "ICMP GE writes 1 when greater or equal",
+        BytecodeBuilder().movi(1, 10).movi(2, 5).icmp(BytecodeBuilder.GE, 1, 2).halt(),
+        {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED STACK TESTS
+# =============================================================================
+
+def make_stack_expanded_vectors():
+    vectors = []
+
+    # --- ROT: Rotate 3 stack elements ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 1).push(1)  # bottom: 1
+    bc.movi(1, 2).push(1)  # middle: 2
+    bc.movi(1, 3).push(1)  # top: 3
+    bc.rot()               # rotate: top moves to bottom → [2, 3, 1]
+    bc.pop(0)  # should be 1 (was at bottom, now at top)
+    bc.pop(2)  # should be 3
+    bc.pop(3)  # should be 2
+    bc.halt()
+    vectors.append(_vector(
+        "stack-rot", "ROT: rotate 3 stack elements", "stack",
+        "ROT moves top of 3-element stack to bottom",
+        bc, {"gp": {"0": 1, "2": 3, "3": 2}}, tags=["p1"]
+    ))
+
+    # --- Stack preserved through CALL/RET ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 77).push(1)
+    bc.call_label("func")
+    bc.pop(0)  # should still be 77
+    bc.halt()
+    bc.label("func")
+    bc.movi(2, 99)  # modify R2 inside function
+    bc.ret()
+    vectors.append(_vector(
+        "stack-persist-call", "PUSH+POP across CALL/RET: 77 preserved", "stack",
+        "Stack values survive across function call and return",
+        bc, {"gp": {"0": 77, "2": 99}}, tags=["p1"]
+    ))
+
+    # --- DUP + arithmetic ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 5).push(1)
+    bc.dup()          # stack: [5, 5]
+    bc.pop(2)         # R2 = 5
+    bc.pop(3)         # R3 = 5
+    bc.iadd(0, 2, 3)  # R0 = 5 + 5 = 10
+    bc.halt()
+    vectors.append(_vector(
+        "stack-dup-arith", "DUP: duplicate then add = 2x value", "stack",
+        "DUP top of stack, pop twice, add to get double",
+        bc, {"gp": {"0": 10}}, tags=["p1"]
+    ))
+
+    # --- SWAP + verify original order ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 100).push(1)
+    bc.movi(1, 200).push(1)
+    bc.movi(1, 300).push(1)
+    bc.swap()         # swap top two: [100, 300, 200]
+    bc.pop(0)         # R0 = 200
+    bc.pop(1)         # R1 = 300
+    bc.pop(2)         # R2 = 100
+    bc.halt()
+    vectors.append(_vector(
+        "stack-swap-triple", "SWAP: swap in 3-element stack", "stack",
+        "SWAP only exchanges top two elements of a 3-deep stack",
+        bc, {"gp": {"0": 200, "1": 300, "2": 100}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED MEMORY TESTS
+# =============================================================================
+
+def make_memory_expanded_vectors():
+    vectors = []
+
+    # --- Multiple store/load at different addresses ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 300)  # address 1
+    bc.movi(2, 111)  # value 1
+    bc.store(2, 1)
+    bc.movi(1, 400)  # address 2
+    bc.movi(2, 222)  # value 2
+    bc.store(2, 1)
+    # Read them back
+    bc.movi(4, 300)
+    bc.load(5, 4)     # R5 = mem[R4] = mem[300] = 111
+    bc.movi(4, 400)
+    bc.load(6, 4)     # R6 = mem[R4] = mem[400] = 222
+    bc.halt()
+    vectors.append(_vector(
+        "mem-multi-addr", "STORE/LOAD: two addresses, round-trip", "memory",
+        "Store values at two different addresses, load both back",
+        bc, {"gp": {"5": 111, "6": 222}}, tags=["p1"]
+    ))
+
+    # --- Store overwrites previous value ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 500)  # address
+    bc.movi(2, 10)   # first value
+    bc.store(2, 1)
+    bc.movi(2, 20)   # second value
+    bc.store(2, 1)
+    bc.load(3, 1)    # should get 20 (last write wins)
+    bc.halt()
+    vectors.append(_vector(
+        "mem-overwrite", "STORE: write twice, last wins", "memory",
+        "Writing to same address twice, second write overwrites first",
+        bc, {"gp": {"3": 20}}, tags=["p1"]
+    ))
+
+    # --- Store zero, load zero ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 600)  # address
+    bc.movi(2, 0)    # value = 0
+    bc.store(2, 1)
+    bc.movi(2, 999)  # clobber
+    bc.load(3, 1)    # should be 0
+    bc.halt()
+    vectors.append(_vector(
+        "mem-store-zero", "STORE/LOAD: zero round-trip", "memory",
+        "Store zero to memory and load it back",
+        bc, {"gp": {"3": 0}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED FLOAT TESTS
+# =============================================================================
+
+def make_float_expanded_vectors():
+    vectors = []
+
+    # --- FNEG positive ---
+    vectors.append(_vector(
+        "float-fneg-positive", "FNEG: F0 = -F1 (positive input)", "float",
+        "Negate a positive float",
+        BytecodeBuilder().fneg(0, 1).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 5.5}}
+    ))
+    vectors[-1]["expected"]["fp"] = {"0": -5.5}
+
+    # --- FNEG negative (double negation) ---
+    vectors.append(_vector(
+        "float-fneg-double", "FNEG: -(-3.14) = 3.14", "float",
+        "Double negation of float returns original",
+        BytecodeBuilder().fneg(0, 1).fneg(0, 0).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -3.14}}
+    ))
+    vectors[-1]["expected"]["fp"] = {"0": 3.14}
+
+    # --- FADD negative ---
+    vectors.append(_vector(
+        "float-fadd-neg", "FADD: F0 = F1 + F2 (negative operand)", "float",
+        "Float addition with negative operand",
+        BytecodeBuilder().fadd(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 10.0, "2": -3.5}}
+    ))
+    vectors[-1]["expected"]["fp"] = {"0": 6.5}
+
+    # --- FMUL by zero ---
+    vectors.append(_vector(
+        "float-fmul-zero", "FMUL: F0 = F1 * 0.0 = 0.0", "float",
+        "Float multiplication by zero",
+        BytecodeBuilder().fmul(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 999.9, "2": 0.0}}
+    ))
+    vectors[-1]["expected"]["fp"] = {"0": 0.0}
+
+    # --- FDIV truncation ---
+    vectors.append(_vector(
+        "float-fdiv-trunc", "FDIV: F0 = F1 / F2 = 0.333...", "float",
+        "Float division producing repeating decimal",
+        BytecodeBuilder().fdiv(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 1.0, "2": 3.0}}
+    ))
+    vectors[-1]["expected"]["fp"] = {"0": 1.0 / 3.0}
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED SYSTEM TESTS
+# =============================================================================
+
+def make_system_expanded_vectors():
+    vectors = []
+
+    # --- HALT with register state ---
+    vectors.append(_vector(
+        "system-halt-with-regs", "HALT: registers preserved on halt", "system",
+        "HALT preserves all register values",
+        BytecodeBuilder().movi(1, 42).movi(2, 99).movi(3, -7).halt(),
+        {"gp": {"1": 42, "2": 99, "3": -7}}, tags=["p1"]
+    ))
+
+    # --- NOP interspersed with work ---
+    vectors.append(_vector(
+        "system-nop-interleaved", "NOP interleaved with arithmetic", "system",
+        "NOPs between arithmetic instructions do not affect result",
+        BytecodeBuilder().movi(1, 5).nop().movi(2, 3).nop()
+                       .iadd(0, 1, 2).nop().halt(),
+        {"gp": {"0": 8}}, tags=["p1"]
+    ))
+
+    # --- NOP after HALT (should not execute) ---
+    vectors.append(_vector(
+        "system-nop-after-halt", "NOP after HALT: never executes", "system",
+        "Instructions after HALT should not execute",
+        BytecodeBuilder().movi(0, 1).halt().movi(0, 0),
+        {"gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- YIELD instruction ---
+    vectors.append(_vector(
+        "system-yield", "YIELD: yield execution", "system",
+        "YIELD instruction pauses VM execution",
+        BytecodeBuilder().movi(0, 1).yield_(),
+        {"final_state": "YIELDED", "gp": {"0": 1}}, tags=["p1"]
+    ))
+
+    # --- DEBUG_BREAK ---
+    vectors.append(_vector(
+        "system-debug-break", "DEBUG_BREAK: breakpoint instruction", "system",
+        "DEBUG_BREAK pauses for debugger",
+        BytecodeBuilder().movi(0, 42).debug_break(),
+        {"final_state": "YIELDED", "gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED EDGE CASE TESTS
+# =============================================================================
+
+def make_edge_case_expanded_vectors():
+    vectors = []
+
+    # --- Self MOV ---
+    vectors.append(_vector(
+        "edge-self-mov", "MOV: R0 = R0 (self-move)", "edge-case",
+        "Moving a register to itself should be a no-op",
+        BytecodeBuilder().movi(0, 42).mov(0, 0).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- INC then DEC = identity ---
+    vectors.append(_vector(
+        "edge-inc-dec-identity", "INC+DEC: identity", "edge-case",
+        "Increment followed by decrement returns original value",
+        BytecodeBuilder().movi(0, 42).inc(0).dec(0).halt(),
+        {"gp": {"0": 42}}, tags=["p1"]
+    ))
+
+    # --- Negative division truncate toward zero ---
+    vectors.append(_vector(
+        "edge-neg-div-trunc", "IDIV: -10 / 3 = -3 (truncate toward zero)", "edge-case",
+        "Negative division truncates toward zero, not toward negative infinity",
+        BytecodeBuilder().movi(1, -10).movi(2, 3).idiv(0, 1, 2).halt(),
+        {"gp": {"0": -3}}, tags=["p1", "edge-case"]
+    ))
+
+    # --- IREM by zero ---
+    vectors.append(_vector(
+        "edge-irem-zero", "IREM: remainder by zero", "edge-case",
+        "IREM by zero should cause an error state",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).irem(0, 1, 2).halt(),
+        {"final_state": "ERRORED", "error_type": "DivisionByZero"},
+        tags=["p1", "edge-case"]
+    ))
+
+    # --- JMP backward (simple loop with 1 iteration) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 1)
+    bc.label("loop")
+    bc.movi(0, 42)
+    bc.dec(1)
+    bc.jnz_label(1, "loop")
+    bc.halt()
+    vectors.append(_vector(
+        "edge-jmp-backward-once", "JMP backward: 1 iteration", "edge-case",
+        "Backward jump executes loop body exactly once",
+        bc, {"gp": {"0": 42, "1": 0}}, tags=["p1"]
+    ))
+
+    # --- Empty loop body ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 5)
+    bc.label("loop")
+    bc.dec(1)
+    bc.jnz_label(1, "loop")
+    bc.movi(0, 1).halt()
+    vectors.append(_vector(
+        "edge-empty-loop", "Loop: empty body, count 5 to 0", "edge-case",
+        "Loop with empty body still terminates correctly",
+        bc, {"gp": {"0": 1, "1": 0}}, tags=["p1"]
+    ))
+
+    # --- DEC past zero ---
+    vectors.append(_vector(
+        "edge-dec-past-zero", "DEC: 0 - 1 = -1", "edge-case",
+        "Decrementing zero wraps to -1 (32-bit signed)",
+        BytecodeBuilder().movi(0, 0).dec(0).halt(),
+        {"gp": {"0": -1}}, tags=["p1"]
+    ))
+
+    # --- INC from max i16 ---
+    vectors.append(_vector(
+        "edge-inc-from-max-i16", "INC: 32767 + 1 = 32768", "edge-case",
+        "Increment past i16 max extends to 32-bit",
+        BytecodeBuilder().movi(0, 32767).inc(0).halt(),
+        {"gp": {"0": 32768}}, tags=["p1"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXPANDED A2A TESTS
+# =============================================================================
+
+def make_a2a_expanded_vectors():
+    vectors = []
+
+    # --- TELL with empty payload ---
+    vectors.append(_vector(
+        "a2a-tell-empty", "TELL: empty payload, halt after", "a2a",
+        "TELL with empty payload",
+        BytecodeBuilder().tell(b"").halt(),
+        {}
+    ))
+
+    # --- ASK with empty payload ---
+    vectors.append(_vector(
+        "a2a-ask-empty", "ASK: empty payload, halt after", "a2a",
+        "ASK with empty payload",
+        BytecodeBuilder().ask(b"").halt(),
+        {}
+    ))
+
+    # --- DELEGATE with structured payload ---
+    vectors.append(_vector(
+        "a2a-delegate-structured", "DELEGATE: structured JSON payload", "a2a",
+        "DELEGATE with JSON-structured task payload",
+        BytecodeBuilder().delegate(b'{"task":"analyze","target":"data.csv"}').halt(),
+        {}
+    ))
+
+    return vectors
+
+
+# =============================================================================
 # COMPOSITE / ALGORITHMIC TESTS
 # =============================================================================
 
@@ -1118,15 +1702,24 @@ def main():
 
     all_generators = [
         make_arithmetic_vectors,
+        make_arithmetic_expanded_vectors,
         make_logic_vectors,
+        make_logic_expanded_vectors,
         make_comparison_vectors,
+        make_comparison_expanded_vectors,
         make_branch_vectors,
         make_stack_vectors,
+        make_stack_expanded_vectors,
         make_memory_vectors,
+        make_memory_expanded_vectors,
         make_float_vectors,
+        make_float_expanded_vectors,
         make_a2a_vectors,
+        make_a2a_expanded_vectors,
         make_system_vectors,
+        make_system_expanded_vectors,
         make_edge_case_vectors,
+        make_edge_case_expanded_vectors,
         make_composite_vectors,
     ]
 

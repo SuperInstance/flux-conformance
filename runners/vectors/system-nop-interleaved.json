@@ -1,0 +1,16 @@
+{
+  "id": "system-nop-interleaved",
+  "name": "NOP interleaved with arithmetic",
+  "category": "system",
+  "description": "NOPs between arithmetic instructions do not affect result",
+  "bytecode_hex": "2b010500002b02030000080001020080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 8
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

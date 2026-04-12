@@ -1,0 +1,16 @@
+{
+  "id": "arith-imul-neg-neg",
+  "name": "IMUL: (-4) * (-3) = 12",
+  "category": "arithmetic",
+  "description": "Multiplying two negatives gives positive",
+  "bytecode_hex": "2b01fcff2b02fdff0a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 12
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

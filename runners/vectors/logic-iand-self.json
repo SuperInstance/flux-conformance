@@ -1,0 +1,16 @@
+{
+  "id": "logic-iand-self",
+  "name": "IAND: 0xAB & 0xAB = 0xAB",
+  "category": "logic",
+  "description": "AND with self is identity",
+  "bytecode_hex": "2b01ab002b02ab001000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 171
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

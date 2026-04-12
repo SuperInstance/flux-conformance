@@ -1,0 +1,17 @@
+{
+  "id": "edge-empty-loop",
+  "name": "Loop: empty body, count 5 to 0",
+  "category": "edge-case",
+  "description": "Loop with empty body still terminates correctly",
+  "bytecode_hex": "2b0105000f010601faff2b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1,
+      "1": 0
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

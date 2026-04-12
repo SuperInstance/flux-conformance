@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "generated": "2026-04-12T08:00:00Z",
-  "total_vectors": 88,
+  "total_vectors": 138,
   "categories": {
     "arithmetic": [
       "arith-iadd-basic",
@@ -23,7 +23,15 @@
       "arith-movi-basic",
       "arith-movi-negative",
       "arith-irem-basic",
-      "arith-nop"
+      "arith-nop",
+      "arith-iadd-commutative",
+      "arith-isub-identity",
+      "arith-idiv-by-one",
+      "arith-imul-neg-neg",
+      "arith-imul-commute",
+      "arith-iadd-chain",
+      "arith-idiv-neg-trunc",
+      "arith-imod-neg"
     ],
     "logic": [
       "logic-iand-basic",
@@ -35,7 +43,14 @@
       "logic-ishl-basic",
       "logic-ishr-basic",
       "logic-rotl-basic",
-      "logic-rotr-basic"
+      "logic-rotr-basic",
+      "logic-iand-self",
+      "logic-ior-self",
+      "logic-ior-zero",
+      "logic-ishl-zero",
+      "logic-ishr-zero",
+      "logic-inot-neg1",
+      "logic-iand-allbits"
     ],
     "comparison": [
       "cmp-je-equal",
@@ -50,7 +65,14 @@
       "cmp-icmp-ne",
       "cmp-icmp-lt",
       "cmp-icmp-gt",
-      "cmp-icmp-le"
+      "cmp-icmp-le",
+      "cmp-jg-equal",
+      "cmp-jl-equal",
+      "cmp-jne-equal",
+      "cmp-jge-greater",
+      "cmp-jle-greater",
+      "cmp-icmp-eq-false",
+      "cmp-icmp-ge"
     ],
     "branch": [
       "branch-jmp-forward",
@@ -72,13 +94,20 @@
       "stack-push3-pop3",
       "stack-dup",
       "stack-swap",
-      "stack-enter-leave"
+      "stack-enter-leave",
+      "stack-rot",
+      "stack-persist-call",
+      "stack-dup-arith",
+      "stack-swap-triple"
     ],
     "memory": [
       "mem-store-load",
       "mem-store8-load8",
       "mem-region-create",
-      "mem-memset"
+      "mem-memset",
+      "mem-multi-addr",
+      "mem-overwrite",
+      "mem-store-zero"
     ],
     "float": [
       "float-fadd-basic",
@@ -89,17 +118,30 @@
       "float-fneg",
       "float-fabs",
       "float-fmin",
-      "float-fmax"
+      "float-fmax",
+      "float-fneg-positive",
+      "float-fneg-double",
+      "float-fadd-neg",
+      "float-fmul-zero",
+      "float-fdiv-trunc"
     ],
     "a2a": [
       "a2a-tell-basic",
       "a2a-ask-basic",
       "a2a-broadcast-basic",
-      "a2a-delegate-basic"
+      "a2a-delegate-basic",
+      "a2a-tell-empty",
+      "a2a-ask-empty",
+      "a2a-delegate-structured"
     ],
     "system": [
       "system-halt",
-      "system-nop-chain"
+      "system-nop-chain",
+      "system-halt-with-regs",
+      "system-nop-interleaved",
+      "system-nop-after-halt",
+      "system-yield",
+      "system-debug-break"
     ],
     "edge-case": [
       "edge-movi-max",
@@ -109,7 +151,15 @@
       "edge-large-loop",
       "edge-overflow",
       "edge-nested-call",
-      "edge-cmp-zero-zero"
+      "edge-cmp-zero-zero",
+      "edge-self-mov",
+      "edge-inc-dec-identity",
+      "edge-neg-div-trunc",
+      "edge-irem-zero",
+      "edge-jmp-backward-once",
+      "edge-empty-loop",
+      "edge-dec-past-zero",
+      "edge-inc-from-max-i16"
     ]
   },
   "isa_reference": "flux.bytecode.opcodes.Op (VM-executable opcode values)",

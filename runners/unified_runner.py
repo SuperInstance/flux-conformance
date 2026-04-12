@@ -381,6 +381,7 @@ class ConformanceRunner:
             return bytes(int(b) & 0xFF for b in raw)
         if isinstance(raw, str):
             s = raw.strip().removeprefix("0x").removeprefix("0X")
+            s = s.replace(" ", "").replace("\n", "").replace("\t", "")
             if len(s) % 2:
                 s = "0" + s
             return bytes.fromhex(s)

@@ -3,17 +3,11 @@
   "name": "CALL: nested function calls",
   "category": "edge-case",
   "description": "Two levels of nested function calls with return",
-  "bytecode_hex": "4a 01 01 00 00 4a 01 01 00 02 18 01 63 00 02",
+  "bytecode_hex": "0700010080070003002800002b006300280000",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 99
+      "0": 99
     }
-  },
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "0700010080070003002800002b006300280000"
   }
 }

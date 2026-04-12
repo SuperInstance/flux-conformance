@@ -1,0 +1,16 @@
+{
+  "id": "system-yield",
+  "name": "YIELD: yield execution",
+  "category": "system",
+  "description": "YIELD instruction pauses VM execution",
+  "bytecode_hex": "2b00010081",
+  "expected": {
+    "final_state": "YIELDED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

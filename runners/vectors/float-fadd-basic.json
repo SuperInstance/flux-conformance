@@ -3,11 +3,11 @@
   "name": "FADD: 3.0 + 4.0 = 7.0",
   "category": "float",
   "description": "Add two floats loaded via MOVI (stored as GP, then copied to FP in preconditions)",
-  "bytecode_hex": "18 01 01 00 00",
+  "bytecode_hex": "2b00010080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 1
+      "0": 1
     }
   },
   "preconditions": {
@@ -18,11 +18,5 @@
   },
   "tags": [
     "smoke"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b00010080"
-  }
+  ]
 }

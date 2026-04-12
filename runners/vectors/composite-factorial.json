@@ -3,20 +3,14 @@
   "name": "8! = 40320",
   "category": "branch",
   "description": "Compute factorial of 8",
-  "bytecode_hex": "18 02 01 00 18 01 08 00 22 02 02 01 09 01 45 01 f6 ff 00",
+  "bytecode_hex": "2b0001002b0108000a0000010f010601f6ff80",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "2": 40320
+      "0": 40320
     }
   },
   "tags": [
     "p0"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 2,
-    "original_bytecode_hex": "2b0001002b0108000a0000010f010601f6ff80"
-  }
+  ]
 }

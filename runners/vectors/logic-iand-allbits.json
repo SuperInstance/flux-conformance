@@ -1,0 +1,16 @@
+{
+  "id": "logic-iand-allbits",
+  "name": "IAND: 0xFF & 0xFF = 0xFF",
+  "category": "logic",
+  "description": "AND of all-ones with all-ones yields all-ones",
+  "bytecode_hex": "2b01ff002b02ff001000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 255
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

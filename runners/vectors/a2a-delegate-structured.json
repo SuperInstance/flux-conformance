@@ -1,0 +1,10 @@
+{
+  "id": "a2a-delegate-structured",
+  "name": "DELEGATE: structured JSON payload",
+  "category": "a2a",
+  "description": "DELEGATE with JSON-structured task payload",
+  "bytecode_hex": "6226007b227461736b223a22616e616c797a65222c22746172676574223a22646174612e637376227d80",
+  "expected": {
+    "final_state": "HALTED"
+  }
+}

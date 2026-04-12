@@ -3,7 +3,7 @@
   "name": "ROTL: 1 rotate left 1 = 2",
   "category": "logic",
   "description": "Rotate left shifts bits that wrap around",
-  "bytecode_hex": "2b 01 01 00 2b 02 01 00 16 00 01 02 80",
+  "bytecode_hex": "2b0101002b0201001600010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {

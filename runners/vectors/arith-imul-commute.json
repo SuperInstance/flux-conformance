@@ -1,0 +1,16 @@
+{
+  "id": "arith-imul-commute",
+  "name": "IMUL: 7 * 6 = 42 (commutative)",
+  "category": "arithmetic",
+  "description": "Verify IMUL commutativity: 7*6 = 6*7",
+  "bytecode_hex": "2b0107002b0206000a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

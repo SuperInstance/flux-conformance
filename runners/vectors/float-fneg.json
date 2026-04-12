@@ -3,7 +3,7 @@
   "name": "FNEG: F0 = -F1",
   "category": "float",
   "description": "Float negation",
-  "bytecode_hex": "44 00 01 80",
+  "bytecode_hex": "44000180",
   "expected": {
     "final_state": "HALTED",
     "gp": {

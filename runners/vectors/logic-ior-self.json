@@ -1,0 +1,16 @@
+{
+  "id": "logic-ior-self",
+  "name": "IOR: 0x55 | 0x55 = 0x55",
+  "category": "logic",
+  "description": "OR with self is identity",
+  "bytecode_hex": "2b0155002b0255001100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 85
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

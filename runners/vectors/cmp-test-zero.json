@@ -3,7 +3,7 @@
   "name": "TEST: 0x00 & 0xFF = 0, ZF set",
   "category": "comparison",
   "description": "TEST with zero value sets zero flag",
-  "bytecode_hex": "2b 01 00 00 2b 02 ff 00 1e 01 02 2e 00 05 00 2b 00 00 00 80 2b 00 01 00 80",
+  "bytecode_hex": "2b0100002b02ff001e01022e0005002b000000802b00010080",
   "expected": {
     "final_state": "HALTED",
     "gp": {

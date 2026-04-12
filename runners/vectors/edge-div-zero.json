@@ -3,7 +3,7 @@
   "name": "IDIV: division by zero",
   "category": "edge-case",
   "description": "Dividing by zero should cause an error state",
-  "bytecode_hex": "18 01 2a 00 18 02 00 00 23 03 01 02 00",
+  "bytecode_hex": "2b012a002b0200000b00010280",
   "expected": {
     "final_state": "ERRORED",
     "error_type": "DivisionByZero"
@@ -11,11 +11,5 @@
   "tags": [
     "p0",
     "edge-case"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 3,
-    "original_bytecode_hex": "2b012a002b0200000b00010280"
-  }
+  ]
 }

@@ -1,0 +1,17 @@
+{
+  "id": "stack-persist-call",
+  "name": "PUSH+POP across CALL/RET: 77 preserved",
+  "category": "stack",
+  "description": "Stack values survive across function call and return",
+  "bytecode_hex": "2b014d002001070003002100802b026300280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 77,
+      "2": 99
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

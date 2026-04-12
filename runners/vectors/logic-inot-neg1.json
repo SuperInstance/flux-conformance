@@ -1,0 +1,16 @@
+{
+  "id": "logic-inot-neg1",
+  "name": "INOT: ~(-1) = 0",
+  "category": "logic",
+  "description": "NOT of all-ones yields zero",
+  "bytecode_hex": "2b01ffff13000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "p1"
+  ]
+}

@@ -3,17 +3,11 @@
   "name": "MOVI: load max i16 (32767)",
   "category": "edge-case",
   "description": "Load maximum 16-bit signed value",
-  "bytecode_hex": "18 01 ff 7f 00",
+  "bytecode_hex": "2b00ff7f80",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 32767
+      "0": 32767
     }
-  },
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b00ff7f80"
   }
 }

@@ -3,21 +3,15 @@
   "name": "CMP+JG: 20 > 10, jump taken",
   "category": "comparison",
   "description": "Compare with greater-than, JG should jump",
-  "bytecode_hex": "18 01 14 00 18 02 0a 00 2e 03 01 02 45 03 05 00 18 01 00 00 00 18 01 01 00 00",
+  "bytecode_hex": "2b0114002b020a002d01024d0005002b000000802b00010080",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "1": 1
+      "0": 1
     }
   },
   "tags": [
     "smoke",
     "p0"
-  ],
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 1,
-    "original_bytecode_hex": "2b0114002b020a002d01024d0005002b000000802b00010080"
-  }
+  ]
 }

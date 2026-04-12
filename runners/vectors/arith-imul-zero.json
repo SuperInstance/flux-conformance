@@ -3,17 +3,11 @@
   "name": "IMUL: 100 * 0 = 0",
   "category": "arithmetic",
   "description": "Multiplication by zero",
-  "bytecode_hex": "18 01 64 00 18 02 00 00 22 03 01 02 00",
+  "bytecode_hex": "2b0164002b0200000a00010280",
   "expected": {
     "final_state": "HALTED",
     "gp": {
-      "3": 0
+      "0": 0
     }
-  },
-  "_migration": {
-    "from": "opcodes.py (OLD)",
-    "to": "isa_unified.py (v2)",
-    "result_reg_redirect": 3,
-    "original_bytecode_hex": "2b0164002b0200000a00010280"
   }
 }
