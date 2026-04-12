@@ -1,0 +1,23 @@
+{
+  "id": "float-fsub-negative",
+  "name": "FSUB: -10.0 - 3.0 = -13.0",
+  "category": "float",
+  "description": "Float subtraction producing negative",
+  "bytecode_hex": "4100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": -13.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": -10.0,
+      "2": 3.0
+    }
+  }
+}

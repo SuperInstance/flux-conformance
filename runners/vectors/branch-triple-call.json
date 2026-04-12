@@ -1,0 +1,13 @@
+{
+  "id": "branch-triple-call",
+  "name": "CALL: triple nested, returns 777",
+  "category": "branch",
+  "description": "Three levels of nested function calls",
+  "bytecode_hex": "070001008007000300280000070003002800002b000903280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 777
+    }
+  }
+}

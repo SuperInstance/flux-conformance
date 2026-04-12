@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "generated": "2026-04-12T08:00:00Z",
-  "total_vectors": 88,
+  "total_vectors": 162,
   "categories": {
     "arithmetic": [
       "arith-iadd-basic",
@@ -23,7 +23,22 @@
       "arith-movi-basic",
       "arith-movi-negative",
       "arith-irem-basic",
-      "arith-nop"
+      "arith-nop",
+      "arith-iadd-mixed-sign",
+      "arith-iadd-pos-neg",
+      "arith-isub-zero",
+      "arith-imul-neg-neg",
+      "arith-idiv-negative",
+      "arith-idiv-neg-divisor",
+      "arith-idiv-neg-neg",
+      "arith-idiv-neg-trunc",
+      "arith-imod-negative",
+      "arith-irem-negative",
+      "arith-inc-zero",
+      "arith-dec-zero",
+      "arith-isub-neg-neg",
+      "arith-imul-large",
+      "arith-iadd-self"
     ],
     "logic": [
       "logic-iand-basic",
@@ -35,7 +50,17 @@
       "logic-ishl-basic",
       "logic-ishr-basic",
       "logic-rotl-basic",
-      "logic-rotr-basic"
+      "logic-rotr-basic",
+      "logic-inot-negone",
+      "logic-ishl-zero",
+      "logic-ishr-zero",
+      "logic-ior-zero",
+      "logic-iand-ones",
+      "logic-ixor-zero",
+      "logic-ior-ones",
+      "logic-ishl-large",
+      "logic-ishr-large",
+      "logic-ishl-neg"
     ],
     "comparison": [
       "cmp-je-equal",
@@ -50,7 +75,22 @@
       "cmp-icmp-ne",
       "cmp-icmp-lt",
       "cmp-icmp-gt",
-      "cmp-icmp-le"
+      "cmp-icmp-le",
+      "cmp-jg-not-taken",
+      "cmp-jl-not-taken",
+      "cmp-jge-not-taken",
+      "cmp-jle-not-taken",
+      "cmp-jne-equal",
+      "cmp-icmp-eq-false",
+      "cmp-icmp-ne-false",
+      "cmp-icmp-lt-eq",
+      "cmp-icmp-gt-false",
+      "cmp-icmp-ge",
+      "cmp-icmp-ge-gt",
+      "cmp-icmp-ge-false",
+      "cmp-jl-negative",
+      "cmp-jg-negative",
+      "cmp-test-nonzero"
     ],
     "branch": [
       "branch-jmp-forward",
@@ -65,20 +105,35 @@
       "composite-power2",
       "composite-factorial",
       "composite-copy",
-      "composite-prime7"
+      "composite-prime7",
+      "branch-jmp-backward",
+      "branch-call-args",
+      "branch-multiway",
+      "branch-nested-loops",
+      "branch-triple-call",
+      "branch-sum-loop",
+      "branch-min",
+      "branch-abs-value"
     ],
     "stack": [
       "stack-push-pop",
       "stack-push3-pop3",
       "stack-dup",
       "stack-swap",
-      "stack-enter-leave"
+      "stack-enter-leave",
+      "stack-call-save",
+      "stack-rot",
+      "stack-dup-arith",
+      "stack-swap-arith"
     ],
     "memory": [
       "mem-store-load",
       "mem-store8-load8",
       "mem-region-create",
-      "mem-memset"
+      "mem-memset",
+      "mem-store-load-multi",
+      "mem-store8-load8-multi",
+      "mem-modify-inplace"
     ],
     "float": [
       "float-fadd-basic",
@@ -89,7 +144,14 @@
       "float-fneg",
       "float-fabs",
       "float-fmin",
-      "float-fmax"
+      "float-fmax",
+      "float-fadd-negative",
+      "float-fmul-zero",
+      "float-fdiv-negative",
+      "float-fneg-negate",
+      "float-fsub-negative",
+      "float-fabs-positive",
+      "float-fadd-both-neg"
     ],
     "a2a": [
       "a2a-tell-basic",
@@ -109,7 +171,19 @@
       "edge-large-loop",
       "edge-overflow",
       "edge-nested-call",
-      "edge-cmp-zero-zero"
+      "edge-cmp-zero-zero",
+      "edge-irem-zero",
+      "edge-self-mov",
+      "edge-inc-dec-pair",
+      "edge-dec-inc-pair",
+      "edge-iadd-max-overflow",
+      "edge-iadd-min-underflow",
+      "edge-isub-zero-max",
+      "edge-imul-overflow",
+      "edge-ineg-zero",
+      "edge-ineg-min",
+      "edge-empty-loop",
+      "edge-ixor-self-thrice"
     ]
   },
   "isa_reference": "flux.bytecode.opcodes.Op (VM-executable opcode values)",

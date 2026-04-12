@@ -1,0 +1,16 @@
+{
+  "id": "cmp-icmp-eq-false",
+  "name": "ICMP EQ: 5 != 3, result = 0",
+  "category": "comparison",
+  "description": "ICMP EQ returns 0 when values are not equal",
+  "bytecode_hex": "2b0105002b0203001800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

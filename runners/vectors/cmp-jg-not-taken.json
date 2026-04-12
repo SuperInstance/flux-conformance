@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jg-not-taken",
+  "name": "CMP+JG: 10 > 20, NOT taken",
+  "category": "comparison",
+  "description": "JG should not jump when first arg is less",
+  "bytecode_hex": "2b010a002b0214002d01024d0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

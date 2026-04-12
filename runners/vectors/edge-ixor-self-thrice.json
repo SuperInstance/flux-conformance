@@ -1,0 +1,13 @@
+{
+  "id": "edge-ixor-self-thrice",
+  "name": "IXOR: 42 ^ 42 ^ 42 = 42",
+  "category": "edge-case",
+  "description": "XOR a value with itself twice is identity",
+  "bytecode_hex": "2b012a00120001011200000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  }
+}

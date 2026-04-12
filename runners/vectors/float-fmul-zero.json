@@ -1,0 +1,23 @@
+{
+  "id": "float-fmul-zero",
+  "name": "FMUL: 99.0 * 0.0 = 0.0",
+  "category": "float",
+  "description": "Float multiplication by zero",
+  "bytecode_hex": "4200010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 0.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 99.0,
+      "2": 0.0
+    }
+  }
+}

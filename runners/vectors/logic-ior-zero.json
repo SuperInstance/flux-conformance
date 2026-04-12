@@ -1,0 +1,13 @@
+{
+  "id": "logic-ior-zero",
+  "name": "IOR: 0 | 0 = 0",
+  "category": "logic",
+  "description": "OR of two zeros yields zero",
+  "bytecode_hex": "2b0100002b0200001100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

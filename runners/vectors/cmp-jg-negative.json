@@ -1,0 +1,13 @@
+{
+  "id": "cmp-jg-negative",
+  "name": "CMP+JG: 3 > -5, jump taken",
+  "category": "comparison",
+  "description": "Positive is greater than negative",
+  "bytecode_hex": "2b0103002b02fbff2d01024d0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

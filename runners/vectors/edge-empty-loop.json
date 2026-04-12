@@ -1,0 +1,14 @@
+{
+  "id": "edge-empty-loop",
+  "name": "Loop: zero iterations",
+  "category": "edge-case",
+  "description": "JNZ loop with initial counter of zero runs zero times",
+  "bytecode_hex": "2b0000002b0100000f010601faff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0,
+      "1": -1
+    }
+  }
+}

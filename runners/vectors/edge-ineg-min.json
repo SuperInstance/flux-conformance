@@ -1,0 +1,13 @@
+{
+  "id": "edge-ineg-min",
+  "name": "INEG: -(-32768) = 32768",
+  "category": "edge-case",
+  "description": "Negating minimum i16 may overflow in 16-bit but not in 32-bit VM",
+  "bytecode_hex": "2b0100800d000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32768
+    }
+  }
+}

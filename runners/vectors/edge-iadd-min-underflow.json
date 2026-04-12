@@ -1,0 +1,13 @@
+{
+  "id": "edge-iadd-min-underflow",
+  "name": "IADD: -32768 + (-32768) = -65536",
+  "category": "edge-case",
+  "description": "Adding two min i16 values",
+  "bytecode_hex": "2b0100802b0200800800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -65536
+    }
+  }
+}

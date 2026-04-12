@@ -1,0 +1,17 @@
+{
+  "id": "mem-store-load-multi",
+  "name": "STORE+LOAD: multiple addresses",
+  "category": "memory",
+  "description": "Store values at two different addresses, load both back",
+  "bytecode_hex": "2b0164002b022a000302012b03c8002b0463000304032b0200002b04000002050102060380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "5": 42,
+      "6": 99
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

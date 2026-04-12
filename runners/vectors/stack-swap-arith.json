@@ -1,0 +1,13 @@
+{
+  "id": "stack-swap-arith",
+  "name": "SWAP: swap and add",
+  "category": "stack",
+  "description": "Push two values, SWAP, pop and add",
+  "bytecode_hex": "2b01030020012b010400200123210221030800020380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 7
+    }
+  }
+}

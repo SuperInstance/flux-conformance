@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jl-negative",
+  "name": "CMP+JL: -5 < 3, jump taken",
+  "category": "comparison",
+  "description": "Negative is less than positive",
+  "bytecode_hex": "2b01fbff2b0203002d0102360005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

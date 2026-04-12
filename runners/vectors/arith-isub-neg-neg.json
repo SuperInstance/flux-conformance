@@ -1,0 +1,13 @@
+{
+  "id": "arith-isub-neg-neg",
+  "name": "ISUB: (-3) - (-7) = 4",
+  "category": "arithmetic",
+  "description": "Subtracting a negative is like adding",
+  "bytecode_hex": "2b01fdff2b02f9ff0900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 4
+    }
+  }
+}

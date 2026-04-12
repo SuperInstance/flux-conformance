@@ -1,0 +1,13 @@
+{
+  "id": "cmp-jge-not-taken",
+  "name": "CMP+JGE: 5 >= 10, NOT taken",
+  "category": "comparison",
+  "description": "JGE should not jump when first arg is less",
+  "bytecode_hex": "2b0105002b020a002d0102370005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

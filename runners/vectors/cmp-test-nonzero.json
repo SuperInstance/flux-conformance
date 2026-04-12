@@ -1,0 +1,13 @@
+{
+  "id": "cmp-test-nonzero",
+  "name": "TEST: 0x0F & 0xF0 = 0, ZF set",
+  "category": "comparison",
+  "description": "TEST with non-overlapping bits sets zero flag",
+  "bytecode_hex": "2b010f002b02f0001e01022e0005002b000100802b00000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

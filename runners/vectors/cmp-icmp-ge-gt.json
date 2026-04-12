@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-ge-gt",
+  "name": "ICMP GE: 10 >= 5, result = 1",
+  "category": "comparison",
+  "description": "ICMP GE returns 1 when first is greater",
+  "bytecode_hex": "2b010a002b0205001805010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

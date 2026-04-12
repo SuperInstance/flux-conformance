@@ -1,0 +1,13 @@
+{
+  "id": "cmp-jne-equal",
+  "name": "CMP+JNE: 42 != 42, NOT taken",
+  "category": "comparison",
+  "description": "JNE should not jump when values are equal",
+  "bytecode_hex": "2b012a002b022a002d01022f0005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

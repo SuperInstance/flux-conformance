@@ -1,0 +1,16 @@
+{
+  "id": "arith-iadd-mixed-sign",
+  "name": "IADD: -5 + 10 = 5",
+  "category": "arithmetic",
+  "description": "Add negative and positive integers",
+  "bytecode_hex": "2b01fbff2b020a000800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 5
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

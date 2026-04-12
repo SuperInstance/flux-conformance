@@ -1,0 +1,16 @@
+{
+  "id": "branch-call-args",
+  "name": "CALL+RET: add(10, 20) = 30",
+  "category": "branch",
+  "description": "Function receives args in R1, R2 and returns sum in R0",
+  "bytecode_hex": "2b010a002b021400070001008008000102280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 30
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

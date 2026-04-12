@@ -1128,6 +1128,14 @@ def main():
         make_system_vectors,
         make_edge_case_vectors,
         make_composite_vectors,
+        make_extended_arithmetic_vectors,
+        make_extended_logic_vectors,
+        make_extended_comparison_vectors,
+        make_extended_branch_vectors,
+        make_extended_stack_vectors,
+        make_extended_memory_vectors,
+        make_extended_float_vectors,
+        make_extended_edge_vectors,
     ]
 
     all_vectors = []
@@ -1166,6 +1174,852 @@ def main():
         print(f"  {cat}: {len(ids)} vectors")
     print(f"\nFiles written to: {output_dir}/")
     print(f"Manifest: {manifest_path}")
+
+
+# =============================================================================
+# EXTENDED ARITHMETIC TESTS (T-002 cross-runtime conformance)
+# =============================================================================
+
+def make_extended_arithmetic_vectors():
+    vectors = []
+
+    # --- IADD: Mixed sign (negative + positive) ---
+    vectors.append(_vector(
+        "arith-iadd-mixed-sign", "IADD: -5 + 10 = 5", "arithmetic",
+        "Add negative and positive integers",
+        BytecodeBuilder().movi(1, -5).movi(2, 10).iadd(0, 1, 2).halt(),
+        {"gp": {"0": 5}}, tags=["p0"]
+    ))
+
+    # --- IADD: Positive + negative ---
+    vectors.append(_vector(
+        "arith-iadd-pos-neg", "IADD: 10 + (-5) = 5", "arithmetic",
+        "Add positive and negative integers (commutativity check)",
+        BytecodeBuilder().movi(1, 10).movi(2, -5).iadd(0, 1, 2).halt(),
+        {"gp": {"0": 5}}
+    ))
+
+    # --- ISUB: Result is zero ---
+    vectors.append(_vector(
+        "arith-isub-zero", "ISUB: 42 - 42 = 0", "arithmetic",
+        "Subtraction of identical values yields zero",
+        BytecodeBuilder().movi(1, 42).movi(2, 42).isub(0, 1, 2).halt(),
+        {"gp": {"0": 0}}, tags=["smoke"]
+    ))
+
+    # --- IMUL: Both negative ---
+    vectors.append(_vector(
+        "arith-imul-neg-neg", "IMUL: (-3) * (-4) = 12", "arithmetic",
+        "Negative times negative yields positive",
+        BytecodeBuilder().movi(1, -3).movi(2, -4).imul(0, 1, 2).halt(),
+        {"gp": {"0": 12}}, tags=["p0"]
+    ))
+
+    # --- IDIV: Negative dividend ---
+    vectors.append(_vector(
+        "arith-idiv-negative", "IDIV: (-20) / 4 = -5", "arithmetic",
+        "Negative divided by positive yields negative",
+        BytecodeBuilder().movi(1, -20).movi(2, 4).idiv(0, 1, 2).halt(),
+        {"gp": {"0": -5}}, tags=["p0"]
+    ))
+
+    # --- IDIV: Negative divisor ---
+    vectors.append(_vector(
+        "arith-idiv-neg-divisor", "IDIV: 20 / (-4) = -5", "arithmetic",
+        "Positive divided by negative yields negative",
+        BytecodeBuilder().movi(1, 20).movi(2, -4).idiv(0, 1, 2).halt(),
+        {"gp": {"0": -5}}
+    ))
+
+    # --- IDIV: Both negative ---
+    vectors.append(_vector(
+        "arith-idiv-neg-neg", "IDIV: (-20) / (-4) = 5", "arithmetic",
+        "Negative divided by negative yields positive",
+        BytecodeBuilder().movi(1, -20).movi(2, -4).idiv(0, 1, 2).halt(),
+        {"gp": {"0": 5}}
+    ))
+
+    # --- IDIV: Truncate toward zero (negative) ---
+    vectors.append(_vector(
+        "arith-idiv-neg-trunc", "IDIV: (-17) / 5 = -3", "arithmetic",
+        "Negative division truncates toward zero (not floor)",
+        BytecodeBuilder().movi(1, -17).movi(2, 5).idiv(0, 1, 2).halt(),
+        {"gp": {"0": -3}}, tags=["p0"]
+    ))
+
+    # --- IMOD: Negative dividend ---
+    vectors.append(_vector(
+        "arith-imod-negative", "IMOD: (-7) % 3 = -1", "arithmetic",
+        "Modulo with negative dividend (sign follows dividend)",
+        BytecodeBuilder().movi(1, -7).movi(2, 3).imod(0, 1, 2).halt(),
+        {"gp": {"0": -1}}, tags=["p0"]
+    ))
+
+    # --- IREM: Negative dividend ---
+    vectors.append(_vector(
+        "arith-irem-negative", "IREM: (-7) rem 3 = -1", "arithmetic",
+        "Integer remainder with negative dividend",
+        BytecodeBuilder().movi(1, -7).movi(2, 3).irem(0, 1, 2).halt(),
+        {"gp": {"0": -1}}
+    ))
+
+    # --- INC from zero ---
+    vectors.append(_vector(
+        "arith-inc-zero", "INC: R0 from 0 to 1", "arithmetic",
+        "Increment zero yields one",
+        BytecodeBuilder().movi(0, 0).inc(0).halt(),
+        {"gp": {"0": 1}}
+    ))
+
+    # --- DEC to negative ---
+    vectors.append(_vector(
+        "arith-dec-zero", "DEC: R0 from 0 to -1", "arithmetic",
+        "Decrement zero yields negative one (underflow to -1)",
+        BytecodeBuilder().movi(0, 0).dec(0).halt(),
+        {"gp": {"0": -1}}, tags=["p0"]
+    ))
+
+    # --- ISUB: Negative minus negative ---
+    vectors.append(_vector(
+        "arith-isub-neg-neg", "ISUB: (-3) - (-7) = 4", "arithmetic",
+        "Subtracting a negative is like adding",
+        BytecodeBuilder().movi(1, -3).movi(2, -7).isub(0, 1, 2).halt(),
+        {"gp": {"0": 4}}
+    ))
+
+    # --- IMUL: Large multiplication ---
+    vectors.append(_vector(
+        "arith-imul-large", "IMUL: 100 * 200 = 20000", "arithmetic",
+        "Larger integer multiplication to test 32-bit range",
+        BytecodeBuilder().movi(1, 100).movi(2, 200).imul(0, 1, 2).halt(),
+        {"gp": {"0": 20000}}
+    ))
+
+    # --- IADD: Add to self ---
+    vectors.append(_vector(
+        "arith-iadd-self", "IADD: R0 = R1 + R1 = 42", "arithmetic",
+        "Add register to itself (double)",
+        BytecodeBuilder().movi(1, 21).iadd(0, 1, 1).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED LOGIC / BITWISE TESTS (T-002)
+# =============================================================================
+
+def make_extended_logic_vectors():
+    vectors = []
+
+    # --- INOT: ~(-1) = 0 ---
+    vectors.append(_vector(
+        "logic-inot-negone", "INOT: ~(-1) = 0", "logic",
+        "NOT of all-ones yields zero",
+        BytecodeBuilder().movi(1, -1).inot(0, 1).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- ISHL: Shift by zero ---
+    vectors.append(_vector(
+        "logic-ishl-zero", "ISHL: 5 << 0 = 5", "logic",
+        "Left shift by zero is identity",
+        BytecodeBuilder().movi(1, 5).movi(2, 0).ishl(0, 1, 2).halt(),
+        {"gp": {"0": 5}}
+    ))
+
+    # --- ISHR: Shift by zero ---
+    vectors.append(_vector(
+        "logic-ishr-zero", "ISHR: 42 >> 0 = 42", "logic",
+        "Right shift by zero is identity",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).ishr(0, 1, 2).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    # --- IOR: Zero or zero ---
+    vectors.append(_vector(
+        "logic-ior-zero", "IOR: 0 | 0 = 0", "logic",
+        "OR of two zeros yields zero",
+        BytecodeBuilder().movi(1, 0).movi(2, 0).ior(0, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- IAND: All ones AND value = value ---
+    vectors.append(_vector(
+        "logic-iand-ones", "IAND: 0xAB & (-1) = 0xAB", "logic",
+        "AND with all-ones is identity",
+        BytecodeBuilder().movi(1, 0xAB).movi(2, -1).iand(0, 1, 2).halt(),
+        {"gp": {"0": 0xAB}}
+    ))
+
+    # --- IXOR: Zero XOR value = value ---
+    vectors.append(_vector(
+        "logic-ixor-zero", "IXOR: 0 ^ 42 = 42", "logic",
+        "XOR with zero is identity",
+        BytecodeBuilder().movi(1, 0).movi(2, 42).ixor(0, 1, 2).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    # --- IAND: All ones OR all ones = all ones ---
+    vectors.append(_vector(
+        "logic-ior-ones", "IOR: (-1) | (-1) = -1", "logic",
+        "OR of all-ones with all-ones is all-ones",
+        BytecodeBuilder().movi(1, -1).movi(2, -1).ior(0, 1, 2).halt(),
+        {"gp": {"0": -1}}
+    ))
+
+    # --- ISHL: Shift value to zero ---
+    vectors.append(_vector(
+        "logic-ishl-large", "ISHL: 1 << 15 = 32768", "logic",
+        "Left shift by 15 produces 32768",
+        BytecodeBuilder().movi(1, 1).movi(2, 15).ishl(0, 1, 2).halt(),
+        {"gp": {"0": 32768}}
+    ))
+
+    # --- ISHR: Shift to zero ---
+    vectors.append(_vector(
+        "logic-ishr-large", "ISHR: 1 >> 1 = 0", "logic",
+        "Right shift 1 by 1 produces 0",
+        BytecodeBuilder().movi(1, 1).movi(2, 1).ishr(0, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- ISHL: Shift negative ---
+    vectors.append(_vector(
+        "logic-ishl-neg", "ISHL: (-1) << 0 = -1", "logic",
+        "Left shift of all-ones by zero stays all-ones",
+        BytecodeBuilder().movi(1, -1).movi(2, 0).ishl(0, 1, 2).halt(),
+        {"gp": {"0": -1}}
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED COMPARISON TESTS (T-002)
+# =============================================================================
+
+def make_extended_comparison_vectors():
+    vectors = []
+
+    # --- CMP+JG: Not taken (10 < 20) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 20).cmp(1, 2)
+    bc.jg_label("greater").movi(0, 0).halt()
+    bc.label("greater").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jg-not-taken", "CMP+JG: 10 > 20, NOT taken", "comparison",
+        "JG should not jump when first arg is less",
+        bc, {"gp": {"0": 0}}, tags=["p0"]
+    ))
+
+    # --- CMP+JL: Not taken (10 > 5) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 5).cmp(1, 2)
+    bc.jl_label("less").movi(0, 0).halt()
+    bc.label("less").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jl-not-taken", "CMP+JL: 10 < 5, NOT taken", "comparison",
+        "JL should not jump when first arg is greater",
+        bc, {"gp": {"0": 0}}, tags=["p0"]
+    ))
+
+    # --- CMP+JGE: Not taken (5 < 10) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 5).movi(2, 10).cmp(1, 2)
+    bc.jge_label("geq").movi(0, 0).halt()
+    bc.label("geq").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jge-not-taken", "CMP+JGE: 5 >= 10, NOT taken", "comparison",
+        "JGE should not jump when first arg is less",
+        bc, {"gp": {"0": 0}}
+    ))
+
+    # --- CMP+JLE: Not taken (10 > 5) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 5).cmp(1, 2)
+    bc.jle_label("leq").movi(0, 0).halt()
+    bc.label("leq").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jle-not-taken", "CMP+JLE: 10 <= 5, NOT taken", "comparison",
+        "JLE should not jump when first arg is greater",
+        bc, {"gp": {"0": 0}}
+    ))
+
+    # --- CMP+JNE: Equal values (not taken) ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 42).movi(2, 42).cmp(1, 2)
+    bc.jne_label("notequal").movi(0, 0).halt()
+    bc.label("notequal").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jne-equal", "CMP+JNE: 42 != 42, NOT taken", "comparison",
+        "JNE should not jump when values are equal",
+        bc, {"gp": {"0": 0}}
+    ))
+
+    # --- ICMP EQ: unequal returns 0 ---
+    vectors.append(_vector(
+        "cmp-icmp-eq-false", "ICMP EQ: 5 != 3, result = 0", "comparison",
+        "ICMP EQ returns 0 when values are not equal",
+        BytecodeBuilder().movi(1, 5).movi(2, 3).icmp(BytecodeBuilder.EQ, 1, 2).halt(),
+        {"gp": {"0": 0}}, tags=["p0"]
+    ))
+
+    # --- ICMP NE: equal returns 0 ---
+    vectors.append(_vector(
+        "cmp-icmp-ne-false", "ICMP NE: 5 == 5, result = 0", "comparison",
+        "ICMP NE returns 0 when values are equal",
+        BytecodeBuilder().movi(1, 5).movi(2, 5).icmp(BytecodeBuilder.NE, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- ICMP LT: equal returns 0 ---
+    vectors.append(_vector(
+        "cmp-icmp-lt-eq", "ICMP LT: 5 < 5, result = 0", "comparison",
+        "ICMP LT returns 0 when values are equal",
+        BytecodeBuilder().movi(1, 5).movi(2, 5).icmp(BytecodeBuilder.LT, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- ICMP GT: less returns 0 ---
+    vectors.append(_vector(
+        "cmp-icmp-gt-false", "ICMP GT: 3 > 5, result = 0", "comparison",
+        "ICMP GT returns 0 when first is less",
+        BytecodeBuilder().movi(1, 3).movi(2, 5).icmp(BytecodeBuilder.GT, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- ICMP GE: equal returns 1 ---
+    vectors.append(_vector(
+        "cmp-icmp-ge", "ICMP GE: 5 >= 5, result = 1", "comparison",
+        "ICMP GE returns 1 when values are equal",
+        BytecodeBuilder().movi(1, 5).movi(2, 5).icmp(BytecodeBuilder.GE, 1, 2).halt(),
+        {"gp": {"0": 1}}, tags=["smoke"]
+    ))
+
+    # --- ICMP GE: greater returns 1 ---
+    vectors.append(_vector(
+        "cmp-icmp-ge-gt", "ICMP GE: 10 >= 5, result = 1", "comparison",
+        "ICMP GE returns 1 when first is greater",
+        BytecodeBuilder().movi(1, 10).movi(2, 5).icmp(BytecodeBuilder.GE, 1, 2).halt(),
+        {"gp": {"0": 1}}
+    ))
+
+    # --- ICMP GE: less returns 0 ---
+    vectors.append(_vector(
+        "cmp-icmp-ge-false", "ICMP GE: 3 >= 5, result = 0", "comparison",
+        "ICMP GE returns 0 when first is less",
+        BytecodeBuilder().movi(1, 3).movi(2, 5).icmp(BytecodeBuilder.GE, 1, 2).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- CMP+JL: negative < positive ---
+    bc = BytecodeBuilder()
+    bc.movi(1, -5).movi(2, 3).cmp(1, 2)
+    bc.jl_label("less").movi(0, 0).halt()
+    bc.label("less").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jl-negative", "CMP+JL: -5 < 3, jump taken", "comparison",
+        "Negative is less than positive",
+        bc, {"gp": {"0": 1}}, tags=["p0"]
+    ))
+
+    # --- CMP+JG: positive > negative ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 3).movi(2, -5).cmp(1, 2)
+    bc.jg_label("greater").movi(0, 0).halt()
+    bc.label("greater").movi(0, 1).halt()
+    vectors.append(_vector(
+        "cmp-jg-negative", "CMP+JG: 3 > -5, jump taken", "comparison",
+        "Positive is greater than negative",
+        bc, {"gp": {"0": 1}}
+    ))
+
+    # --- TEST: nonzero AND nonzero = nonzero ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 0x0F).movi(2, 0xF0).test(1, 2)
+    bc.je_label("zero").movi(0, 1).halt()
+    bc.label("zero").movi(0, 0).halt()
+    vectors.append(_vector(
+        "cmp-test-nonzero", "TEST: 0x0F & 0xF0 = 0, ZF set", "comparison",
+        "TEST with non-overlapping bits sets zero flag",
+        bc, {"gp": {"0": 0}}
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED BRANCH / CONTROL FLOW TESTS (T-002)
+# =============================================================================
+
+def make_extended_branch_vectors():
+    vectors = []
+
+    # --- JMP: Backward jump (JNZ loop variant) ---
+    bc = BytecodeBuilder()
+    bc.movi(0, 0).movi(1, 3)
+    bc.label("start")
+    bc.inc(0)          # R0++
+    bc.dec(1)          # R1--
+    bc.jnz_label(1, "start")
+    bc.halt()
+    vectors.append(_vector(
+        "branch-jmp-backward", "Backward jump: count 3 iterations", "branch",
+        "JNZ backward jump loops 3 times, R0 = 3",
+        bc, {"gp": {"0": 3, "1": 0}}, tags=["smoke"]
+    ))
+
+    # --- CALL: Function with register arguments ---
+    # R1 = arg1 (10), R2 = arg2 (20), call func, R0 = R1 + R2
+    bc = BytecodeBuilder()
+    bc.movi(1, 10).movi(2, 20)
+    bc.call_label("add_func")
+    bc.halt()
+    bc.label("add_func")
+    bc.iadd(0, 1, 2)  # R0 = R1 + R2 = 30
+    bc.ret()
+    vectors.append(_vector(
+        "branch-call-args", "CALL+RET: add(10, 20) = 30", "branch",
+        "Function receives args in R1, R2 and returns sum in R0",
+        bc, {"gp": {"0": 30}}, tags=["p0"]
+    ))
+
+    # --- Multi-way branch (switch-like) ---
+    # R1 = 2, branch to case 1, 2, or 3
+    bc = BytecodeBuilder()
+    bc.movi(1, 2)
+    bc.cmp(1, 1).je_label("case1")
+    bc.cmp(1, 2).je_label("case2")
+    bc.cmp(1, 3).je_label("case3")
+    bc.movi(0, 0).halt()       # default: R0 = 0
+    bc.label("case1").movi(0, 10).halt()
+    bc.label("case2").movi(0, 20).halt()  # should reach here
+    bc.label("case3").movi(0, 30).halt()
+    vectors.append(_vector(
+        "branch-multiway", "Switch: R1=2 -> R0=20", "branch",
+        "Multi-way branch using CMP+JE chains",
+        bc, {"gp": {"0": 20}}, tags=["p0"]
+    ))
+
+    # --- Nested loops: 4 * 6 = 24 iterations ---
+    # R0 = total count, R1 = outer (4), R2 = inner (6)
+    bc = BytecodeBuilder()
+    bc.movi(0, 0).movi(1, 4)
+    bc.label("outer")
+    bc.movi(2, 6)
+    bc.label("inner")
+    bc.inc(0)
+    bc.dec(2)
+    bc.jnz_label(2, "inner")
+    bc.dec(1)
+    bc.jnz_label(1, "outer")
+    bc.halt()
+    vectors.append(_vector(
+        "branch-nested-loops", "Nested loops: 4*6 = 24", "branch",
+        "Outer loop runs 4 times, inner loop runs 6 times each",
+        bc, {"gp": {"0": 24, "1": 0, "2": 0}}, tags=["p0"]
+    ))
+
+    # --- CALL: Triple-nested calls ---
+    bc = BytecodeBuilder()
+    bc.call_label("f1")
+    bc.halt()
+    bc.label("f1")
+    bc.call_label("f2")
+    bc.ret()
+    bc.label("f2")
+    bc.call_label("f3")
+    bc.ret()
+    bc.label("f3")
+    bc.movi(0, 777)
+    bc.ret()
+    vectors.append(_vector(
+        "branch-triple-call", "CALL: triple nested, returns 777", "branch",
+        "Three levels of nested function calls",
+        bc, {"gp": {"0": 777}}
+    ))
+
+    # --- Loop: count down from 10 to 1, sum = 55 ---
+    bc = BytecodeBuilder()
+    bc.movi(0, 0).movi(1, 10)
+    bc.label("loop")
+    bc.iadd(0, 0, 1)
+    bc.dec(1)
+    bc.jnz_label(1, "loop")
+    bc.halt()
+    vectors.append(_vector(
+        "branch-sum-loop", "Loop: sum 1..10 = 55 (alternate)", "branch",
+        "Count down from 10, accumulating sum",
+        bc, {"gp": {"0": 55, "1": 0}}, tags=["smoke"]
+    ))
+
+    # --- Min of two values ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 30).movi(2, 50)
+    bc.cmp(1, 2)
+    bc.jl_label("r1_less")
+    bc.mov(0, 2)    # R2 is min
+    bc.halt()
+    bc.label("r1_less")
+    bc.mov(0, 1)    # R1 is min
+    bc.halt()
+    vectors.append(_vector(
+        "branch-min", "min(30, 50) = 30", "branch",
+        "Find minimum of two values using CMP+JL",
+        bc, {"gp": {"0": 30}}
+    ))
+
+    # --- Absolute value ---
+    bc = BytecodeBuilder()
+    bc.movi(1, -42)
+    bc.mov(0, 1)        # R0 = R1
+    bc.movi(2, 0)
+    bc.cmp(0, 2)        # compare R0 with 0
+    bc.jl_label("negate")
+    bc.halt()            # already positive
+    bc.label("negate")
+    bc.ineg(0, 0)        # negate
+    bc.halt()
+    vectors.append(_vector(
+        "branch-abs-value", "abs(-42) = 42", "branch",
+        "Compute absolute value using CMP+JL+INEG",
+        bc, {"gp": {"0": 42}}, tags=["p0"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED STACK TESTS (T-002)
+# =============================================================================
+
+def make_extended_stack_vectors():
+    vectors = []
+
+    # --- PUSH/POP across function call ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 100).push(1)    # save 100
+    bc.movi(2, 200).push(2)    # save 200
+    bc.call_label("func")       # call function (shouldn't clobber stack below)
+    bc.pop(3)                    # R3 = 200 (last pushed)
+    bc.pop(4)                    # R4 = 100 (first pushed)
+    bc.halt()
+    bc.label("func")
+    bc.movi(0, 99)              # function body
+    bc.ret()
+    vectors.append(_vector(
+        "stack-call-save", "PUSH/POP: save across function call", "stack",
+        "Push two values, call a function, pop to verify values preserved",
+        bc, {"gp": {"0": 99, "3": 200, "4": 100}}, tags=["p0"]
+    ))
+
+    # --- ROT: Rotate top 3 stack values ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 11).push(1)
+    bc.movi(1, 22).push(1)
+    bc.movi(1, 33).push(1)
+    bc.rot()                     # rotate top 3: [11, 22, 33] -> [22, 33, 11]
+    bc.pop(0)                    # R0 = 11 (was bottom, now top)
+    bc.pop(2)                    # R2 = 33
+    bc.pop(3)                    # R3 = 22
+    bc.halt()
+    vectors.append(_vector(
+        "stack-rot", "ROT: rotate top 3 stack elements", "stack",
+        "ROT rotates the three topmost stack values",
+        bc, {"gp": {"0": 11, "2": 33, "3": 22}}
+    ))
+
+    # --- DUP + arithmetic ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 7).push(1)
+    bc.dup()
+    bc.pop(2)                    # R2 = 7
+    bc.pop(3)                    # R3 = 7
+    bc.iadd(0, 2, 3)            # R0 = 14
+    bc.halt()
+    vectors.append(_vector(
+        "stack-dup-arith", "DUP: duplicate and add", "stack",
+        "Push value, DUP, pop both, add to get double",
+        bc, {"gp": {"0": 14}}
+    ))
+
+    # --- SWAP + arithmetic ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 3).push(1)
+    bc.movi(1, 4).push(1)
+    bc.swap()
+    bc.pop(2)                    # R2 = 3 (was first pushed, now on top)
+    bc.pop(3)                    # R3 = 4 (was second pushed)
+    bc.iadd(0, 2, 3)            # R0 = 7
+    bc.halt()
+    vectors.append(_vector(
+        "stack-swap-arith", "SWAP: swap and add", "stack",
+        "Push two values, SWAP, pop and add",
+        bc, {"gp": {"0": 7}}
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED MEMORY TESTS (T-002)
+# =============================================================================
+
+def make_extended_memory_vectors():
+    vectors = []
+
+    # --- Store at two addresses, load both back ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 100).movi(2, 42)   # addr=100, val=42
+    bc.store(2, 1)                  # mem[100] = 42
+    bc.movi(3, 200).movi(4, 99)   # addr=200, val=99
+    bc.store(4, 3)                  # mem[200] = 99
+    bc.movi(2, 0).movi(4, 0)      # clobber
+    bc.load(5, 1)                   # R5 = mem[100]
+    bc.load(6, 3)                   # R6 = mem[200]
+    bc.halt()
+    vectors.append(_vector(
+        "mem-store-load-multi", "STORE+LOAD: multiple addresses", "memory",
+        "Store values at two different addresses, load both back",
+        bc, {"gp": {"5": 42, "6": 99}}, tags=["p0"]
+    ))
+
+    # --- Store8, then Load8 multiple bytes ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 300)
+    bc.movi(2, 0xCA).store8(2, 1)  # mem[300] = 0xCA
+    bc.movi(3, 301)
+    bc.movi(4, 0xFE).store8(4, 3)  # mem[301] = 0xFE
+    bc.movi(2, 0).movi(4, 0)       # clobber
+    bc.load8(5, 1)                    # R5 = mem[300]
+    bc.load8(6, 3)                    # R6 = mem[301]
+    bc.halt()
+    vectors.append(_vector(
+        "mem-store8-load8-multi", "STORE8+LOAD8: two addresses", "memory",
+        "Store two bytes at consecutive addresses, load both back",
+        bc, {"gp": {"5": 0xCA, "6": 0xFE}}
+    ))
+
+    # --- Store, load, modify, store back ---
+    bc = BytecodeBuilder()
+    bc.movi(1, 150).movi(2, 10)   # addr=150, val=10
+    bc.store(2, 1)                  # mem[150] = 10
+    bc.load(3, 1)                   # R3 = 10
+    bc.iadd(3, 3, 3)               # R3 = 20 (double)
+    bc.store(3, 1)                  # mem[150] = 20
+    bc.movi(3, 0)                   # clobber
+    bc.load(4, 1)                   # R4 = 20
+    bc.halt()
+    vectors.append(_vector(
+        "mem-modify-inplace", "Load-modify-store: 10 -> 20", "memory",
+        "Load a value, double it, store back, verify",
+        bc, {"gp": {"4": 20}}, tags=["p0"]
+    ))
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED FLOAT TESTS (T-002)
+# =============================================================================
+
+def make_extended_float_vectors():
+    vectors = []
+
+    # --- FADD: Negative + positive ---
+    v = _vector(
+        "float-fadd-negative", "FADD: -2.5 + 5.0 = 2.5", "float",
+        "Float addition with negative operand",
+        BytecodeBuilder().fadd(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -2.5, "2": 5.0}},
+        tags=["p0"]
+    )
+    v["expected"]["fp"] = {"0": 2.5}
+    vectors.append(v)
+
+    # --- FMUL: Multiply by zero ---
+    v = _vector(
+        "float-fmul-zero", "FMUL: 99.0 * 0.0 = 0.0", "float",
+        "Float multiplication by zero",
+        BytecodeBuilder().fmul(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 99.0, "2": 0.0}}
+    )
+    v["expected"]["fp"] = {"0": 0.0}
+    vectors.append(v)
+
+    # --- FDIV: Negative / positive ---
+    v = _vector(
+        "float-fdiv-negative", "FDIV: -10.0 / 2.0 = -5.0", "float",
+        "Float division with negative dividend",
+        BytecodeBuilder().fdiv(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -10.0, "2": 2.0}},
+        tags=["p0"]
+    )
+    v["expected"]["fp"] = {"0": -5.0}
+    vectors.append(v)
+
+    # --- FNEG: Negate negative (double negation) ---
+    v = _vector(
+        "float-fneg-negate", "FNEG: -(-3.14) = 3.14", "float",
+        "Float double negation returns original",
+        BytecodeBuilder().fneg(0, 1).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -3.14}}
+    )
+    v["expected"]["fp"] = {"0": 3.14}
+    vectors.append(v)
+
+    # --- FSUB: Negative - positive ---
+    v = _vector(
+        "float-fsub-negative", "FSUB: -10.0 - 3.0 = -13.0", "float",
+        "Float subtraction producing negative",
+        BytecodeBuilder().fsub(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -10.0, "2": 3.0}}
+    )
+    v["expected"]["fp"] = {"0": -13.0}
+    vectors.append(v)
+
+    # --- FABS: Already positive ---
+    v = _vector(
+        "float-fabs-positive", "FABS: |7.0| = 7.0", "float",
+        "FABS of positive value is identity",
+        BytecodeBuilder().fabs(0, 1).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": 7.0}}
+    )
+    v["expected"]["fp"] = {"0": 7.0}
+    vectors.append(v)
+
+    # --- FADD: Both negative ---
+    v = _vector(
+        "float-fadd-both-neg", "FADD: -3.0 + (-4.0) = -7.0", "float",
+        "Float addition of two negatives",
+        BytecodeBuilder().fadd(0, 1, 2).halt(),
+        {"gp": {"0": 0}},
+        preconditions={"fp": {"0": 0.0, "1": -3.0, "2": -4.0}}
+    )
+    v["expected"]["fp"] = {"0": -7.0}
+    vectors.append(v)
+
+    return vectors
+
+
+# =============================================================================
+# EXTENDED EDGE CASE TESTS (T-002)
+# =============================================================================
+
+def make_extended_edge_vectors():
+    vectors = []
+
+    # --- IREM by zero (should error) ---
+    vectors.append(_vector(
+        "edge-irem-zero", "IREM: remainder by zero", "edge-case",
+        "Integer remainder by zero should cause an error state",
+        BytecodeBuilder().movi(1, 42).movi(2, 0).irem(0, 1, 2).halt(),
+        {"final_state": "ERRORED", "error_type": "DivisionByZero"},
+        tags=["p0", "edge-case"]
+    ))
+
+    # --- Self MOV: MOV R0, R0 ---
+    vectors.append(_vector(
+        "edge-self-mov", "MOV: R0 = R0 (identity)", "edge-case",
+        "Moving a register to itself should be a no-op",
+        BytecodeBuilder().movi(0, 42).mov(0, 0).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    # --- INC/DEC pair: identity ---
+    vectors.append(_vector(
+        "edge-inc-dec-pair", "INC+DEC: identity on 42", "edge-case",
+        "INC immediately followed by DEC is identity",
+        BytecodeBuilder().movi(0, 42).inc(0).dec(0).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    # --- DEC/INC pair: identity ---
+    vectors.append(_vector(
+        "edge-dec-inc-pair", "DEC+INC: identity on 42", "edge-case",
+        "DEC immediately followed by INC is identity",
+        BytecodeBuilder().movi(0, 42).dec(0).inc(0).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    # --- IADD overflow past i16 max ---
+    vectors.append(_vector(
+        "edge-iadd-max-overflow", "IADD: 32767 + 32767 = 65534", "edge-case",
+        "Adding two max i16 values (VM may use 32-bit registers)",
+        BytecodeBuilder().movi(1, 32767).movi(2, 32767).iadd(0, 1, 2).halt(),
+        {"gp": {"0": 65534}}
+    ))
+
+    # --- IADD: Min i16 + min i16 ---
+    vectors.append(_vector(
+        "edge-iadd-min-underflow", "IADD: -32768 + (-32768) = -65536", "edge-case",
+        "Adding two min i16 values",
+        BytecodeBuilder().movi(1, -32768).movi(2, -32768).iadd(0, 1, 2).halt(),
+        {"gp": {"0": -65536}}
+    ))
+
+    # --- ISUB: 0 - max i16 ---
+    vectors.append(_vector(
+        "edge-isub-zero-max", "ISUB: 0 - 32767 = -32767", "edge-case",
+        "Subtract max i16 from zero",
+        BytecodeBuilder().movi(1, 0).movi(2, 32767).isub(0, 1, 2).halt(),
+        {"gp": {"0": -32767}}
+    ))
+
+    # --- IMUL: Overflow (100 * 400 = 40000) ---
+    vectors.append(_vector(
+        "edge-imul-overflow", "IMUL: 100 * 400 = 40000", "edge-case",
+        "Multiplication producing value beyond i16 range",
+        BytecodeBuilder().movi(1, 100).movi(2, 400).imul(0, 1, 2).halt(),
+        {"gp": {"0": 40000}}
+    ))
+
+    # --- INEG: Negate zero ---
+    vectors.append(_vector(
+        "edge-ineg-zero", "INEG: -0 = 0", "edge-case",
+        "Negating zero should still be zero",
+        BytecodeBuilder().movi(1, 0).ineg(0, 1).halt(),
+        {"gp": {"0": 0}}
+    ))
+
+    # --- INEG: Negate min i16 (edge case for two's complement) ---
+    vectors.append(_vector(
+        "edge-ineg-min", "INEG: -(-32768) = 32768", "edge-case",
+        "Negating minimum i16 may overflow in 16-bit but not in 32-bit VM",
+        BytecodeBuilder().movi(1, -32768).ineg(0, 1).halt(),
+        {"gp": {"0": 32768}}
+    ))
+
+    # --- Empty loop (0 iterations) ---
+    bc = BytecodeBuilder()
+    bc.movi(0, 0).movi(1, 0)
+    bc.label("loop")
+    bc.dec(1)
+    bc.jnz_label(1, "loop")
+    bc.halt()
+    vectors.append(_vector(
+        "edge-empty-loop", "Loop: zero iterations", "edge-case",
+        "JNZ loop with initial counter of zero runs zero times",
+        bc, {"gp": {"0": 0, "1": -1}}
+    ))
+
+    # --- XOR identity: a ^ a ^ a = a ---
+    vectors.append(_vector(
+        "edge-ixor-self-thrice", "IXOR: 42 ^ 42 ^ 42 = 42", "edge-case",
+        "XOR a value with itself twice is identity",
+        BytecodeBuilder().movi(1, 42).ixor(0, 1, 1).ixor(0, 0, 1).halt(),
+        {"gp": {"0": 42}}
+    ))
+
+    return vectors
 
 
 if __name__ == "__main__":

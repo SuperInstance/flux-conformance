@@ -1,0 +1,13 @@
+{
+  "id": "arith-iadd-pos-neg",
+  "name": "IADD: 10 + (-5) = 5",
+  "category": "arithmetic",
+  "description": "Add positive and negative integers (commutativity check)",
+  "bytecode_hex": "2b010a002b02fbff0800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 5
+    }
+  }
+}

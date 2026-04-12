@@ -1,0 +1,17 @@
+{
+  "id": "branch-sum-loop",
+  "name": "Loop: sum 1..10 = 55 (alternate)",
+  "category": "branch",
+  "description": "Count down from 10, accumulating sum",
+  "bytecode_hex": "2b0000002b010a00080000010f010601f6ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 55,
+      "1": 0
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

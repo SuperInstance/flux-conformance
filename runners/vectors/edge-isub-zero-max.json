@@ -1,0 +1,13 @@
+{
+  "id": "edge-isub-zero-max",
+  "name": "ISUB: 0 - 32767 = -32767",
+  "category": "edge-case",
+  "description": "Subtract max i16 from zero",
+  "bytecode_hex": "2b0100002b02ff7f0900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -32767
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "edge-iadd-max-overflow",
+  "name": "IADD: 32767 + 32767 = 65534",
+  "category": "edge-case",
+  "description": "Adding two max i16 values (VM may use 32-bit registers)",
+  "bytecode_hex": "2b01ff7f2b02ff7f0800010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 65534
+    }
+  }
+}

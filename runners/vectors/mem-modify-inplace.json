@@ -1,0 +1,16 @@
+{
+  "id": "mem-modify-inplace",
+  "name": "Load-modify-store: 10 -> 20",
+  "category": "memory",
+  "description": "Load a value, double it, store back, verify",
+  "bytecode_hex": "2b0196002b020a00030201020301080303030303012b03000002040180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "4": 20
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

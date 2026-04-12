@@ -1,0 +1,13 @@
+{
+  "id": "logic-ishr-large",
+  "name": "ISHR: 1 >> 1 = 0",
+  "category": "logic",
+  "description": "Right shift 1 by 1 produces 0",
+  "bytecode_hex": "2b0101002b0201001500010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

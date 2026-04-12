@@ -1,0 +1,22 @@
+{
+  "id": "float-fneg-negate",
+  "name": "FNEG: -(-3.14) = 3.14",
+  "category": "float",
+  "description": "Float double negation returns original",
+  "bytecode_hex": "44000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 3.14
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": -3.14
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "branch-jmp-backward",
+  "name": "Backward jump: count 3 iterations",
+  "category": "branch",
+  "description": "JNZ backward jump loops 3 times, R0 = 3",
+  "bytecode_hex": "2b0000002b0103000e000f010601f8ff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 3,
+      "1": 0
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "arith-idiv-neg-divisor",
+  "name": "IDIV: 20 / (-4) = -5",
+  "category": "arithmetic",
+  "description": "Positive divided by negative yields negative",
+  "bytecode_hex": "2b0114002b02fcff0b00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -5
+    }
+  }
+}

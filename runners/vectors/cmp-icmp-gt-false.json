@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-gt-false",
+  "name": "ICMP GT: 3 > 5, result = 0",
+  "category": "comparison",
+  "description": "ICMP GT returns 0 when first is less",
+  "bytecode_hex": "2b0103002b0205001804010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

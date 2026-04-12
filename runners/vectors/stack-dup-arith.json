@@ -1,0 +1,13 @@
+{
+  "id": "stack-dup-arith",
+  "name": "DUP: duplicate and add",
+  "category": "stack",
+  "description": "Push value, DUP, pop both, add to get double",
+  "bytecode_hex": "2b010700200122210221030800020380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 14
+    }
+  }
+}

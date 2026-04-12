@@ -1,0 +1,26 @@
+{
+  "id": "float-fdiv-negative",
+  "name": "FDIV: -10.0 / 2.0 = -5.0",
+  "category": "float",
+  "description": "Float division with negative dividend",
+  "bytecode_hex": "4300010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": -5.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": -10.0,
+      "2": 2.0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

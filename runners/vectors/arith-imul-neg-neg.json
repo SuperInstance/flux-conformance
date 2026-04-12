@@ -1,0 +1,16 @@
+{
+  "id": "arith-imul-neg-neg",
+  "name": "IMUL: (-3) * (-4) = 12",
+  "category": "arithmetic",
+  "description": "Negative times negative yields positive",
+  "bytecode_hex": "2b01fdff2b02fcff0a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 12
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

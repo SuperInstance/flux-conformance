@@ -1,0 +1,13 @@
+{
+  "id": "logic-ixor-zero",
+  "name": "IXOR: 0 ^ 42 = 42",
+  "category": "logic",
+  "description": "XOR with zero is identity",
+  "bytecode_hex": "2b0100002b022a001200010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  }
+}

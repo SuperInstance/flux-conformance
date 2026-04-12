@@ -1,0 +1,13 @@
+{
+  "id": "edge-imul-overflow",
+  "name": "IMUL: 100 * 400 = 40000",
+  "category": "edge-case",
+  "description": "Multiplication producing value beyond i16 range",
+  "bytecode_hex": "2b0164002b0290010a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 40000
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-ge-false",
+  "name": "ICMP GE: 3 >= 5, result = 0",
+  "category": "comparison",
+  "description": "ICMP GE returns 0 when first is less",
+  "bytecode_hex": "2b0103002b0205001805010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

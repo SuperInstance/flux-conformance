@@ -1,0 +1,18 @@
+{
+  "id": "branch-nested-loops",
+  "name": "Nested loops: 4*6 = 24",
+  "category": "branch",
+  "description": "Outer loop runs 4 times, inner loop runs 6 times each",
+  "bytecode_hex": "2b0000002b0104002b0206000e000f020602f8ff0f010601eeff80",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 24,
+      "1": 0,
+      "2": 0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

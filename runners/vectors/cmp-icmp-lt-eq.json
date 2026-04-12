@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-lt-eq",
+  "name": "ICMP LT: 5 < 5, result = 0",
+  "category": "comparison",
+  "description": "ICMP LT returns 0 when values are equal",
+  "bytecode_hex": "2b0105002b0205001802010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "float-fadd-negative",
+  "name": "FADD: -2.5 + 5.0 = 2.5",
+  "category": "float",
+  "description": "Float addition with negative operand",
+  "bytecode_hex": "4000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 2.5
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": -2.5,
+      "2": 5.0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

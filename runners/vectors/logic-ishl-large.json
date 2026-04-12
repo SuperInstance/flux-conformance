@@ -1,0 +1,13 @@
+{
+  "id": "logic-ishl-large",
+  "name": "ISHL: 1 << 15 = 32768",
+  "category": "logic",
+  "description": "Left shift by 15 produces 32768",
+  "bytecode_hex": "2b0101002b020f001400010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 32768
+    }
+  }
+}

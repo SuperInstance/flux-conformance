@@ -1,0 +1,16 @@
+{
+  "id": "cmp-jl-not-taken",
+  "name": "CMP+JL: 10 < 5, NOT taken",
+  "category": "comparison",
+  "description": "JL should not jump when first arg is greater",
+  "bytecode_hex": "2b010a002b0205002d0102360005002b000000802b00010080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

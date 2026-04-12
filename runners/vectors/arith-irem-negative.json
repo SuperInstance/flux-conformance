@@ -1,0 +1,13 @@
+{
+  "id": "arith-irem-negative",
+  "name": "IREM: (-7) rem 3 = -1",
+  "category": "arithmetic",
+  "description": "Integer remainder with negative dividend",
+  "bytecode_hex": "2b01f9ff2b0203002c00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  }
+}

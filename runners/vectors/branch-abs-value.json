@@ -1,0 +1,16 @@
+{
+  "id": "branch-abs-value",
+  "name": "abs(-42) = 42",
+  "category": "branch",
+  "description": "Compute absolute value using CMP+JL+INEG",
+  "bytecode_hex": "2b01d6ff0100012b0200002d000236000100800d000080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

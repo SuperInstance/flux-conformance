@@ -1,0 +1,13 @@
+{
+  "id": "arith-imul-large",
+  "name": "IMUL: 100 * 200 = 20000",
+  "category": "arithmetic",
+  "description": "Larger integer multiplication to test 32-bit range",
+  "bytecode_hex": "2b0164002b02c8000a00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 20000
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "stack-rot",
+  "name": "ROT: rotate top 3 stack elements",
+  "category": "stack",
+  "description": "ROT rotates the three topmost stack values",
+  "bytecode_hex": "2b010b0020012b01160020012b01210020012421002102210380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 11,
+      "2": 33,
+      "3": 22
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "arith-inc-zero",
+  "name": "INC: R0 from 0 to 1",
+  "category": "arithmetic",
+  "description": "Increment zero yields one",
+  "bytecode_hex": "2b0000000e0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 1
+    }
+  }
+}

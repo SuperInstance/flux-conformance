@@ -1,0 +1,13 @@
+{
+  "id": "cmp-icmp-ne-false",
+  "name": "ICMP NE: 5 == 5, result = 0",
+  "category": "comparison",
+  "description": "ICMP NE returns 0 when values are equal",
+  "bytecode_hex": "2b0105002b0205001801010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "branch-min",
+  "name": "min(30, 50) = 30",
+  "category": "branch",
+  "description": "Find minimum of two values using CMP+JL",
+  "bytecode_hex": "2b011e002b0232002d0102360004000100028001000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 30
+    }
+  }
+}

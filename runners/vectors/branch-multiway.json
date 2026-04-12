@@ -1,0 +1,16 @@
+{
+  "id": "branch-multiway",
+  "name": "Switch: R1=2 -> R0=20",
+  "category": "branch",
+  "description": "Multi-way branch using CMP+JE chains",
+  "bytecode_hex": "2b0102002d01012e0013002d01022e0011002d01032e000f002b000000802b000a00802b001400802b001e0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 20
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

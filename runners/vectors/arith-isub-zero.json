@@ -1,0 +1,16 @@
+{
+  "id": "arith-isub-zero",
+  "name": "ISUB: 42 - 42 = 0",
+  "category": "arithmetic",
+  "description": "Subtraction of identical values yields zero",
+  "bytecode_hex": "2b012a002b022a000900010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  },
+  "tags": [
+    "smoke"
+  ]
+}

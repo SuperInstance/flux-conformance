@@ -1,0 +1,16 @@
+{
+  "id": "arith-dec-zero",
+  "name": "DEC: R0 from 0 to -1",
+  "category": "arithmetic",
+  "description": "Decrement zero yields negative one (underflow to -1)",
+  "bytecode_hex": "2b0000000f0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

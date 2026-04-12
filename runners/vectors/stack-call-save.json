@@ -1,0 +1,18 @@
+{
+  "id": "stack-call-save",
+  "name": "PUSH/POP: save across function call",
+  "category": "stack",
+  "description": "Push two values, call a function, pop to verify values preserved",
+  "bytecode_hex": "2b01640020012b02c80020020700050021032104802b006300280000",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 99,
+      "3": 200,
+      "4": 100
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "arith-iadd-self",
+  "name": "IADD: R0 = R1 + R1 = 42",
+  "category": "arithmetic",
+  "description": "Add register to itself (double)",
+  "bytecode_hex": "2b0115000800010180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  }
+}

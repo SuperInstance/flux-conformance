@@ -1,0 +1,16 @@
+{
+  "id": "arith-imod-negative",
+  "name": "IMOD: (-7) % 3 = -1",
+  "category": "arithmetic",
+  "description": "Modulo with negative dividend (sign follows dividend)",
+  "bytecode_hex": "2b01f9ff2b0203000c00010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  },
+  "tags": [
+    "p0"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "mem-store8-load8-multi",
+  "name": "STORE8+LOAD8: two addresses",
+  "category": "memory",
+  "description": "Store two bytes at consecutive addresses, load both back",
+  "bytecode_hex": "2b012c012b02ca005702012b032d012b04fe005704032b0200002b0400004f05014f060380",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "5": 202,
+      "6": 254
+    }
+  }
+}

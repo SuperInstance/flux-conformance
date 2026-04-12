@@ -1,0 +1,22 @@
+{
+  "id": "float-fabs-positive",
+  "name": "FABS: |7.0| = 7.0",
+  "category": "float",
+  "description": "FABS of positive value is identity",
+  "bytecode_hex": "45000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    },
+    "fp": {
+      "0": 7.0
+    }
+  },
+  "preconditions": {
+    "fp": {
+      "0": 0.0,
+      "1": 7.0
+    }
+  }
+}

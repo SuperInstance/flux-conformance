@@ -1,0 +1,13 @@
+{
+  "id": "logic-ior-ones",
+  "name": "IOR: (-1) | (-1) = -1",
+  "category": "logic",
+  "description": "OR of all-ones with all-ones is all-ones",
+  "bytecode_hex": "2b01ffff2b02ffff1100010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  }
+}

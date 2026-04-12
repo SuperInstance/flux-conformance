@@ -1,0 +1,13 @@
+{
+  "id": "logic-iand-ones",
+  "name": "IAND: 0xAB & (-1) = 0xAB",
+  "category": "logic",
+  "description": "AND with all-ones is identity",
+  "bytecode_hex": "2b01ab002b02ffff1000010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 171
+    }
+  }
+}

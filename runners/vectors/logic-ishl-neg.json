@@ -1,0 +1,13 @@
+{
+  "id": "logic-ishl-neg",
+  "name": "ISHL: (-1) << 0 = -1",
+  "category": "logic",
+  "description": "Left shift of all-ones by zero stays all-ones",
+  "bytecode_hex": "2b01ffff2b0200001400010280",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": -1
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "edge-inc-dec-pair",
+  "name": "INC+DEC: identity on 42",
+  "category": "edge-case",
+  "description": "INC immediately followed by DEC is identity",
+  "bytecode_hex": "2b002a000e000f0080",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 42
+    }
+  }
+}

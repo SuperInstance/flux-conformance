@@ -1,0 +1,13 @@
+{
+  "id": "edge-ineg-zero",
+  "name": "INEG: -0 = 0",
+  "category": "edge-case",
+  "description": "Negating zero should still be zero",
+  "bytecode_hex": "2b0100000d000180",
+  "expected": {
+    "final_state": "HALTED",
+    "gp": {
+      "0": 0
+    }
+  }
+}
