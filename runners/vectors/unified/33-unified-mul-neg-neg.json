@@ -1,0 +1,24 @@
+{
+  "name": "unified-mul-neg-neg",
+  "description": "MUL: (-1) * (-1) = 1",
+  "bytecode": [
+    24,
+    1,
+    255,
+    255,
+    24,
+    2,
+    255,
+    255,
+    34,
+    3,
+    1,
+    2
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": -1,
+    "R2": -1,
+    "R3": 1
+  }
+}

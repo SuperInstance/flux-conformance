@@ -1,0 +1,11 @@
+{
+  "name": "unified-pop-empty",
+  "description": "POP from empty stack sets error flag and halts",
+  "bytecode": [
+    13,
+    1
+  ],
+  "expected_halted": true,
+  "expected_error": true,
+  "expected_registers": {}
+}

@@ -1,0 +1,18 @@
+{
+  "name": "unified-addi",
+  "description": "ADDI adds immediate 5 to R1(10) producing 15",
+  "bytecode": [
+    24,
+    1,
+    10,
+    0,
+    25,
+    1,
+    5,
+    0
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": 15
+  }
+}

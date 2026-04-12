@@ -1,0 +1,18 @@
+{
+  "name": "unified-subi",
+  "description": "SUBI subtracts immediate 3 from R1(10) producing 7",
+  "bytecode": [
+    24,
+    1,
+    10,
+    0,
+    26,
+    1,
+    3,
+    0
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": 7
+  }
+}

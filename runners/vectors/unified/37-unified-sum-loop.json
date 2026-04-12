@@ -1,0 +1,42 @@
+{
+  "name": "unified-sum-loop",
+  "description": "Sum 0+1+2+3+4+5=15 using ADD accumulator with CMP_LT guard",
+  "bytecode": [
+    24,
+    1,
+    0,
+    0,
+    24,
+    2,
+    0,
+    0,
+    32,
+    1,
+    1,
+    2,
+    25,
+    2,
+    1,
+    0,
+    24,
+    3,
+    6,
+    0,
+    45,
+    4,
+    2,
+    3,
+    69,
+    4,
+    236,
+    255,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 15,
+    "R2": 6,
+    "R3": 6,
+    "R4": 0
+  }
+}

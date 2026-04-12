@@ -226,7 +226,7 @@ class FluxMiniVM:
     # -- fetch helpers --------------------------------------------------
 
     def _fb(self) -> int:                           # fetch byte
-        if self.pc >= len(self._code):
+        if self.pc < 0 or self.pc >= len(self._code):
             self.halted = True
             return 0
         b = self._code[self.pc]
@@ -254,7 +254,7 @@ class FluxMiniVM:
         self.halted = False
         self.error_flag = False
         self.insn_count = 0
-        while not self.halted and self.pc < len(self._code):
+        while not self.halted and 0 <= self.pc < len(self._code):
             self._step()
             self.insn_count += 1
             if self.insn_count >= self._MAX_INSN:
@@ -683,7 +683,7 @@ examples:
 """,
     )
     p.add_argument(
-        "--vectors-dir", default="runners/vectors/",
+        "--vectors-dir", default="runners/vectors/unified/",
         help="Directory with JSON test-vector files (default: runners/vectors/)",
     )
     p.add_argument(

@@ -1,0 +1,38 @@
+{
+  "name": "unified-conditional-max",
+  "description": "Find max(30, 50) using CMP_GT: result in R4 = 50",
+  "bytecode": [
+    24,
+    1,
+    30,
+    0,
+    24,
+    2,
+    50,
+    0,
+    46,
+    3,
+    1,
+    2,
+    69,
+    3,
+    6,
+    0,
+    24,
+    4,
+    50,
+    0,
+    0,
+    24,
+    4,
+    30,
+    0,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 30,
+    "R2": 50,
+    "R4": 50
+  }
+}

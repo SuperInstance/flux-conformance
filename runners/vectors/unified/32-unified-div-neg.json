@@ -1,0 +1,24 @@
+{
+  "name": "unified-div-neg",
+  "description": "DIV truncates toward zero: -20 / 3 = -6",
+  "bytecode": [
+    24,
+    1,
+    236,
+    255,
+    24,
+    2,
+    3,
+    0,
+    35,
+    3,
+    1,
+    2
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": -20,
+    "R2": 3,
+    "R3": -6
+  }
+}

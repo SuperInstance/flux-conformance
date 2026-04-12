@@ -33,6 +33,378 @@ type testVector struct {
 // vectors holds every cross-runtime test vector.
 var vectors = []testVector {
 	{
+		Name:        "system-halt",
+		Description: "HALT stops the VM immediately with no side effects",
+		Bytecode:    []byte{
+		0x00,
+	},
+		Category:    "system",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    nil,
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "system-nop",
+		Description: "Three NOPs then HALT: no register modification",
+		Bytecode:    []byte{
+		0x01, 0x01, 0x01, 0x00,
+	},
+		Category:    "system",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    nil,
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "system-ret-empty",
+		Description: "RET with empty stack triggers error and halts",
+		Bytecode:    []byte{
+		0x02,
+	},
+		Category:    "system",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   true,
+		ExpRegs:    nil,
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-add-10-plus-20",
+		Description: "ADD produces 30 from 10 and 20",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x18, 0x02, 0x14, 0x00, 0x20, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(10), "R2": int32(20), "R3": int32(30)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-sub-50-minus-17",
+		Description: "SUB produces 33 from 50 minus 17",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x32, 0x00, 0x18, 0x02, 0x11, 0x00, 0x21, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(50), "R2": int32(17), "R3": int32(33)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-mul-6-times-7",
+		Description: "MUL produces 42 from 6 and 7",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x06, 0x00, 0x18, 0x02, 0x07, 0x00, 0x22, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(6), "R2": int32(7), "R3": int32(42)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-div-100-by-4",
+		Description: "DIV produces 25 from 100 divided by 4 (truncating)",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x64, 0x00, 0x18, 0x02, 0x04, 0x00, 0x23, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(100), "R2": int32(4), "R3": int32(25)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-mod-17-by-5",
+		Description: "MOD produces 2 from 17 modulo 5",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x11, 0x00, 0x18, 0x02, 0x05, 0x00, 0x24, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(17), "R2": int32(5), "R3": int32(2)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-inc",
+		Description: "INC increments R1 from 10 to 11",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x08, 0x01, 0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(11)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-dec",
+		Description: "DEC decrements R1 from 10 to 9",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x09, 0x01, 0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(9)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-neg",
+		Description: "NEG produces -42 from 42",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x2a, 0x00, 0x0b, 0x01, 0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-42)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-and-15-and-3",
+		Description: "AND produces 3 from 15 AND 3",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0f, 0x00, 0x18, 0x02, 0x03, 0x00, 0x25, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(15), "R2": int32(3), "R3": int32(3)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-or-15-or-3",
+		Description: "OR produces 15 from 15 OR 3",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0f, 0x00, 0x18, 0x02, 0x03, 0x00, 0x26, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(15), "R2": int32(3), "R3": int32(15)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-xor-15-xor-3",
+		Description: "XOR produces 12 from 15 XOR 3",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0f, 0x00, 0x18, 0x02, 0x03, 0x00, 0x27, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(15), "R2": int32(3), "R3": int32(12)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-not-0",
+		Description: "NOT produces -1 (all ones) from 0",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x00, 0x00, 0x0a, 0x01, 0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "cmp-eq-equal",
+		Description: "CMP_EQ produces 1 when 5 equals 5",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x05, 0x00, 0x18, 0x02, 0x05, 0x00, 0x2c, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "comparison",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(5), "R2": int32(5), "R3": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "cmp-lt-3-less-than-5",
+		Description: "CMP_LT produces 1 when 3 is less than 5",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x03, 0x00, 0x18, 0x02, 0x05, 0x00, 0x2d, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "comparison",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(3), "R2": int32(5), "R3": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "cmp-gt-3-not-greater-5",
+		Description: "CMP_GT produces 0 when 3 is not greater than 5",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x03, 0x00, 0x18, 0x02, 0x05, 0x00, 0x2e, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "comparison",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(3), "R2": int32(5), "R3": int32(0)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "cmp-ne-3-not-equal-5",
+		Description: "CMP_NE produces 1 when 3 does not equal 5",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x03, 0x00, 0x18, 0x02, 0x05, 0x00, 0x2f, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "comparison",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(3), "R2": int32(5), "R3": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-jmp-skip-dec",
+		Description: "JMP forward by 2 skips DEC, R1 stays 1",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x01, 0x00, 0x43, 0x00, 0x02, 0x00, 0x09, 0x01, 0x00,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-jz-taken",
+		Description: "JZ taken when R1=0: skips DEC, R1 stays 0",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x00, 0x00, 0x44, 0x01, 0x02, 0x00, 0x09, 0x01, 0x00,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(0)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-jz-not-taken",
+		Description: "JZ not taken when R1=1: INC runs, R1 becomes 2",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x01, 0x00, 0x44, 0x01, 0x03, 0x00, 0x08, 0x01, 0x00,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(2)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-jnz-taken",
+		Description: "JNZ taken when R1=1: skips DEC, R1 stays 1",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x01, 0x00, 0x45, 0x01, 0x02, 0x00, 0x09, 0x01, 0x00,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-jnz-not-taken",
+		Description: "JNZ not taken when R1=0: INC runs, R1 becomes 1",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x00, 0x00, 0x45, 0x01, 0x03, 0x00, 0x08, 0x01, 0x00,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
 		Name:        "branch-call-ret",
 		Description: "CALL subroutine doubles R1: 21 -> 42 via ADD R1,R1,R1 then RET",
 		Bytecode:    []byte{
@@ -45,6 +417,322 @@ var vectors = []testVector {
 		ExpHalted:  true,
 		ExpError:   false,
 		ExpRegs:    map[string]int32{"R1": int32(42)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "stack-push-pop-roundtrip",
+		Description: "PUSH R1 then overwrite R1 then POP restores R1=42",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x2a, 0x00, 0x0c, 0x01, 0x18, 0x01, 0x00, 0x00, 0x0d, 0x01,
+		0x00,
+	},
+		Category:    "stack",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(42)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-div-zero",
+		Description: "Division by zero sets error flag and halts, R1 and R2 unchanged",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x2a, 0x00, 0x18, 0x02, 0x00, 0x00, 0x23, 0x03, 0x01, 0x02,
+	},
+		Category:    "edge",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   true,
+		ExpRegs:    map[string]int32{"R1": int32(42), "R2": int32(0)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-r0-immutable",
+		Description: "R0 always reads 0 despite MOVI and ADD attempts to write it",
+		Bytecode:    []byte{
+		0x18, 0x00, 0x2a, 0x00, 0x18, 0x01, 0x01, 0x00, 0x20, 0x00, 0x00, 0x01,
+		0x00,
+	},
+		Category:    "edge",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R0": int32(0), "R1": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-end-of-bytecode",
+		Description: "Falling off end of bytecode halts execution without HALT instruction",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x2a, 0x00,
+	},
+		Category:    "edge",
+		Slow:        false,
+
+		ExpHalted:  false,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(42)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-cycle-limit",
+		Description: "Tight infinite JMP loop triggers cycle-limit safety halt (10M insn limit)",
+		Bytecode:    []byte{
+		0x43, 0x00, 0xfc, 0xff,
+	},
+		Category:    "edge",
+		Slow:        true,
+
+		ExpHalted:  true,
+		ExpError:   true,
+		ExpRegs:    nil,
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "composite-countdown-5-to-0",
+		Description: "JNZ loop counts down from 5 to 0, accumulating sum 15 in R2",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x05, 0x00, 0x18, 0x02, 0x00, 0x00, 0x20, 0x02, 0x02, 0x01,
+		0x09, 0x01, 0x45, 0x01, 0xf6, 0xff, 0x00,
+	},
+		Category:    "composite",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(0), "R2": int32(15)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "composite-sum-1-to-5",
+		Description: "Upward loop with ADDI and CMP_LT: sum 1+2+3+4+5 = 15",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x01, 0x00, 0x18, 0x02, 0x00, 0x00, 0x18, 0x04, 0x06, 0x00,
+		0x20, 0x02, 0x02, 0x01, 0x19, 0x01, 0x01, 0x00, 0x2d, 0x03, 0x01, 0x04,
+		0x45, 0x03, 0xec, 0xff, 0x00,
+	},
+		Category:    "composite",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(6), "R2": int32(15), "R3": int32(0), "R4": int32(6)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "composite-nested-add",
+		Description: "Chained additions: ((1+2) + (3+4)) + 5 = 15",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x01, 0x00, 0x18, 0x02, 0x02, 0x00, 0x20, 0x03, 0x01, 0x02,
+		0x18, 0x04, 0x03, 0x00, 0x18, 0x05, 0x04, 0x00, 0x20, 0x06, 0x04, 0x05,
+		0x20, 0x07, 0x03, 0x06, 0x19, 0x07, 0x05, 0x00, 0x00,
+	},
+		Category:    "composite",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(1), "R2": int32(2), "R3": int32(3), "R4": int32(3), "R5": int32(4), "R6": int32(7), "R7": int32(15)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-imul-neg",
+		Description: "MUL produces -15 from -5 and 3 (negative operand)",
+		Bytecode:    []byte{
+		0x18, 0x01, 0xfb, 0xff, 0x18, 0x02, 0x03, 0x00, 0x22, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-5), "R2": int32(3), "R3": int32(-15)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-addi-basic",
+		Description: "ADDI adds immediate 5 to R1(10) producing 15",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x19, 0x01, 0x05, 0x00, 0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(15)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-subi-basic",
+		Description: "SUBI subtracts immediate 3 from R1(10) producing 7",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x1a, 0x01, 0x03, 0x00, 0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(7)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-div-neg-trunc",
+		Description: "DIV truncates toward zero: -20 / 3 = -6",
+		Bytecode:    []byte{
+		0x18, 0x01, 0xec, 0xff, 0x18, 0x02, 0x03, 0x00, 0x23, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-20), "R2": int32(3), "R3": int32(-6)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "arith-mul-neg-neg",
+		Description: "MUL: (-1) * (-1) = 1 (negative times negative)",
+		Bytecode:    []byte{
+		0x18, 0x01, 0xff, 0xff, 0x18, 0x02, 0xff, 0xff, 0x22, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "arithmetic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-1), "R2": int32(-1), "R3": int32(1)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-not-nonzero",
+		Description: "NOT inverts all bits of 5 to produce -6",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x05, 0x00, 0x0a, 0x01, 0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(-6)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "logic-and-all-ones",
+		Description: "AND of 255 with 255 produces 255 (identity for all-ones)",
+		Bytecode:    []byte{
+		0x18, 0x01, 0xff, 0x00, 0x18, 0x02, 0xff, 0x00, 0x25, 0x03, 0x01, 0x02,
+		0x00,
+	},
+		Category:    "logic",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(255), "R2": int32(255), "R3": int32(255)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-mod-zero",
+		Description: "MOD by zero sets error flag and halts immediately",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x2a, 0x00, 0x18, 0x02, 0x00, 0x00, 0x24, 0x03, 0x01, 0x02,
+	},
+		Category:    "edge",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   true,
+		ExpRegs:    map[string]int32{"R1": int32(42), "R2": int32(0)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "edge-pop-empty",
+		Description: "POP from empty stack sets error flag and halts",
+		Bytecode:    []byte{
+		0x0d, 0x01,
+	},
+		Category:    "edge",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   true,
+		ExpRegs:    nil,
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "branch-call-with-args",
+		Description: "CALL subroutine that adds R1+R2 into R3: 10+20=30",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x0a, 0x00, 0x18, 0x02, 0x14, 0x00, 0x4a, 0x00, 0x01, 0x00,
+		0x00, 0x20, 0x03, 0x01, 0x02, 0x02,
+	},
+		Category:    "branch",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(10), "R2": int32(20), "R3": int32(30)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "composite-addi-loop",
+		Description: "Sum 0+1+2+3+4+5=15 using ADD accumulator loop with CMP_LT guard",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x00, 0x00, 0x18, 0x02, 0x00, 0x00, 0x20, 0x01, 0x01, 0x02,
+		0x19, 0x02, 0x01, 0x00, 0x18, 0x03, 0x06, 0x00, 0x2d, 0x04, 0x02, 0x03,
+		0x45, 0x04, 0xec, 0xff, 0x00,
+	},
+		Category:    "composite",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(15), "R2": int32(6), "R3": int32(6), "R4": int32(0)},
+		InitRegs:   nil,
+	},
+
+	{
+		Name:        "composite-conditional-max",
+		Description: "Find max(30, 50) using CMP_GT: result in R4 = 50",
+		Bytecode:    []byte{
+		0x18, 0x01, 0x1e, 0x00, 0x18, 0x02, 0x32, 0x00, 0x2e, 0x03, 0x01, 0x02,
+		0x45, 0x03, 0x06, 0x00, 0x18, 0x04, 0x32, 0x00, 0x00, 0x18, 0x04, 0x1e,
+		0x00, 0x00,
+	},
+		Category:    "composite",
+		Slow:        false,
+
+		ExpHalted:  true,
+		ExpError:   false,
+		ExpRegs:    map[string]int32{"R1": int32(30), "R2": int32(50), "R4": int32(50)},
 		InitRegs:   nil,
 	}
 }

@@ -1,0 +1,30 @@
+{
+  "name": "unified-call-args",
+  "description": "CALL subroutine that adds R1+R2 into R3: 10+20=30",
+  "bytecode": [
+    24,
+    1,
+    10,
+    0,
+    24,
+    2,
+    20,
+    0,
+    74,
+    0,
+    1,
+    0,
+    0,
+    32,
+    3,
+    1,
+    2,
+    2
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 10,
+    "R2": 20,
+    "R3": 30
+  }
+}

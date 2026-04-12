@@ -78,6 +78,7 @@ class CrossRuntimeResult:
     details: str = ""
     skipped: bool = False
     skip_reason: str = ""
+    category: str = ""
 
 
 # ===================================================================
@@ -153,7 +154,10 @@ class PythonAdapter:
             return CrossRuntimeResult(
                 name=name, runtime="python",
                 skipped=True, skip_reason="slow test",
+                category=vec.get("category", ""),
             )
+
+        category = vec.get("category", "")
 
         # Parse expected state
         exp_final = vec.get("expected_final", {})
@@ -229,6 +233,7 @@ class PythonAdapter:
             halted=vm.halted,
             error=vm.error_flag,
             registers=actual_regs,
+            category=category,
             expected_halted=exp_halted,
             expected_error=exp_error,
             expected_registers=expected_registers,
