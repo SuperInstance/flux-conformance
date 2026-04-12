@@ -227,6 +227,46 @@ def _build_python_opcodes() -> list[OpcodeDef]:
         ops.append(OpcodeDef(0x60 + i, name, Format.E, Category.CONFIDENCE,
                              f"Confidence operation: {name}"))
 
+    # 0x70-0x7F: Scheduler / advanced concurrency (Format E)
+    ops += [
+        OpcodeDef(0x70, "SPAWN",   Format.E, Category.CONCURRENCY, "Spawn thread"),
+        OpcodeDef(0x71, "KILL",    Format.E, Category.CONCURRENCY, "Kill thread"),
+        OpcodeDef(0x72, "JOIN_T",  Format.E, Category.CONCURRENCY, "Join thread"),
+        OpcodeDef(0x73, "MUTEX",   Format.E, Category.SYNC,        "Mutex operation"),
+        OpcodeDef(0x74, "RWLOCK",  Format.E, Category.SYNC,        "Read-write lock"),
+        OpcodeDef(0x75, "BARRIER", Format.E, Category.SYNC,        "Barrier synchronization"),
+        OpcodeDef(0x76, "CHAN",    Format.E, Category.CONCURRENCY, "Channel operation"),
+        OpcodeDef(0x77, "SELECT_T",Format.E, Category.CONCURRENCY, "Channel select"),
+        OpcodeDef(0x78, "POLL",    Format.E, Category.SYNC,        "Poll events"),
+        OpcodeDef(0x79, "EPOLL",   Format.E, Category.SYNC,        "Edge-triggered poll"),
+        OpcodeDef(0x7A, "TIMER",   Format.E, Category.SYSTEM,      "Timer operation"),
+        OpcodeDef(0x7B, "ALARM",   Format.E, Category.SYSTEM,      "Set alarm"),
+        OpcodeDef(0x7C, "SIGNAL_S",Format.E, Category.SYSTEM,      "Send OS signal"),
+        OpcodeDef(0x7D, "MASK",    Format.E, Category.SYSTEM,      "Mask signals"),
+        OpcodeDef(0x7E, "SIGRET",  Format.E, Category.SYSTEM,      "Signal return"),
+        OpcodeDef(0x7F, "RCALL",   Format.E, Category.CONCURRENCY, "Remote call"),
+    ]
+
+    # 0x80-0x8F: I/O and peripheral (Format E)
+    ops += [
+        OpcodeDef(0x80, "IN",      Format.E, Category.SYSTEM, "Read from port"),
+        OpcodeDef(0x81, "OUT",     Format.E, Category.SYSTEM, "Write to port"),
+        OpcodeDef(0x82, "INB",     Format.E, Category.SYSTEM, "Read byte from port"),
+        OpcodeDef(0x83, "OUTB",    Format.E, Category.SYSTEM, "Write byte to port"),
+        OpcodeDef(0x84, "MAP_IO",  Format.E, Category.MEMORY, "Memory-mapped I/O"),
+        OpcodeDef(0x85, "UNMAP_IO",Format.E, Category.MEMORY, "Unmap I/O region"),
+        OpcodeDef(0x86, "DMA",     Format.E, Category.MEMORY, "DMA transfer"),
+        OpcodeDef(0x87, "IRQ",     Format.E, Category.SYSTEM, "Interrupt request"),
+        OpcodeDef(0x88, "ACK_IRQ", Format.E, Category.SYSTEM, "Acknowledge IRQ"),
+        OpcodeDef(0x89, "MASK_IRQ",Format.E, Category.SYSTEM, "Mask IRQ"),
+        OpcodeDef(0x8A, "MMIO_R",  Format.E, Category.MEMORY, "MMIO read"),
+        OpcodeDef(0x8B, "MMIO_W",  Format.E, Category.MEMORY, "MMIO write"),
+        OpcodeDef(0x8C, "PAGE_IN", Format.E, Category.MEMORY, "Page in"),
+        OpcodeDef(0x8D, "PAGE_OUT",Format.E, Category.MEMORY, "Page out"),
+        OpcodeDef(0x8E, "TLB",     Format.E, Category.MEMORY, "TLB operation"),
+        OpcodeDef(0x8F, "FLUSH",   Format.E, Category.MEMORY, "Cache flush"),
+    ]
+
     # 0x90-0x9F: Extended math (Format E)
     ops += [
         OpcodeDef(0x90, "ABS",     Format.E, Category.EXTENDED, "Absolute value"),
@@ -245,6 +285,26 @@ def _build_python_opcodes() -> list[OpcodeDef]:
         OpcodeDef(0x9D, "FSQRT",   Format.E, Category.FLOAT,    "Float square root"),
         OpcodeDef(0x9E, "FSIN",    Format.E, Category.FLOAT,    "Float sine"),
         OpcodeDef(0x9F, "FCOS",    Format.E, Category.FLOAT,    "Float cosine"),
+    ]
+
+    # 0xB0-0xBF: String operations (Format D/E)
+    ops += [
+        OpcodeDef(0xB0, "STRLEN",  Format.D, Category.COLLECTION, "String length"),
+        OpcodeDef(0xB1, "STRCAT",  Format.E, Category.COLLECTION, "String concatenate"),
+        OpcodeDef(0xB2, "STRCMP",  Format.E, Category.COLLECTION, "String compare"),
+        OpcodeDef(0xB3, "STRCPY",  Format.E, Category.COLLECTION, "String copy"),
+        OpcodeDef(0xB4, "SUBSTR",  Format.E, Category.COLLECTION, "Substring"),
+        OpcodeDef(0xB5, "STRFIND", Format.E, Category.COLLECTION, "Find in string"),
+        OpcodeDef(0xB6, "SPLIT",   Format.E, Category.COLLECTION, "Split string"),
+        OpcodeDef(0xB7, "JOIN_S",  Format.E, Category.COLLECTION, "Join strings"),
+        OpcodeDef(0xB8, "TRIM",    Format.E, Category.COLLECTION, "Trim whitespace"),
+        OpcodeDef(0xB9, "UPPER",   Format.E, Category.COLLECTION, "Uppercase"),
+        OpcodeDef(0xBA, "LOWER",   Format.E, Category.COLLECTION, "Lowercase"),
+        OpcodeDef(0xBB, "REPLACE", Format.E, Category.COLLECTION, "Replace substring"),
+        OpcodeDef(0xBC, "REPEAT",  Format.E, Category.COLLECTION, "Repeat string"),
+        OpcodeDef(0xBD, "PAD",     Format.E, Category.COLLECTION, "Pad string"),
+        OpcodeDef(0xBE, "FORMAT",  Format.E, Category.COLLECTION, "Format string"),
+        OpcodeDef(0xBF, "PARSE",   Format.E, Category.COLLECTION, "Parse string"),
     ]
 
     # 0xA0-0xAF: Collection / crypto
@@ -279,6 +339,7 @@ def _build_python_opcodes() -> list[OpcodeDef]:
         OpcodeDef(0xF7, "PCLK",     Format.A, Category.SYSTEM,  "Process clock"),
         OpcodeDef(0xF8, "WDOG",     Format.A, Category.SYSTEM,  "Watchdog reset"),
         OpcodeDef(0xF9, "SLEEP",    Format.A, Category.SYSTEM,  "Sleep N cycles"),
+        OpcodeDef(0xFA, "PANIC",    Format.A, Category.SYSTEM,  "Panic with message"),
         OpcodeDef(0xFF, "ILLEGAL",  Format.A, Category.SYSTEM,  "Illegal instruction"),
     ]
 
@@ -487,10 +548,9 @@ def _seed_default_coverage(reg: ImplementationRegistry) -> None:
     """Seed realistic test coverage for all implementations."""
     entries: list[TestCoverageEntry] = []
 
-    # Python — comprehensive coverage (95%+)
+    # Python — comprehensive coverage (100%)
     for op in PYTHON_OPCODES:
-        if op.code not in (0xFF, 0xF0, 0xF8, 0x17, 0x13):
-            entries.append(TestCoverageEntry(
+        entries.append(TestCoverageEntry(
                 implementation_name="flux-runtime",
                 opcode_code=op.code,
                 test_file="tests/test_opcodes.py",
