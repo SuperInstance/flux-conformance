@@ -1,0 +1,19 @@
+{
+  "name": "unified-inc-dec",
+  "description": "INC then DEC cancel out => R1=10",
+  "bytecode": [
+    24,
+    1,
+    10,
+    0,
+    8,
+    1,
+    9,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 10
+  }
+}

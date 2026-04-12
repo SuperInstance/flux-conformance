@@ -1,0 +1,23 @@
+{
+  "name": "unified-imul",
+  "description": "6 * 7 = 42",
+  "bytecode": [
+    24,
+    1,
+    6,
+    0,
+    24,
+    2,
+    7,
+    0,
+    34,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": 42
+  }
+}

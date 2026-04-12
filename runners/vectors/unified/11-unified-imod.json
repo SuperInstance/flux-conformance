@@ -1,0 +1,23 @@
+{
+  "name": "unified-imod",
+  "description": "17 mod 5 = 2",
+  "bytecode": [
+    24,
+    1,
+    17,
+    0,
+    24,
+    2,
+    5,
+    0,
+    36,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": 2
+  }
+}

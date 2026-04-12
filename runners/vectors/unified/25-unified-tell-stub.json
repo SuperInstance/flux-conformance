@@ -1,0 +1,16 @@
+{
+  "name": "unified-tell-stub",
+  "description": "TELL stub sets error flag",
+  "bytecode": [
+    80,
+    1
+  ],
+  "initial_registers": {
+    "R1": 42
+  },
+  "expected_halted": false,
+  "expected_error": true,
+  "expected_registers": {
+    "R1": 42
+  }
+}

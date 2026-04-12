@@ -1,0 +1,23 @@
+{
+  "name": "unified-isub",
+  "description": "10 - 3 = 7",
+  "bytecode": [
+    24,
+    1,
+    10,
+    0,
+    24,
+    2,
+    3,
+    0,
+    33,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": 7
+  }
+}

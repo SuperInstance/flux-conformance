@@ -1,0 +1,22 @@
+{
+  "name": "unified-div-zero",
+  "description": "Division by zero errors and halts",
+  "bytecode": [
+    24,
+    1,
+    42,
+    0,
+    24,
+    2,
+    0,
+    0,
+    35,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_error": true,
+  "expected_registers": {}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "unified-jz-not-taken",
+  "description": "JZ R1 does not jump when R1=1, DEC runs => R1=0",
+  "bytecode": [
+    24,
+    1,
+    1,
+    0,
+    68,
+    1,
+    3,
+    0,
+    9,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 0
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "unified-cmp-lt-gt-ne",
+  "description": "CMP_LT 3<5=1; CMP_GT 3>5=0; CMP_NE 3!=5=1",
+  "bytecode": [
+    24,
+    1,
+    3,
+    0,
+    24,
+    2,
+    5,
+    0,
+    45,
+    3,
+    1,
+    2,
+    46,
+    4,
+    1,
+    2,
+    47,
+    5,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": 1,
+    "R4": 0,
+    "R5": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "unified-call-ret",
+  "description": "CALL subroutine doubles R1: 21 -> 42 via ADD R1,R1,R1",
+  "bytecode": [
+    24,
+    1,
+    21,
+    0,
+    74,
+    0,
+    1,
+    0,
+    0,
+    32,
+    1,
+    1,
+    1,
+    2
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 42
+  }
+}

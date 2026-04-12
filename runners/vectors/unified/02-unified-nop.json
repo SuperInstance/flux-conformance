@@ -1,0 +1,12 @@
+{
+  "name": "unified-nop",
+  "description": "Three NOPs then HALT",
+  "bytecode": [
+    1,
+    1,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {}
+}

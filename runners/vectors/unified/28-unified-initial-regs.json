@@ -1,0 +1,20 @@
+{
+  "name": "unified-initial-regs",
+  "description": "initial_registers loaded before execution",
+  "bytecode": [
+    25,
+    1,
+    10,
+    0,
+    0
+  ],
+  "initial_registers": {
+    "R1": 5,
+    "R2": -3
+  },
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 15,
+    "R2": -3
+  }
+}

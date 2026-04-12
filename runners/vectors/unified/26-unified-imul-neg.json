@@ -1,0 +1,23 @@
+{
+  "name": "unified-imul-neg",
+  "description": "-5 * 3 = -15",
+  "bytecode": [
+    24,
+    1,
+    251,
+    255,
+    24,
+    2,
+    3,
+    0,
+    34,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": -15
+  }
+}

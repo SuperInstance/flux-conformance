@@ -1,0 +1,30 @@
+{
+  "name": "unified-factorial",
+  "description": "Factorial 5 = 120 via MUL+DEC+JNZ loop",
+  "bytecode": [
+    24,
+    1,
+    5,
+    0,
+    24,
+    2,
+    1,
+    0,
+    34,
+    2,
+    2,
+    1,
+    9,
+    1,
+    69,
+    1,
+    246,
+    255,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 0,
+    "R2": 120
+  }
+}

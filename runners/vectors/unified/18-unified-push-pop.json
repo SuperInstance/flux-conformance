@@ -1,0 +1,23 @@
+{
+  "name": "unified-push-pop",
+  "description": "PUSH then POP restores R1=42",
+  "bytecode": [
+    24,
+    1,
+    42,
+    0,
+    12,
+    1,
+    24,
+    1,
+    0,
+    0,
+    13,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 42
+  }
+}

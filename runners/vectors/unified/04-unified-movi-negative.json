@@ -1,0 +1,14 @@
+{
+  "name": "unified-movi-negative",
+  "description": "MOVI R1, -1 via sign extension",
+  "bytecode": [
+    24,
+    1,
+    255,
+    255
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": -1
+  }
+}

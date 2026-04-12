@@ -1,0 +1,10 @@
+{
+  "name": "unified-ret-empty",
+  "description": "RET with empty stack errors and halts",
+  "bytecode": [
+    2
+  ],
+  "expected_halted": true,
+  "expected_error": true,
+  "expected_registers": {}
+}

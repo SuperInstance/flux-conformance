@@ -1,0 +1,17 @@
+{
+  "name": "unified-neg",
+  "description": "NEG 42 => -42",
+  "bytecode": [
+    24,
+    1,
+    42,
+    0,
+    11,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": -42
+  }
+}

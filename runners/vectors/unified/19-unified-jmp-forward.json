@@ -1,0 +1,21 @@
+{
+  "name": "unified-jmp-forward",
+  "description": "JMP over DEC => R1 stays 1",
+  "bytecode": [
+    24,
+    1,
+    1,
+    0,
+    67,
+    0,
+    2,
+    0,
+    9,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "unified-movi",
+  "description": "MOVI R1, 42 then fall off end",
+  "bytecode": [
+    24,
+    1,
+    42,
+    0
+  ],
+  "expected_halted": false,
+  "expected_registers": {
+    "R1": 42
+  }
+}

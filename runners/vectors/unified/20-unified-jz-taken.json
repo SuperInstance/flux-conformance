@@ -1,0 +1,21 @@
+{
+  "name": "unified-jz-taken",
+  "description": "JZ R1 jumps when R1=0, skips DEC",
+  "bytecode": [
+    24,
+    1,
+    0,
+    0,
+    68,
+    1,
+    2,
+    0,
+    9,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": 0
+  }
+}

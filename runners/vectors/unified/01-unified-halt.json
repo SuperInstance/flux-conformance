@@ -1,0 +1,9 @@
+{
+  "name": "unified-halt",
+  "description": "HALT stops the VM immediately",
+  "bytecode": [
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {}
+}

@@ -1,0 +1,37 @@
+{
+  "name": "unified-bitwise",
+  "description": "AND OR XOR: 15 AND 3=3, 15 OR 3=15, 15 XOR 3=12",
+  "bytecode": [
+    24,
+    1,
+    15,
+    0,
+    24,
+    2,
+    3,
+    0,
+    24,
+    3,
+    15,
+    0,
+    37,
+    4,
+    1,
+    2,
+    38,
+    5,
+    1,
+    2,
+    39,
+    6,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R4": 3,
+    "R5": 15,
+    "R6": 12
+  }
+}

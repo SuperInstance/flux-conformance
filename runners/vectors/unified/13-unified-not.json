@@ -1,0 +1,17 @@
+{
+  "name": "unified-not",
+  "description": "NOT 0 => -1",
+  "bytecode": [
+    24,
+    1,
+    0,
+    0,
+    10,
+    1,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R1": -1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "unified-idiv",
+  "description": "20 / 4 = 5",
+  "bytecode": [
+    24,
+    1,
+    20,
+    0,
+    24,
+    2,
+    4,
+    0,
+    35,
+    3,
+    1,
+    2,
+    0
+  ],
+  "expected_halted": true,
+  "expected_registers": {
+    "R3": 5
+  }
+}
