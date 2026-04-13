@@ -1,5 +1,6 @@
 # FLUX Conformance Test Suite
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 A comprehensive conformance test suite for the FLUX bytecode virtual machine.
 Verifies that all FLUX runtimes (Python, C, Go, Zig, Rust, JS, Java, CUDA)
 produce identical results for the same bytecode programs.
