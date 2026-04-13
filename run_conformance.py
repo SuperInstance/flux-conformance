@@ -351,7 +351,7 @@ class ConformanceRunner:
         """Output results as JSON."""
         summaries = self.build_summaries(results)
         output = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "test_vector_count": len(self.suite.cases),
             "runtimes": [s.to_dict() for s in summaries],
             "results": {},
