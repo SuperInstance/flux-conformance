@@ -1,13 +1,9 @@
 # FLUX Conformance Test Suite
 
-[![Tests Passing](https://img.shields.io/badge/tests-113%2F113%20v2-62%2F62%20v3-brightgreen)]()
-[![Cross-Runtime Pass](https://img.shields.io/badge/cross--runtime-108%2F113%20(95.6%25)-blue)]()
-[![Opcodes](https://img.shields.io/badge/opcodes-41%20implemented%20of%20247-yellow)]()
-[![Languages](https://img.shields.io/badge/runtimes-Python%20%7C%20Rust%20%7C%20C%20%7C%20Go%20%7C%20WASM-purple)]()
-[![ISA v3](https://img.shields.io/badge/ISA-v3%20ready-orange)]()
-[![Version](https://img.shields.io/badge/version-2.0.0-blue)]()
-[![License](https://img.shields.io/badge/license-MIT-green)]()
-[![Paper](https://img.shields.io/badge/paper-PAPER.md-informational)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+A comprehensive conformance test suite for the FLUX bytecode virtual machine.
+Verifies that all FLUX runtimes (Python, C, Go, Zig, Rust, JS, Java, CUDA)
+produce identical results for the same bytecode programs.
 
 > **108 of 113 cross-runtime tests pass** for a formally specified, Turing-complete bytecode ISA across Python, Rust, C, Go, and TypeScript/WASM — with all 5 failures traced to a single specification ambiguity in the confidence subsystem. Seven of ten functional categories achieve a perfect 100% pass rate.
 
