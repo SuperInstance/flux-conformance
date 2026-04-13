@@ -1,0 +1,1301 @@
+{
+  "version": "2.0",
+  "generated": "2026-04-13T05:13:19.709815+00:00",
+  "total_vectors": 113,
+  "vectors": [
+    {
+      "name": "sys_halt_empty",
+      "bytecode_hex": "00",
+      "initial_stack": [],
+      "expected_stack": [],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "HALT on empty program"
+    },
+    {
+      "name": "sys_nop_noop",
+      "bytecode_hex": "0100",
+      "initial_stack": [],
+      "expected_stack": [],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NOP + HALT"
+    },
+    {
+      "name": "sys_break_stops",
+      "bytecode_hex": "552a00000002556300000000",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "BREAK stops before second PUSH"
+    },
+    {
+      "name": "sys_multi_nop",
+      "bytecode_hex": "0101010101010101010100",
+      "initial_stack": [],
+      "expected_stack": [],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "10 NOPs + HALT"
+    },
+    {
+      "name": "sys_halt_preserves_stack",
+      "bytecode_hex": "00",
+      "initial_stack": [
+        1,
+        2,
+        3
+      ],
+      "expected_stack": [
+        1,
+        2,
+        3
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "HALT preserves initial stack"
+    },
+    {
+      "name": "arith_add_positive",
+      "bytecode_hex": "550300000055040000001000",
+      "initial_stack": [],
+      "expected_stack": [
+        7
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "3 + 4 = 7"
+    },
+    {
+      "name": "arith_add_negative",
+      "bytecode_hex": "55fbffffff55030000001000",
+      "initial_stack": [],
+      "expected_stack": [
+        -2
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "-5 + 3 = -2"
+    },
+    {
+      "name": "arith_add_zero",
+      "bytecode_hex": "550500000055fbffffff1000",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 5,
+      "allow_float_epsilon": false,
+      "description": "5 + (-5) = 0, Z and C set"
+    },
+    {
+      "name": "arith_sub_positive",
+      "bytecode_hex": "550a00000055030000001100",
+      "initial_stack": [],
+      "expected_stack": [
+        7
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "10 - 3 = 7"
+    },
+    {
+      "name": "arith_sub_zero",
+      "bytecode_hex": "550300000055030000001100",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "3 - 3 = 0, Z set"
+    },
+    {
+      "name": "arith_sub_negative",
+      "bytecode_hex": "5503000000550a0000001100",
+      "initial_stack": [],
+      "expected_stack": [
+        -7
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "3 - 10 = -7"
+    },
+    {
+      "name": "arith_mul_positive",
+      "bytecode_hex": "550600000055070000001200",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "6 * 7 = 42"
+    },
+    {
+      "name": "arith_mul_zero",
+      "bytecode_hex": "556400000055000000001200",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "100 * 0 = 0, Z set"
+    },
+    {
+      "name": "arith_mul_negative",
+      "bytecode_hex": "55fdffffff55040000001200",
+      "initial_stack": [],
+      "expected_stack": [
+        -12
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "-3 * 4 = -12"
+    },
+    {
+      "name": "arith_div_positive",
+      "bytecode_hex": "551400000055040000001300",
+      "initial_stack": [],
+      "expected_stack": [
+        5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "20 / 4 = 5"
+    },
+    {
+      "name": "arith_div_truncate",
+      "bytecode_hex": "550700000055020000001300",
+      "initial_stack": [],
+      "expected_stack": [
+        3
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "7 / 2 = 3"
+    },
+    {
+      "name": "arith_div_neg",
+      "bytecode_hex": "55f9ffffff55020000001300",
+      "initial_stack": [],
+      "expected_stack": [
+        -3
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "-7 / 2 = -3"
+    },
+    {
+      "name": "arith_mod_basic",
+      "bytecode_hex": "550a00000055030000001400",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "10 % 3 = 1"
+    },
+    {
+      "name": "arith_mod_zero",
+      "bytecode_hex": "550700000055070000001400",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "7 % 7 = 0, Z set"
+    },
+    {
+      "name": "arith_mod_negative",
+      "bytecode_hex": "55f9ffffff55030000001400",
+      "initial_stack": [],
+      "expected_stack": [
+        2
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "-7 % 3 = 2"
+    },
+    {
+      "name": "arith_neg_basic",
+      "bytecode_hex": "55050000001500",
+      "initial_stack": [],
+      "expected_stack": [
+        -5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NEG 5 = -5"
+    },
+    {
+      "name": "arith_neg_double",
+      "bytecode_hex": "55fbffffff1500",
+      "initial_stack": [],
+      "expected_stack": [
+        5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NEG(-5) = 5"
+    },
+    {
+      "name": "arith_neg_neg",
+      "bytecode_hex": "552a000000151500",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NEG(NEG(42)) = 42"
+    },
+    {
+      "name": "arith_inc_basic",
+      "bytecode_hex": "55290000001600",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "INC 41 = 42"
+    },
+    {
+      "name": "arith_dec_basic",
+      "bytecode_hex": "552b0000001700",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "DEC 43 = 42"
+    },
+    {
+      "name": "arith_dec_to_zero",
+      "bytecode_hex": "55010000001700",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "DEC 1 = 0, Z set"
+    },
+    {
+      "name": "arith_chained",
+      "bytecode_hex": "550300000055040000001055020000001255010000001100",
+      "initial_stack": [],
+      "expected_stack": [
+        13
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "((3+4)*2)-1 = 13"
+    },
+    {
+      "name": "arith_add_large",
+      "bytecode_hex": "5540420f005580841e001000",
+      "initial_stack": [],
+      "expected_stack": [
+        3000000
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1000000 + 2000000 = 3000000"
+    },
+    {
+      "name": "arith_mul_large",
+      "bytecode_hex": "55e803000055e80300001200",
+      "initial_stack": [],
+      "expected_stack": [
+        1000000
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1000 * 1000 = 1000000"
+    },
+    {
+      "name": "arith_add_stack",
+      "bytecode_hex": "1000",
+      "initial_stack": [
+        5,
+        3
+      ],
+      "expected_stack": [
+        8
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "ADD with initial stack [5, 3]"
+    },
+    {
+      "name": "arith_mul_stack",
+      "bytecode_hex": "1200",
+      "initial_stack": [
+        6,
+        7
+      ],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "MUL with initial stack [6, 7]"
+    },
+    {
+      "name": "arith_neg_stack",
+      "bytecode_hex": "1500",
+      "initial_stack": [
+        99
+      ],
+      "expected_stack": [
+        -99
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NEG with initial stack [99]"
+    },
+    {
+      "name": "cmp_eq_true",
+      "bytecode_hex": "552a000000552a0000002000",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "42 == 42 -> 1"
+    },
+    {
+      "name": "cmp_eq_false",
+      "bytecode_hex": "552a00000055070000002000",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "42 == 7 -> 0, Z set"
+    },
+    {
+      "name": "cmp_ne_true",
+      "bytecode_hex": "550100000055020000002100",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1 != 2 -> 1"
+    },
+    {
+      "name": "cmp_lt_true",
+      "bytecode_hex": "550300000055050000002200",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "3 < 5 -> 1"
+    },
+    {
+      "name": "cmp_lt_equal",
+      "bytecode_hex": "550500000055050000002200",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "5 < 5 -> 0, Z set"
+    },
+    {
+      "name": "cmp_le_equal",
+      "bytecode_hex": "550500000055050000002300",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "5 <= 5 -> 1"
+    },
+    {
+      "name": "cmp_gt_true",
+      "bytecode_hex": "550a00000055030000002400",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "10 > 3 -> 1"
+    },
+    {
+      "name": "cmp_ge_equal",
+      "bytecode_hex": "550700000055070000002500",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "7 >= 7 -> 1"
+    },
+    {
+      "name": "cmp_lt_negative",
+      "bytecode_hex": "55f6ffffff55fdffffff2200",
+      "initial_stack": [],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "-10 < -3 -> 1"
+    },
+    {
+      "name": "cmp_eq_stack",
+      "bytecode_hex": "2000",
+      "initial_stack": [
+        100,
+        100
+      ],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "EQ with equal stack values"
+    },
+    {
+      "name": "cmp_ne_stack_false",
+      "bytecode_hex": "2100",
+      "initial_stack": [
+        5,
+        5
+      ],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "NE with equal stack values -> 0"
+    },
+    {
+      "name": "cmp_le_stack",
+      "bytecode_hex": "2300",
+      "initial_stack": [
+        7,
+        7
+      ],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "LE with equal stack values -> 1"
+    },
+    {
+      "name": "logic_and_basic",
+      "bytecode_hex": "55ff000000550f0000003000",
+      "initial_stack": [],
+      "expected_stack": [
+        15
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "0xFF & 0x0F = 0x0F"
+    },
+    {
+      "name": "logic_and_zero",
+      "bytecode_hex": "55ff00000055000000003000",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "0xFF & 0x00 = 0, Z set"
+    },
+    {
+      "name": "logic_or_basic",
+      "bytecode_hex": "55f0000000550f0000003100",
+      "initial_stack": [],
+      "expected_stack": [
+        255
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "0xF0 | 0x0F = 0xFF"
+    },
+    {
+      "name": "logic_xor_same",
+      "bytecode_hex": "55ff00000055ff0000003200",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "0xFF ^ 0xFF = 0, Z set"
+    },
+    {
+      "name": "logic_xor_inverse",
+      "bytecode_hex": "55ff000000550f00000032550f0000003200",
+      "initial_stack": [],
+      "expected_stack": [
+        255
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "XOR self-inverse"
+    },
+    {
+      "name": "logic_not_zero",
+      "bytecode_hex": "55000000003300",
+      "initial_stack": [],
+      "expected_stack": [
+        -1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NOT 0 = -1"
+    },
+    {
+      "name": "logic_not_42",
+      "bytecode_hex": "552a0000003300",
+      "initial_stack": [],
+      "expected_stack": [
+        -43
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NOT 42 = -43"
+    },
+    {
+      "name": "logic_not_double",
+      "bytecode_hex": "552a000000333300",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "NOT(NOT(42)) = 42"
+    },
+    {
+      "name": "logic_shl_basic",
+      "bytecode_hex": "550100000055040000003400",
+      "initial_stack": [],
+      "expected_stack": [
+        16
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1 << 4 = 16"
+    },
+    {
+      "name": "logic_shr_basic",
+      "bytecode_hex": "551000000055020000003500",
+      "initial_stack": [],
+      "expected_stack": [
+        4
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "16 >> 2 = 4"
+    },
+    {
+      "name": "logic_shl_zero",
+      "bytecode_hex": "552a00000055000000003400",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "42 << 0 = 42"
+    },
+    {
+      "name": "logic_and_stack",
+      "bytecode_hex": "3000",
+      "initial_stack": [
+        61680,
+        3855
+      ],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "0xF0F0 & 0x0F0F = 0, Z set"
+    },
+    {
+      "name": "logic_or_stack",
+      "bytecode_hex": "3100",
+      "initial_stack": [
+        61440,
+        240
+      ],
+      "expected_stack": [
+        61680
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "0xF000 | 0x00F0 = 0xF0F0"
+    },
+    {
+      "name": "logic_xor_stack",
+      "bytecode_hex": "3200",
+      "initial_stack": [
+        255,
+        15
+      ],
+      "expected_stack": [
+        240
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "0xFF ^ 0x0F = 0xF0"
+    },
+    {
+      "name": "logic_shl_stack",
+      "bytecode_hex": "3400",
+      "initial_stack": [
+        1,
+        10
+      ],
+      "expected_stack": [
+        1024
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1 << 10 = 1024"
+    },
+    {
+      "name": "logic_shr_stack",
+      "bytecode_hex": "3500",
+      "initial_stack": [
+        1024,
+        10
+      ],
+      "expected_stack": [
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1024 >> 10 = 1"
+    },
+    {
+      "name": "mem_store_load",
+      "bytecode_hex": "55e703000041640040640000",
+      "initial_stack": [],
+      "expected_stack": [
+        999
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "STORE/LOAD roundtrip"
+    },
+    {
+      "name": "mem_poke_peek",
+      "bytecode_hex": "55c800000055090300004455c80000004300",
+      "initial_stack": [],
+      "expected_stack": [
+        777
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "POKE/PEEK roundtrip"
+    },
+    {
+      "name": "mem_multiple_stores",
+      "bytecode_hex": "550a0000004100005514000000410400551e00000041080040000040040040080000",
+      "initial_stack": [],
+      "expected_stack": [
+        10,
+        20,
+        30
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Multiple stores and loads"
+    },
+    {
+      "name": "mem_overwrite",
+      "bytecode_hex": "5501000000413200550200000041320040320000",
+      "initial_stack": [],
+      "expected_stack": [
+        2
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Overwrite same address"
+    },
+    {
+      "name": "mem_store_load_zero",
+      "bytecode_hex": "550000000041c80040c80000",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "STORE/LOAD zero"
+    },
+    {
+      "name": "mem_peek_preserves",
+      "bytecode_hex": "552c010000555800000044552c0100004300",
+      "initial_stack": [],
+      "expected_stack": [
+        88
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "POKE then PEEK"
+    },
+    {
+      "name": "ctrl_push_pop",
+      "bytecode_hex": "552a0000005600",
+      "initial_stack": [],
+      "expected_stack": [],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "PUSH 42 POP -> empty"
+    },
+    {
+      "name": "ctrl_push_negative",
+      "bytecode_hex": "559cffffff00",
+      "initial_stack": [],
+      "expected_stack": [
+        -100
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "PUSH -100"
+    },
+    {
+      "name": "ctrl_push_zero",
+      "bytecode_hex": "550000000000",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "PUSH 0"
+    },
+    {
+      "name": "ctrl_multi_push",
+      "bytecode_hex": "5501000000550200000055030000005504000000550500000000",
+      "initial_stack": [],
+      "expected_stack": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Five PUSHes"
+    },
+    {
+      "name": "ctrl_jmp_over",
+      "bytecode_hex": "550000000000556300000000500500",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "JMP over second PUSH"
+    },
+    {
+      "name": "ctrl_jz_taken",
+      "bytecode_hex": "55010000001756552a000000511400556300000000",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "JZ taken (Z set by DEC 1->0): skip PUSH 99"
+    },
+    {
+      "name": "ctrl_jnz_taken",
+      "bytecode_hex": "55000000001756552a000000521400556300000000",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "JNZ taken (Z clear by DEC 0->-1): skip PUSH 99"
+    },
+    {
+      "name": "ctrl_call_ret",
+      "bytecode_hex": "5501000000530d00100001010155020000005400",
+      "initial_stack": [],
+      "expected_stack": [
+        3
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "CALL/RET: 1 + 2 = 3"
+    },
+    {
+      "name": "ctrl_nested_call",
+      "bytecode_hex": "550a000000530f00100001010101015505000000531900105455030000005400",
+      "initial_stack": [],
+      "expected_stack": [
+        18
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Nested CALL: 10 + (5+3) = 18"
+    },
+    {
+      "name": "ctrl_loop_sum",
+      "bytecode_hex": "55000000004100005503000000410400400000164100004004001741040052100040000000",
+      "initial_stack": [],
+      "expected_stack": [
+        3
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Loop: increment sum 3 times = 3"
+    },
+    {
+      "name": "ctrl_sum_1_to_5",
+      "bytecode_hex": "55000000004100005505000000410400400000400400104100004004001741040052100040000000",
+      "initial_stack": [],
+      "expected_stack": [
+        15
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Sum 1..5 = 15"
+    },
+    {
+      "name": "ctrl_factorial_5",
+      "bytecode_hex": "55010000004100005505000000410400400000400400124100004004001741040052100040000000",
+      "initial_stack": [],
+      "expected_stack": [
+        120
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "5! = 120"
+    },
+    {
+      "name": "stack_dup",
+      "bytecode_hex": "552a0000006000",
+      "initial_stack": [],
+      "expected_stack": [
+        42,
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "DUP: [42] -> [42, 42]"
+    },
+    {
+      "name": "stack_swap",
+      "bytecode_hex": "550100000055020000006100",
+      "initial_stack": [],
+      "expected_stack": [
+        2,
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "SWAP: [1, 2] -> [2, 1]"
+    },
+    {
+      "name": "stack_over",
+      "bytecode_hex": "550a00000055140000006200",
+      "initial_stack": [],
+      "expected_stack": [
+        10,
+        20,
+        10
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "OVER: [10, 20] -> [10, 20, 10]"
+    },
+    {
+      "name": "stack_rot",
+      "bytecode_hex": "5501000000550200000055030000006300",
+      "initial_stack": [],
+      "expected_stack": [
+        2,
+        3,
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "ROT: [1, 2, 3] -> [2, 3, 1]"
+    },
+    {
+      "name": "stack_multi_dup",
+      "bytecode_hex": "550700000060606000",
+      "initial_stack": [],
+      "expected_stack": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Three DUPs"
+    },
+    {
+      "name": "stack_over_mul_square",
+      "bytecode_hex": "550700000055070000001200",
+      "initial_stack": [],
+      "expected_stack": [
+        49
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "7 * 7 = 49"
+    },
+    {
+      "name": "float_add",
+      "bytecode_hex": "550300000055020000007000",
+      "initial_stack": [],
+      "expected_stack": [
+        5.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FADD: 3.0 + 2.0 = 5.0"
+    },
+    {
+      "name": "float_sub",
+      "bytecode_hex": "550a00000055030000007100",
+      "initial_stack": [],
+      "expected_stack": [
+        7.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FSUB: 10.0 - 3.0 = 7.0"
+    },
+    {
+      "name": "float_mul",
+      "bytecode_hex": "550400000055050000007200",
+      "initial_stack": [],
+      "expected_stack": [
+        20.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FMUL: 4.0 * 5.0 = 20.0"
+    },
+    {
+      "name": "float_div",
+      "bytecode_hex": "550700000055020000007300",
+      "initial_stack": [],
+      "expected_stack": [
+        3.5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FDIV: 7.0 / 2.0 = 3.5"
+    },
+    {
+      "name": "float_div_vs_int",
+      "bytecode_hex": "550700000055020000007300",
+      "initial_stack": [],
+      "expected_stack": [
+        3.5
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FDIV gives 3.5 vs integer DIV gives 3"
+    },
+    {
+      "name": "float_mul_large",
+      "bytecode_hex": "556400000055640000007200",
+      "initial_stack": [],
+      "expected_stack": [
+        10000.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "FMUL: 100.0 * 100.0 = 10000.0"
+    },
+    {
+      "name": "conf_get_initial",
+      "bytecode_hex": "8000",
+      "initial_stack": [],
+      "expected_stack": [
+        1.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF_GET -> 1.0"
+    },
+    {
+      "name": "conf_set_zero",
+      "bytecode_hex": "5500000000818000",
+      "initial_stack": [],
+      "expected_stack": [
+        0.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF_SET(0) CONF_GET -> 0.0"
+    },
+    {
+      "name": "conf_set_half",
+      "bytecode_hex": "5501000000818000",
+      "initial_stack": [],
+      "expected_stack": [
+        1.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF_SET(1) CONF_GET -> 1.0"
+    },
+    {
+      "name": "conf_mul_clamp",
+      "bytecode_hex": "5500000000815564000000828000",
+      "initial_stack": [],
+      "expected_stack": [
+        0.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF 0 * 100 = 0 (clamped)"
+    },
+    {
+      "name": "conf_mul_chain",
+      "bytecode_hex": "5501000000815502000000825503000000828000",
+      "initial_stack": [],
+      "expected_stack": [
+        1.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF 1.0 * 2.0 * 3.0 = 1.0 (clamped)"
+    },
+    {
+      "name": "conf_set_clamp_low",
+      "bytecode_hex": "55fbffffff818000",
+      "initial_stack": [],
+      "expected_stack": [
+        0.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF_SET(-5) clamps to 0.0"
+    },
+    {
+      "name": "conf_set_clamp_high",
+      "bytecode_hex": "5564000000818000",
+      "initial_stack": [],
+      "expected_stack": [
+        1.0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": true,
+      "description": "CONF_SET(100) clamps to 1.0"
+    },
+    {
+      "name": "a2a_signal_listen",
+      "bytecode_hex": "552a0000009001920100",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "SIGNAL/LISTEN on ch1"
+    },
+    {
+      "name": "a2a_broadcast_listen",
+      "bytecode_hex": "55630000009105920500",
+      "initial_stack": [],
+      "expected_stack": [
+        99
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "BROADCAST/LISTEN on ch5"
+    },
+    {
+      "name": "a2a_fifo_order",
+      "bytecode_hex": "550a0000009002551400000090029202920200",
+      "initial_stack": [],
+      "expected_stack": [
+        10,
+        20
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "FIFO order on channel"
+    },
+    {
+      "name": "a2a_listen_empty",
+      "bytecode_hex": "926300",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "LISTEN empty -> 0"
+    },
+    {
+      "name": "a2a_separate_channels",
+      "bytecode_hex": "550a0000009001551400000090029201920200",
+      "initial_stack": [],
+      "expected_stack": [
+        10,
+        20
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Separate channels"
+    },
+    {
+      "name": "a2a_empty_after_listen",
+      "bytecode_hex": "553700000090039203920300",
+      "initial_stack": [],
+      "expected_stack": [
+        55,
+        0
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Second LISTEN -> 0"
+    },
+    {
+      "name": "complex_fibonacci",
+      "bytecode_hex": "5500000000550100000062106162106162106162106162106162106162106100",
+      "initial_stack": [],
+      "expected_stack": [
+        13,
+        8
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Fibonacci(7): stack [13, 8]"
+    },
+    {
+      "name": "complex_abs_neg",
+      "bytecode_hex": "55d6ffffff605500000000225211005600561500",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "|-42| = 42"
+    },
+    {
+      "name": "complex_abs_pos",
+      "bytecode_hex": "552a000000605500000000225211005600561500",
+      "initial_stack": [],
+      "expected_stack": [
+        42
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "|42| = 42"
+    },
+    {
+      "name": "complex_bitmask",
+      "bytecode_hex": "55cdab000055ff0000003000",
+      "initial_stack": [],
+      "expected_stack": [
+        205
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "0xABCD & 0xFF = 0xCD"
+    },
+    {
+      "name": "complex_power_of_2",
+      "bytecode_hex": "550100000055080000003400",
+      "initial_stack": [],
+      "expected_stack": [
+        256
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "1 << 8 = 256"
+    },
+    {
+      "name": "complex_div_mod",
+      "bytecode_hex": "5511000000550500000013551100000055050000001400",
+      "initial_stack": [],
+      "expected_stack": [
+        3,
+        2
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "17/5=3, 17%5=2"
+    },
+    {
+      "name": "complex_rotate_left",
+      "bytecode_hex": "550f000000550400000034550f0000005504000000353100",
+      "initial_stack": [],
+      "expected_stack": [
+        240
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "Rotate left 4 bits"
+    },
+    {
+      "name": "complex_xor_inverse",
+      "bytecode_hex": "55ff000000550f00000032550f0000003200",
+      "initial_stack": [],
+      "expected_stack": [
+        255
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "XOR self-inverse"
+    },
+    {
+      "name": "complex_range_check",
+      "bytecode_hex": "55030000005505000000245505000000550a0000002200",
+      "initial_stack": [],
+      "expected_stack": [
+        0,
+        1
+      ],
+      "expected_flags": -1,
+      "allow_float_epsilon": false,
+      "description": "3>5=0, 5<10=1"
+    },
+    {
+      "name": "complex_gt_check",
+      "bytecode_hex": "550a00000055140000002400",
+      "initial_stack": [],
+      "expected_stack": [
+        0
+      ],
+      "expected_flags": 1,
+      "allow_float_epsilon": false,
+      "description": "10 > 20 = 0 (false), Z set"
+    }
+  ]
+}
