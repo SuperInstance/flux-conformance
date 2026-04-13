@@ -1,3 +1,12 @@
+<!-- CONF-002 UPDATE v2.1 — 2026-04-14 -->
+**UPDATE:** Vector set expanded to 161 (from 113). See conformance-vectors.json v2.1.
+- 7 confidence vectors fixed (int-scaled with clamping)
+- 40 new edge-case vectors (overflow, float NaN/inf, stack errors, memory, flags)
+- 5 integration tests (factorial, fibonacci, subroutine call, signal round-trip, sum)
+- Expected pass rate: ~156/161 (96.9%)
+
+<!-- END UPDATE -->
+
 # CONF-002: Cross-Runtime Conformance Audit Report
 
 **Agent:** Datum
