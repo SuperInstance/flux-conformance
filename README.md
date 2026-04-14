@@ -18,11 +18,13 @@ A comprehensive conformance test suite for the **FLUX bytecode virtual machine**
 ## Table of Contents
 
 - [What is FLUX?](#what-is-flux)
+- [Publications](#publications)
 - [Conformance Results](#conformance-results)
 - [Architecture Overview](#architecture-overview)
 - [Conformance Testing Pipeline](#conformance-testing-pipeline)
 - [Opcode Reference](#opcode-reference)
 - [Quick Start](#quick-start)
+- [Key Results at a Glance](#key-results-at-a-glance)
 - [Running Tests](#running-tests)
 - [Running Benchmarks](#running-benchmarks)
 - [Design Philosophy](#design-philosophy)
@@ -69,6 +71,17 @@ A formally verified subset of **17 opcodes** forms an irreducible Turing-complet
 | 17 | `DEC` | Arithmetic | Decrement by 1 |
 
 Turing completeness is established by reduction to a Minsky machine.
+
+---
+
+## Publications
+
+**"Cross-Runtime ISA Conformance: Formal Verification of a 17-Opcode Turing-Complete Instruction Set Across Four Programming Languages"**
+— *SuperInstance Fleet Datum Research Group*
+
+📄 Full preprint: [**PAPER.md**](PAPER.md)
+
+> A formally specified, Turing-complete bytecode ISA achieves 95.6% cross-runtime conformance across five programming languages, with all failures traced to a single specification ambiguity in the confidence subsystem.
 
 ---
 
@@ -259,6 +272,29 @@ flowchart TD
 
 ## Quick Start
 
+Get up and running in three commands:
+
+```bash
+git clone https://github.com/SuperInstance/flux-conformance.git
+cd flux-conformance && pip install -e ".[dev]"
+python run_conformance.py
+```
+
+**Expected output:**
+
+```
+FLUX Conformance Runner v2.0.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Runtime: Python (reference)
+Vectors: 113
+
+Results: 108 PASS / 5 FAIL (95.6%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FAIL: conf_get_default, conf_set_clamp, conf_set_negative,
+      conf_mul_clamp_high, conf_mul_clamp_low
+Root cause: confidence subsystem spec ambiguity (CONF-002)
+```
+
 ### Prerequisites
 
 - Python 3.10 or later
@@ -274,6 +310,15 @@ cd flux-conformance
 # Install with pip (editable mode)
 pip install -e ".[dev]"
 ```
+
+---
+
+## Key Results at a Glance
+
+> **95.6% pass rate** on Python reference VM (108/113 vectors)
+> **7 universally portable** opcodes across 5 runtimes (Python, Rust, C, Go, TypeScript/WASM)
+> **161 conformance vectors** covering 41 opcodes across 11 functional categories
+> **4-tier portability classification** (P0–P3) quantifying cross-runtime agreement
 
 ---
 
@@ -716,3 +761,7 @@ MIT
 ---
 
 *FLUX Conformance — One test suite to rule them all. Any runtime that passes is certified FLUX-compatible.*
+
+---
+
+<img src="callsign1.jpg" width="128" alt="callsign">
