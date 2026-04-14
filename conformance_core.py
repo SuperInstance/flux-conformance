@@ -167,17 +167,27 @@ class FluxFlags:
         if v: self.value |= FLAG_O
         else: self.value &= ~FLAG_O
 
-    def update_arith(self, result: int, a: int, b: int, is_sub: bool = False):
+    def update_arith(self, result: int, a: int, b: int, is_sub: bool = False, is_mul: bool = False):
         self.Z = (result == 0)
         self.S = (result < 0)
         if is_sub:
             self.C = (a < b) if (a >= 0 and b >= 0) else False
+        elif is_mul:
+            ua, ub = a & 0xFFFFFFFF, b & 0xFFFFFFFF
+            self.C = (ua * ub) > 0xFFFFFFFF
         else:
             ua, ub = a & 0xFFFFFFFF, b & 0xFFFFFFFF
             self.C = (ua + ub) > 0xFFFFFFFF
         sa, sb = a, b
         if is_sub:
             self.O = ((sa > 0 and sb < 0 and sr < 0) or (sa < 0 and sb > 0 and sr > 0)) if False else False
+        elif is_mul:
+            sr32 = result & 0xFFFFFFFF
+            if sr32 >= 0x80000000:
+                sr32_signed = sr32 - 0x100000000
+            else:
+                sr32_signed = sr32
+            self.O = ((sa > 0 and sb > 0 and sr32_signed < 0) or (sa < 0 and sb < 0 and sr32_signed > 0))
         else:
             sr = result
             self.O = ((sa > 0 and sb > 0 and sr < 0) or (sa < 0 and sb < 0 and sr > 0))
@@ -282,7 +292,7 @@ class FluxVM:
         elif op == MUL:
             b, a = self.pop(), self.pop()
             r = a * b
-            self.flags.update_arith(r, a, b)
+            self.flags.update_arith(r, a, b, is_mul=True)
             self.push(r)
         elif op == DIV:
             b, a = self.pop(), self.pop()
