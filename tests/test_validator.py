@@ -142,10 +142,51 @@ class TestControlFlowAnalysis:
         assert 0x01 in unreachable
 
     def test_jump_targets_detected(self):
-        # JMP in canonical ISA is 0x43
-        result = validate(bytes([0x43, 0x05, 0x00]), filename="<jmp>")
+        # JMP (0x43) is format F: [opcode][rd][offset_lo][offset_hi]
+        # To reach target=5: target = pc(0) + size(4) + offset(1) = 5
+        result = validate(bytes([0x43, 0x00, 0x01, 0x00]), filename="<jmp>")
         targets = result.control_flow.get("jump_targets", [])
         assert 5 in targets
+
+    def test_jump_targets_jz_relative(self):
+        # JZ (0x3C) is format E: register-based conditional jump
+        # Static analysis cannot determine target (it's in a register)
+        # Verify no false positives — targets should be empty for register jumps
+        result = validate(bytes([0x3C, 0x00, 0x01, 0x00, 0x00]), filename="<jz>")
+        targets = result.control_flow.get("jump_targets", [])
+        # JZ target is register-based (format E), not statically determinable
+        assert targets == []
+
+    def test_ljmp_target_detected(self):
+        # LJMP (0xE0) is format F: long jump with inline 16-bit offset
+        # LJMP at pc=0 with offset 8: target = 0 + 4 + 8 = 12
+        bytecode = bytes([0xE0, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00,
+                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
+        result = validate(bytecode, filename="<ljmp>")
+        targets = result.control_flow.get("jump_targets", [])
+        assert 12 in targets
+
+    def test_loop_target_backward(self):
+        # LOOP (0x46) format F: backward jump
+        # Place LOOP at pc=4, with offset that jumps back to pc=0
+        # LOOP at pc=4 with operands [0x00, 0x04, 0x00]: target = 4 - 4 = 0
+        bytecode = bytes([0x00, 0x00, 0x00, 0x00, 0x46, 0x00, 0x04, 0x00])
+        result = validate(bytecode, filename="<loop>")
+        targets = result.control_flow.get("jump_targets", [])
+        assert 0 in targets
+
+    def test_multiple_jump_targets(self):
+        # Two JMPs to different targets
+        bytecode = bytes([
+            0x43, 0x00, 0x04, 0x00,  # JMP to target 8
+            0x43, 0x00, 0x02, 0x00,  # JMP to target 10
+            0x00,                    # HALT
+            0x00, 0x00, 0x00, 0x00,  # padding to reach target 8
+        ])
+        result = validate(bytecode, filename="<multi_jmp>")
+        targets = result.control_flow.get("jump_targets", [])
+        assert 8 in targets
+        assert 10 in targets
 
 
 class TestValidationOutput:

@@ -167,6 +167,9 @@ MNEMONICS = {
     0x3C: "JZ", 0x3D: "JNZ", 0x3E: "JLT", 0x3F: "JGT",
     0x43: "JMP", 0x44: "JAL", 0x45: "CALL", 0x46: "LOOP",
     0x50: "TELL", 0x51: "ASK", 0xFF: "PRINT",
+    # Long Jumps (0xE0-0xEF)
+    0xE0: "LJMP", 0xE1: "LCALL", 0xE2: "LJZ", 0xE3: "LJNZ",
+    0xE4: "LLT", 0xE5: "LGT",
 }
 
 FORMAT_SIZE = {'A': 1, 'B': 2, 'C': 2, 'D': 3, 'E': 4, 'F': 4, 'G': 5}
@@ -396,24 +399,31 @@ def validate(bytecode: bytes, filename: str = "<stdin>") -> ValidationResult:
         }
 
     # Control flow analysis
+    _unconditional_jumps = ("JMP", "LJMP", "HALT", "PANIC")
+    _all_jumps = ("JMP", "JZ", "JNZ", "JAL", "CALL", "LJMP", "LCALL", "LOOP")
     unreachable = []
     jump_targets = set()
+    out_of_bounds_targets = []
     for inst in instructions:
-        if inst.mnemonic in ("JMP", "JAL", "CALL", "LJMP", "LCALL"):
+        if inst.mnemonic in _all_jumps:
             if inst.fmt == 'F' and len(inst.operands) >= 2:
                 offset = struct.unpack_from('<h', inst.operands, 1)[0] if len(inst.operands) >= 3 else int.from_bytes(inst.operands[1:3], 'little', signed=True)
-                target = inst.pc + inst.size + offset
-                if 0 <= target < len(bytecode):
+                if inst.mnemonic == "LOOP":
+                    target = inst.pc - offset
+                else:
+                    target = inst.pc + inst.size + offset
+                if target < 0:
+                    errors.append(f"0x{inst.pc:04x}: {inst.mnemonic} target {target} is negative")
+                elif target >= len(bytecode):
                     jump_targets.add(target)
-        elif inst.mnemonic == "LOOP" and inst.fmt == 'F' and len(inst.operands) >= 2:
-            offset = int.from_bytes(inst.operands[1:3], 'little', signed=True)
-            target = inst.pc - offset
-            if 0 <= target < len(bytecode):
-                jump_targets.add(target)
+                    out_of_bounds_targets.append(target)
+                    errors.append(f"0x{inst.pc:04x}: {inst.mnemonic} target 0x{target:04x} exceeds bytecode length ({len(bytecode)})")
+                else:
+                    jump_targets.add(target)
 
     # Find unreachable code (after unconditional jumps/halt)
     for i, inst in enumerate(instructions):
-        if inst.mnemonic in ("JMP", "HALT", "PANIC", "LJMP"):
+        if inst.mnemonic in _unconditional_jumps:
             for j in range(i + 1, len(instructions)):
                 next_pc = instructions[j].pc
                 if next_pc not in jump_targets:
@@ -425,7 +435,11 @@ def validate(bytecode: bytes, filename: str = "<stdin>") -> ValidationResult:
         filename=filename, bytecode_len=len(bytecode),
         instructions=instructions, errors=errors, warnings=warnings,
         info=info, runtime_compatibility=runtime_compat,
-        control_flow={"unreachable": unreachable, "jump_targets": sorted(jump_targets)},
+        control_flow={
+            "unreachable": unreachable,
+            "jump_targets": sorted(jump_targets),
+            "out_of_bounds_targets": sorted(out_of_bounds_targets),
+        },
         irreducible_core_only=core_only
     )
     return result

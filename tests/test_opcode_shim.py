@@ -142,8 +142,9 @@ class TestControlFlowAnalysis:
         assert 0x01 in unreachable
 
     def test_jump_targets_detected(self):
-        # JMP in canonical ISA is 0x43
-        result = validate(bytes([0x43, 0x05, 0x00]), filename="<jmp>")
+        # JMP (0x43) is format F: [opcode][rd][offset_lo][offset_hi]
+        # To reach target=5: target = pc(0) + size(4) + offset(1) = 5
+        result = validate(bytes([0x43, 0x00, 0x01, 0x00]), filename="<jmp>")
         targets = result.control_flow.get("jump_targets", [])
         assert 5 in targets
 
